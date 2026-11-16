@@ -7,7 +7,7 @@ import { summary } from "../lib/gamification";
 import { BADGES } from "../lib/gamification";
 import { onNewBadges } from "../lib/actions";
 import { Modal, Toaster, cx, toast } from "./ui";
-import { Logo, APP_NAME, CREDIT } from "./brand";
+import { Logo, APP_NAME, CREDIT, VERSION } from "./brand";
 
 const NAV = [
   { to: "/", label: "Latih Tubi", icon: Dumbbell, end: true },
@@ -90,7 +90,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <main className="mx-auto max-w-5xl px-4 pt-5">{children}</main>
 
       {!focus && <footer className="mx-auto mt-10 max-w-5xl px-4 pb-6 text-center text-xs text-slate-400 no-print">
-        <div>{APP_NAME} · Aplikasi ini dibangunkan oleh <b className="text-slate-500 dark:text-slate-300">{CREDIT}</b></div>
+        <div>{APP_NAME} v{VERSION} · Aplikasi ini dibangunkan oleh <b className="text-slate-500 dark:text-slate-300">{CREDIT}</b></div>
         <div className="mt-0.5">Kandungan latihan sebagai bantuan ulang kaji — sahkan bacaan bersama guru bertalaqqi.</div>
       </footer>}
 
