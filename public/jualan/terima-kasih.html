@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Terima Kasih — Pandai Tajwid</title>
+<meta name="robots" content="noindex" />
+<meta name="theme-color" content="#047857" />
+<link rel="icon" href="../icon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<!--
+  Halaman ini ialah "Return URL" ToyyibPay: https://larifsham99.github.io/Pandai-Tajwid/jualan/terima-kasih.html
+  ToyyibPay menambah ?status_id=1 (berjaya) / 2 (belum selesai) / 3 (gagal).
+  Pautan aplikasi TIDAK dipaparkan di sini (halaman ini awam) — ia dihantar melalui e-mel ToyyibPay.
+-->
+<style>
+  :root{--em-50:#ecfdf5;--em-200:#a7f3d0;--em-600:#059669;--em-700:#047857;--em-800:#065f46;--forest:#08241b;--ink:#0f241c;--muted:#5b6b64;--line:#e5ece8}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Plus Jakarta Sans",system-ui,sans-serif;color:var(--ink);line-height:1.6;min-height:100vh;
+    background:radial-gradient(700px 400px at 100% -10%,rgba(52,211,153,.22),transparent 60%),radial-gradient(600px 400px at -10% 110%,rgba(252,211,77,.22),transparent 60%),#f6fbf8}
+  .wrap{max-width:560px;margin:0 auto;padding:28px 18px 40px}
+  .logo{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:19px;margin-bottom:20px}
+  .logo i{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#34d399,#047857);color:#fff;font-style:normal;font-family:"Amiri",serif;font-size:22px}
+  .logo b{color:#c9971f}
+  .card{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 10px 30px -12px rgba(6,78,59,.2);overflow:hidden}
+  .top{background:linear-gradient(135deg,#065f46,#08241b);color:#fff;text-align:center;padding:30px 22px}
+  .big{font-size:58px;line-height:1;animation:pop .6s ease}
+  @keyframes pop{0%{transform:scale(.4);opacity:0}70%{transform:scale(1.15)}100%{transform:none;opacity:1}}
+  h1{margin:12px 0 6px;font-size:26px;line-height:1.2}
+  .top p{margin:0;color:#c8f1df}
+  .body{padding:22px}
+  .mail{display:flex;gap:12px;align-items:flex-start;background:#fffbeb;border:1px solid #fde68a;border-radius:16px;padding:14px;margin-bottom:18px}
+  .mail .e{font-size:28px;line-height:1}
+  .mail p{margin:0;font-size:15px}
+  h2{font-size:16px;margin:0 0 10px}
+  ol{margin:0 0 18px;padding-left:0;list-style:none;counter-reset:s}
+  ol li{counter-increment:s;display:flex;gap:12px;margin-bottom:10px;font-size:15px}
+  ol li::before{content:counter(s);display:grid;place-items:center;flex-shrink:0;width:26px;height:26px;border-radius:9px;background:var(--em-600);color:#fff;font-weight:800;font-size:13px}
+  .tips{display:grid;gap:8px;margin-bottom:18px}
+  .tip{background:var(--em-50);border:1px solid var(--em-200);border-radius:14px;padding:10px 12px;font-size:14px}
+  .hadith{text-align:center;padding:16px;border-top:1px solid var(--line)}
+  .hadith .ar{font-family:"Amiri",serif;font-size:24px;color:var(--em-800);direction:rtl}
+  .hadith p{margin:4px 0 0;font-size:13px;color:var(--muted)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-weight:800;border-radius:14px;padding:14px 22px;background:linear-gradient(135deg,#10b981,#047857);color:#fff}
+  .foot{text-align:center;font-size:12px;color:#8a9a93;margin-top:18px}
+  .hide{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo"><i>ت</i><span>Pandai <b>Tajwid</b></span></div>
+
+  <!-- ===== BERJAYA (lalai) ===== -->
+  <div class="card" id="ok">
+    <div class="top">
+      <div class="big">🎉</div>
+      <h1>Alhamdulillah, pembayaran berjaya!</h1>
+      <p>Terima kasih kerana memilih Pandai Tajwid. Semoga Allah memberkati usaha anda memperelok bacaan al-Quran.</p>
+    </div>
+    <div class="body">
+      <div class="mail"><span class="e">📩</span><p><b>Pautan aplikasi anda telah dihantar ke e-mel</b> yang anda isi semasa pembayaran. Semak juga folder <b>Spam</b> atau <b>Promotions</b> jika tidak kelihatan dalam beberapa minit.</p></div>
+      <h2>Cara mula (kurang 1 minit)</h2>
+      <ol>
+        <li><span>Buka e-mel daripada ToyyibPay dan <b>tekan pautan aplikasi</b> pada telefon/tablet yang akan digunakan (sebaiknya dalam Chrome atau Safari).</span></li>
+        <li><span>Masukkan nama & pilih avatar.</span></li>
+        <li><span>Tekan <b>“Mula Latih Tubi”</b> — selamat belajar!</span></li>
+      </ol>
+      <div class="tips">
+        <div class="tip">📲 <b>Jadikan seperti apl:</b> Android (Chrome) ⋮ → <i>Tambah ke skrin utama</i> · iPhone (Safari) Kongsi → <i>Add to Home Screen</i></div>
+        <div class="tip">👨‍👩‍👧 <b>Seisi keluarga:</b> tekan avatar di atas → <i>Tambah profil</i>. Setiap orang ada rekod sendiri.</div>
+        <div class="tip">📴 <b>Tanpa internet:</b> selepas dibuka sekali, latih tubi & nota boleh digunakan tanpa liputan.</div>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin:0">Simpan e-mel tersebut. Jika aplikasi meminta kod, tekan sahaja pautan dalam e-mel sekali lagi.</p>
+    </div>
+    <div class="hadith"><div class="ar">خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ</div><p>“Sebaik-baik kamu ialah orang yang mempelajari al-Quran dan mengajarkannya.” (HR al-Bukhari)</p></div>
+  </div>
+
+  <!-- ===== BELUM SELESAI ===== -->
+  <div class="card hide" id="pending">
+    <div class="top"><div class="big">⏳</div><h1>Pembayaran sedang diproses</h1><p>Bank anda masih mengesahkan transaksi ini.</p></div>
+    <div class="body"><p>Sebaik sahaja pembayaran disahkan, pautan aplikasi akan dihantar ke e-mel anda secara automatik. Semak e-mel (termasuk folder Spam) dalam masa beberapa minit. Jika tiada e-mel selepas 1 jam, balas e-mel resit ToyyibPay atau hubungi kami.</p></div>
+  </div>
+
+  <!-- ===== GAGAL ===== -->
+  <div class="card hide" id="fail">
+    <div class="top" style="background:linear-gradient(135deg,#9f1239,#4c0519)"><div class="big">😔</div><h1>Pembayaran tidak berjaya</h1><p>Tiada caj dibuat bagi transaksi ini.</p></div>
+    <div class="body" style="text-align:center"><p>Ini mungkin kerana sambungan terputus atau transaksi dibatalkan. Sila cuba sekali lagi.</p><a class="btn" href="./#dapatkan">Cuba bayar semula</a></div>
+  </div>
+
+  <div class="foot">Pandai Tajwid · Aplikasi ini dibangunkan oleh <b>Abdul Latif</b></div>
+</div>
+<script>
+  // ToyyibPay: status_id 1 = berjaya, 2 = belum selesai, 3 = gagal
+  var st = new URLSearchParams(location.search).get("status_id");
+  if (st === "2" || st === "3") {
+    document.getElementById("ok").classList.add("hide");
+    document.getElementById(st === "2" ? "pending" : "fail").classList.remove("hide");
+  }
+</script>
+</body>
+</html>

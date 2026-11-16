@@ -45,10 +45,10 @@ Penempatan: `.github/workflows/pages.yml` membina dan menerbitkan ke GitHub Page
 `public/jualan/index.html` diterbitkan di `…/Pandai-Tajwid/jualan/` (sesuai untuk iklan media sosial; ada gambar kongsian `og.jpg`).
 Ubah pautan butang & harga di blok `window.SALES` di bahagian atas fail:
 ```js
-window.SALES = { ctaUrl: "", price: "", priceOld: "", priceNote: "…" };
+window.SALES = { ctaUrl: "https://toyyibpay.com/…", price: "RM29", priceNext: "RM49", priceNote: "…" };
 ```
 - `ctaUrl` — pautan **bayaran** untuk butang dalam kotak tawaran (butang "Dapatkan" lain membawa ke kotak tawaran dahulu). Kosong = butang memaparkan "akan dibuka tidak lama lagi".
-- `price` / `priceOld` — isi (cth. `"RM29"`) untuk memaparkan harga; biarkan kosong untuk menyembunyikannya.
+- `price` — harga sekarang; `priceNext` — harga biasa selepas promosi (dipaparkan sebagai makluman, bukan harga dipotong).
 
 ## Kod pengaktifan (versi penuh)
 - **Aplikasi memerlukan kod** sebelum boleh digunakan. Demo untuk bakal pembeli ialah kuiz 10 soalan + tayangan skrin di halaman jualan (`/jualan/#demo`).

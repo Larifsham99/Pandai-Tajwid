@@ -9,7 +9,7 @@
 <!-- Kongsian media sosial (Facebook / WhatsApp / Telegram / X) -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Pandai Tajwid — Cuti panjang? Jangan biar tajwid berkarat." />
-<meta property="og:description" content="1,100+ soalan latih tubi, nota 12 bab, murajaah automatik. Boleh guna tanpa internet. Cuba demo percuma sekarang." />
+<meta property="og:description" content="Promosi musim cuti RM29 sahaja. 1,100+ soalan latih tubi, nota 12 bab, murajaah automatik. Boleh guna tanpa internet. Cuba demo percuma sekarang." />
 <meta property="og:image" content="https://larifsham99.github.io/Pandai-Tajwid/jualan/img/og.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
@@ -24,14 +24,15 @@
   /* ================== TETAPAN JUALAN — ubah di sini sahaja ==================
      ctaUrl   : pautan BAYARAN (ToyyibPay / Billplz / borang / WhatsApp) untuk butang dalam kotak tawaran.
                 Butang "Dapatkan" lain akan membawa pengunjung ke kotak tawaran dahulu.
-     price    : harga jualan, cth "RM29". Biarkan "" untuk sembunyikan harga.
-     priceOld : harga asal untuk dipotong, cth "RM59". Biarkan "" jika tiada.
+     price    : harga jualan sekarang, cth "RM29". Biarkan "" untuk sembunyikan harga.
+     priceNext: harga biasa SELEPAS promosi (dipaparkan sebagai "harga biasa ... selepas promosi",
+                bukan harga dipotong — kerana belum pernah dijual pada harga itu). "" jika tiada.
      priceNote: ayat kecil di bawah harga.
   ============================================================================ */
   window.SALES = {
-    ctaUrl: "",
-    price: "",
-    priceOld: "",
+    ctaUrl: "https://toyyibpay.com/Pandai-Tajwid-apps",
+    price: "RM29",
+    priceNext: "RM49",
     priceNote: "Sekali bayar · guna seisi keluarga pada satu peranti",
   };
 </script>
@@ -96,6 +97,9 @@
   .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 18px}
   .chips{display:flex;flex-wrap:wrap;gap:8px}
   .hero-visual{position:relative;height:600px}
+  .hero-price{display:inline-block;margin:-4px 0 16px;line-height:1.5;font-size:14px;font-weight:700;color:#7c2d12;background:#fff7ed;border:1px dashed #fdba74;border-radius:14px;padding:8px 12px}
+  .hero-price b{font-size:18px;color:#c2410c}
+  .next-price{display:inline-block;margin-top:6px;font-size:13px;font-weight:700;color:#9a3412;background:#ffedd5;border-radius:999px;padding:4px 12px}
   .ayat{margin-top:22px;font-size:15px;color:var(--muted)}
   .ayat .arab{font-size:26px;color:var(--em-800);display:block;line-height:1.7}
   @media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero-visual{height:520px}}
@@ -278,6 +282,7 @@
         <a class="btn btn-cta" data-cta href="#dapatkan"><span class="pulse">👉</span> Dapatkan Pandai Tajwid</a>
         <a class="btn btn-ghost" href="#demo">▶ Cuba 10 soalan percuma</a>
       </div>
+      <div class="hero-price" id="heroPrice" hidden></div>
       <div class="chips">
         <span class="chip">📴 Tanpa internet</span><span class="chip">📱 Telefon · tablet · laptop</span><span class="chip">👨‍👩‍👧 Ramai profil, satu peranti</span><span class="chip">🔒 Tiada pendaftaran</span>
       </div>
@@ -449,7 +454,8 @@
     <div class="card offer-box reveal">
       <span class="ribbon">🎒 TAWARAN MUSIM CUTI</span>
       <h2 style="font-size:clamp(26px,4vw,36px);margin-top:8px">Dapatkan Pandai Tajwid</h2>
-      <div class="price" id="priceBox" hidden><span class="now" id="priceNow"></span><s id="priceOld"></s></div>
+      <div class="price" id="priceBox" hidden><span class="now" id="priceNow"></span></div>
+      <div id="priceNextBox" hidden><span class="next-price" id="priceNext"></span></div>
       <div id="priceNote" style="font-size:14px;color:var(--muted)"></div>
       <ul class="incl">
         <li>867 soalan objektif + 250 soalan tauliah lepas</li>
@@ -458,7 +464,7 @@
         <li>XP, tahap, lencana & scoreboard keluarga/kelas</li>
         <li>Profil tanpa had pada satu peranti</li>
         <li>Boleh guna tanpa internet · telefon, tablet & laptop</li>
-        <li>Kod pengaktifan + pautan aktivasi dihantar selepas bayaran</li>
+        <li>Pautan aplikasi dihantar terus ke e-mel selepas bayaran</li>
       </ul>
       <a class="btn btn-cta" data-buy href="#dapatkan" style="width:100%;font-size:19px;padding:18px"><span class="pulse">👉</span> Ya, saya mahu Pandai Tajwid</a>
       <div class="secure">🔒 Tiada pendaftaran akaun · data pembelajaran disimpan dalam peranti anda</div>
@@ -514,11 +520,18 @@
   // Butang "Dapatkan" → kotak tawaran (harga) dahulu; butang dalam kotak tawaran → pautan bayaran.
   document.querySelectorAll("[data-cta]").forEach(function (a) { a.href = "#dapatkan"; });
   document.querySelectorAll("[data-buy]").forEach(function (a) {
-    if (S.ctaUrl) { a.href = S.ctaUrl; a.target = "_blank"; a.rel = "noopener"; }
+    if (S.ctaUrl) { a.href = S.ctaUrl; }
     else { a.removeAttribute("href"); a.style.opacity = ".6"; a.style.pointerEvents = "none"; a.innerHTML = "⏳ Pautan pembelian akan dibuka tidak lama lagi"; }
   });
   // ---------- Harga ----------
-  if (S.price) { document.getElementById("priceBox").hidden = false; document.getElementById("priceNow").textContent = S.price; document.getElementById("priceOld").textContent = S.priceOld || ""; }
+  if (S.price) {
+    document.getElementById("priceBox").hidden = false; document.getElementById("priceNow").textContent = S.price;
+    var hp = document.getElementById("heroPrice"); hp.hidden = false;
+    hp.innerHTML = "🔥 Promosi musim cuti: <b>" + S.price + "</b> sahaja" + (S.priceNext ? " · harga biasa " + S.priceNext + " selepas promosi" : "");
+    if (S.priceNext) { document.getElementById("priceNextBox").hidden = false; document.getElementById("priceNext").textContent = "⏳ Harga biasa " + S.priceNext + " selepas promosi musim cuti"; }
+    var st = document.querySelector("#sticky [data-cta]"); if (st) st.textContent = "👉 Dapatkan · " + S.price;
+    var buy = document.querySelector("[data-buy]"); if (buy && S.ctaUrl) buy.innerHTML = '<span class="pulse">👉</span> Ya, saya mahu — ' + S.price;
+  }
   document.getElementById("priceNote").textContent = S.priceNote || "";
 
   // ---------- Senarai bab ----------
