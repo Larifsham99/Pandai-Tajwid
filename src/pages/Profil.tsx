@@ -6,7 +6,7 @@ import { reviewQueue, dueReviews } from "../lib/actions";
 import { CHAPTERS } from "../data";
 import { BarChart, Card, Modal, Stat, Tabs, cx, toast } from "../components/ui";
 import { AVATARS, ProfileForm } from "./Welcome";
-import { APP_NAME, CREDIT } from "../components/brand";
+import { APP_NAME, CREDIT, VERSION } from "../components/brand";
 import { download, fmtDate, timeAgo } from "../lib/util";
 import { cloudEnabled } from "../lib/scoreboard";
 
@@ -119,7 +119,7 @@ export default function Profil() {
           </Card>
 
           <Card className="p-4 text-center text-sm">
-            <div className="font-bold">{APP_NAME}</div>
+            <div className="font-bold">{APP_NAME} <span className="text-xs font-normal text-slate-400">v{VERSION}</span></div>
             <div className="text-slate-500">Aplikasi ini dibangunkan oleh <b>{CREDIT}</b>.</div>
             <div className="mt-2 text-xs text-slate-400">Kandungan nota & soalan latihan berstatus “belum disemak” sehingga disahkan guru penyemak. Rujukan kitab dinyatakan tanpa nombor halaman kerana belum disahkan.</div>
           </Card>

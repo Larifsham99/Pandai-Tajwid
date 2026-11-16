@@ -2,6 +2,7 @@ import { cx } from "./ui";
 
 export const APP_NAME = "Pandai Tajwid";
 export const CREDIT = "Abdul Latif";
+export const VERSION = "1.2";
 
 export function Logo({ className }: { className?: string }) {
   return (
