@@ -65,7 +65,7 @@ function SesiInner() {
 
   return (
     <div className="mx-auto max-w-2xl">
-      <div className="sticky top-14 z-30 -mx-4 mb-4 bg-gradient-to-b from-[#f4fbf7] via-[#f4fbf7]/95 to-transparent px-4 pb-3 pt-1 dark:from-hutan-950 dark:via-hutan-950/95">
+      <div className="sticky top-14 z-30 -mx-4 mb-4 border-b border-zamrud-900/5 bg-[#f4fbf7] px-4 pb-3 pt-2 shadow-sm dark:border-white/5 dark:bg-hutan-950">
         <div className="flex items-center gap-3">
           <button className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white shadow-sm ring-1 ring-slate-200 dark:bg-white/5 dark:ring-white/10" onClick={finish} aria-label="Tamatkan sesi"><X size={18} /></button>
           <Progress value={((i + (res[q.id] ? 1 : 0)) / set.qs.length) * 100} className="!h-3" />
