@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { createProfile } from "../lib/store";
-import { Logo, CREDIT } from "../components/Layout";
+import { createProfile, useDB } from "../lib/store";
+import { Logo, CREDIT } from "../components/brand";
 import { cx } from "../components/ui";
 import { SEED_QUESTIONS } from "../data";
 
@@ -8,7 +8,8 @@ export const AVATARS = ["🧕", "🧑", "👦", "👧", "🧔", "👨", "👩", 
 
 export function ProfileForm({ onDone, submitLabel = "Mula belajar" }: { onDone?: () => void; submitLabel?: string }) {
   const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState(AVATARS[0]);
+  const n = useDB((d) => d.profiles.length);
+  const [avatar, setAvatar] = useState(AVATARS[n % AVATARS.length]);
   return (
     <form onSubmit={(e) => { e.preventDefault(); if (!name.trim()) return; createProfile(name, avatar); onDone?.(); }} className="space-y-4">
       <div>

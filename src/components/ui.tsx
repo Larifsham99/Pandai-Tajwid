@@ -135,8 +135,8 @@ let pushToast: (t: Omit<Toast, "id">) => void = () => {};
 export const toast = (text: string, tone: Toast["tone"] = "ok") => pushToast({ text, tone });
 export function Toaster() {
   const [items, set] = useState<Toast[]>([]);
-  useEffect(() => { pushToast = (t) => { const id = Date.now() + Math.random(); set((s) => [...s, { ...t, id }]); setTimeout(() => set((s) => s.filter((x) => x.id !== id)), 3200); }; }, []);
-  return <div className="pointer-events-none fixed inset-x-0 bottom-20 z-[60] flex flex-col items-center gap-2 px-4 lg:bottom-6">{items.map((t) => <div key={t.id} className={cx("pop pointer-events-auto rounded-2xl px-4 py-2.5 text-sm font-semibold shadow-xl", t.tone === "ok" ? "bg-zamrud-800 text-white" : t.tone === "err" ? "bg-rose-600 text-white" : "bg-hutan-900 text-emas-200")}>{t.text}</div>)}</div>;
+  useEffect(() => { pushToast = (t) => { const id = Date.now() + Math.random(); set([{ ...t, id }]); setTimeout(() => set((s) => s.filter((x) => x.id !== id)), 2400); }; }, []);
+  return <div className="pointer-events-none fixed inset-x-0 top-16 z-[60] flex flex-col items-center gap-2 px-4">{items.map((t) => <div key={t.id} className={cx("pop pointer-events-auto rounded-2xl px-4 py-2.5 text-sm font-semibold shadow-xl", t.tone === "ok" ? "bg-zamrud-800 text-white" : t.tone === "err" ? "bg-rose-600 text-white" : "bg-hutan-900 text-emas-200")}>{t.text}</div>)}</div>;
 }
 
 export function BarChart({ data, max = 100, suffix = "%" }: { data: { label: string; value: number; tone?: string }[]; max?: number; suffix?: string }) {

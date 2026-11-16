@@ -40,7 +40,7 @@ function SesiInner() {
     const wrong = set.qs.filter((x) => res[x.id] && !res[x.id].correct);
     const pct = answered ? Math.round((score / answered) * 100) : 0;
     return (
-      <div className="space-y-4">
+      <div className="mx-auto max-w-2xl space-y-4">
         <Card className="motif relative overflow-hidden p-6 text-center">
           <div className="text-5xl">{pct >= 80 ? "🏆" : pct >= 60 ? "🌟" : "🌱"}</div>
           <div className="mt-2 text-5xl font-extrabold text-zamrud-700 dark:text-emas-300">{pct}%</div>
@@ -64,14 +64,16 @@ function SesiInner() {
   }
 
   return (
-    <div>
-      <div className="mb-3 flex items-center gap-3">
-        <button className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white ring-1 ring-slate-200 dark:bg-white/5 dark:ring-white/10" onClick={finish} aria-label="Tamatkan sesi"><X size={18} /></button>
-        <Progress value={((i + (res[q.id] ? 1 : 0)) / set.qs.length) * 100} className="!h-3" />
-        <span className="whitespace-nowrap text-sm font-bold text-zamrud-700 dark:text-emas-300">✓ {correctN}</span>
+    <div className="mx-auto max-w-2xl">
+      <div className="sticky top-14 z-30 -mx-4 mb-4 bg-gradient-to-b from-[#f4fbf7] via-[#f4fbf7]/95 to-transparent px-4 pb-3 pt-1 dark:from-hutan-950 dark:via-hutan-950/95">
+        <div className="flex items-center gap-3">
+          <button className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white shadow-sm ring-1 ring-slate-200 dark:bg-white/5 dark:ring-white/10" onClick={finish} aria-label="Tamatkan sesi"><X size={18} /></button>
+          <Progress value={((i + (res[q.id] ? 1 : 0)) / set.qs.length) * 100} className="!h-3" />
+          <span className="whitespace-nowrap text-sm font-bold tabular-nums text-slate-500">{i + 1}/{set.qs.length}</span>
+        </div>
+        <div className="mt-1.5 flex justify-between text-[11px] font-semibold text-slate-500"><span className="truncate">{set.title}</span><span className="shrink-0 text-emerald-600">✓ {correctN}</span></div>
       </div>
-      <div className="mb-3 truncate text-xs font-semibold text-slate-500">{set.title}</div>
-      <QuestionPlayer key={q.id} q={q} mode={cfg.mode} index={i} total={set.qs.length}
+      <QuestionPlayer key={q.id} q={q} mode={cfg.mode}
         onAnswered={(r) => setRes((s) => ({ ...s, [q.id]: r }))}
         onNext={() => (i < set.qs.length - 1 ? setI(i + 1) : finish())}
         onSimilar={q.source !== "tauliah" ? () => nav(`/latih/sesi?${toParams({ mode: "serupa", bab: q.chapterId, ex: q.id })}`) : undefined} />

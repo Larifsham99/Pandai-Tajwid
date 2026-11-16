@@ -45,7 +45,15 @@ function persist() {
 
 export function getDB() { return db; }
 export function setDB(next: DB) { db = next; persist(); listeners.forEach((l) => l()); }
-export function update(fn: (d: DB) => void) { const next = structuredClone(db); fn(next); setDB(next); }
+/**
+ * Kemas kini murah: salin cetek objek akar & setiap senarai (bukan klon dalam keseluruhan DB),
+ * supaya menjawab soalan kekal pantas walaupun rekod sudah beribu-ribu.
+ */
+export function update(fn: (d: DB) => void) {
+  const next = { ...db, settings: { ...db.settings } } as DB;
+  (Object.keys(next) as (keyof DB)[]).forEach((k) => { const v = next[k]; if (Array.isArray(v)) (next as unknown as Record<string, unknown>)[k] = [...v]; });
+  fn(next); setDB(next);
+}
 export function subscribe(l: () => void) { listeners.add(l); return () => { listeners.delete(l); }; }
 export function useDB<T>(sel: (d: DB) => T): T { return useSyncExternalStore(subscribe, () => sel(db)); }
 export const useDb = () => useDB((d) => d);

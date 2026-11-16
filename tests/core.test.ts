@@ -104,3 +104,23 @@ describe("tahap & scoreboard", () => {
     expect(leaderboard(d, "keseluruhan").map((r) => r.id)).toEqual(["b", "a"]);
   });
 });
+
+describe("banyak profil", () => {
+  it("boleh cipta, tukar dan padam banyak profil tanpa mencampur rekod", async () => {
+    const st = await import("../src/lib/store");
+    const { recordAnswer } = await import("../src/lib/actions");
+    st.resetAll();
+    const ids = Array.from({ length: 12 }, (_, i) => st.createProfile(`Pelajar ${i + 1}`, "🙂"));
+    expect(st.getDB().profiles).toHaveLength(12);
+    expect(st.getDB().activeProfileId).toBe(ids[11]);
+    const q = SEED_QUESTIONS.find((x) => x.type === "mcq")!;
+    st.switchProfile(ids[3]);
+    recordAnswer(ids[3], q, { correct: false, score: 0 }, "x", "rawak");
+    expect(st.getDB().attempts.filter((a) => a.userId === ids[3])).toHaveLength(1);
+    expect(st.getDB().attempts.filter((a) => a.userId === ids[4])).toHaveLength(0);
+    expect(st.getDB().review.filter((r) => r.userId === ids[3])).toHaveLength(1);
+    st.deleteProfile(ids[3]);
+    expect(st.getDB().profiles).toHaveLength(11);
+    expect(st.getDB().attempts.some((a) => a.userId === ids[3])).toBe(false);
+  });
+});
