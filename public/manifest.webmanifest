@@ -1,0 +1,12 @@
+{
+  "name": "Pandai Tajwid",
+  "short_name": "Pandai Tajwid",
+  "description": "Latih tubi tajwid — ratusan soalan, nota 12 bab, XP, lencana dan murajaah automatik. Dibangunkan oleh Abdul Latif.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4fbf7",
+  "theme_color": "#047857",
+  "lang": "ms",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
