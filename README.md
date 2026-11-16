@@ -40,3 +40,12 @@ npm test         # ujian integriti kandungan, soalan dijana, pemarkahan, murajaa
 npm run build    # binaan ke dist/
 ```
 Penempatan: `.github/workflows/pages.yml` membina dan menerbitkan ke GitHub Pages apabila push ke `main`.
+
+## Halaman jualan
+`public/jualan/index.html` diterbitkan di `…/Pandai-Tajwid/jualan/` (sesuai untuk iklan media sosial; ada gambar kongsian `og.jpg`).
+Ubah pautan butang & harga di blok `window.SALES` di bahagian atas fail:
+```js
+window.SALES = { ctaUrl: "../", demoUrl: "../", price: "", priceOld: "", priceNote: "…" };
+```
+- `ctaUrl` — pautan butang "Dapatkan" (sementara ini menuju ke demo).
+- `price` / `priceOld` — isi (cth. `"RM29"`) untuk memaparkan harga; biarkan kosong untuk menyembunyikannya.

@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Pandai Tajwid — Latih Tubi Tajwid di Telefon, Boleh Guna Tanpa Internet</title>
+<meta name="description" content="1,100+ soalan latih tubi tajwid, nota 12 bab, penerangan setiap jawapan dan murajaah automatik. Sesuai untuk pemula, pelajar pondok & tahfiz, calon tauliah, guru dan ibu bapa. Boleh guna tanpa internet." />
+<meta name="theme-color" content="#047857" />
+<!-- Kongsian media sosial (Facebook / WhatsApp / Telegram / X) -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Pandai Tajwid — Cuti panjang? Jangan biar tajwid berkarat." />
+<meta property="og:description" content="1,100+ soalan latih tubi, nota 12 bab, murajaah automatik. Boleh guna tanpa internet. Cuba demo percuma sekarang." />
+<meta property="og:image" content="https://larifsham99.github.io/Pandai-Tajwid/jualan/img/og.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://larifsham99.github.io/Pandai-Tajwid/jualan/" />
+<meta property="og:locale" content="ms_MY" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="../icon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script>
+  /* ================== TETAPAN JUALAN — ubah di sini sahaja ==================
+     ctaUrl   : pautan butang "Dapatkan" (bayaran / borang / WhatsApp). Sementara ini = demo.
+     demoUrl  : pautan aplikasi demo.
+     price    : harga jualan, cth "RM29". Biarkan "" untuk sembunyikan harga.
+     priceOld : harga asal untuk dipotong, cth "RM59". Biarkan "" jika tiada.
+     priceNote: ayat kecil di bawah harga.
+  ============================================================================ */
+  window.SALES = {
+    ctaUrl: "../",
+    demoUrl: "../",
+    price: "",
+    priceOld: "",
+    priceNote: "Sekali bayar · guna seisi keluarga pada satu peranti",
+  };
+</script>
+<style>
+  :root{
+    --em-50:#ecfdf5;--em-100:#d1fae5;--em-200:#a7f3d0;--em-400:#34d399;--em-500:#10b981;--em-600:#059669;--em-700:#047857;--em-800:#065f46;--em-900:#064e3b;
+    --forest:#08241b;--forest-2:#0b3024;--gold:#d4a940;--gold-2:#fcd34d;--gold-50:#fbf7ea;--cream:#fffaf0;
+    --ink:#0f241c;--muted:#5b6b64;--line:#e5ece8;--rose:#e11d48;--sky:#0284c7;--violet:#7c3aed;
+    --radius:22px;--shadow:0 1px 2px rgba(6,78,59,.06),0 10px 30px -10px rgba(6,78,59,.18);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{margin:0;font-family:"Plus Jakarta Sans",system-ui,sans-serif;color:var(--ink);background:#f6fbf8;line-height:1.6;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .arab{font-family:"Amiri",serif;direction:rtl}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+  section{padding:72px 0}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--em-700);background:var(--em-50);border:1px solid var(--em-200);padding:6px 12px;border-radius:999px}
+  h1,h2,h3{line-height:1.15;margin:0;letter-spacing:-.02em}
+  h2{font-size:clamp(28px,4.2vw,42px);font-weight:800}
+  h3{font-size:19px;font-weight:800}
+  .lead{font-size:clamp(16px,2vw,19px);color:var(--muted)}
+  .center{text-align:center}
+  .grad{background:linear-gradient(90deg,var(--em-600),#0ea5a4);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .gold{color:#b7861f}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;cursor:pointer;text-decoration:none;font:inherit;font-weight:800;border-radius:16px;padding:16px 26px;font-size:17px;transition:transform .15s,box-shadow .2s,filter .2s}
+  .btn:active{transform:scale(.98)}
+  .btn-cta{background:linear-gradient(135deg,#fde68a,#fbbf24 45%,#d4a940);color:#3b2a05;box-shadow:0 10px 28px -8px rgba(212,169,64,.75),inset 0 1px 0 rgba(255,255,255,.6)}
+  .btn-cta:hover{filter:brightness(1.05);box-shadow:0 14px 34px -8px rgba(212,169,64,.9)}
+  .btn-cta .pulse{animation:pulse 2.2s infinite}
+  .btn-primary{background:linear-gradient(135deg,var(--em-500),var(--em-700));color:#fff;box-shadow:0 10px 24px -10px rgba(4,120,87,.7)}
+  .btn-ghost{background:#fff;color:var(--em-800);border:1.5px solid var(--em-200)}
+  .btn-ghost:hover{background:var(--em-50)}
+  .btn-white{background:#fff;color:var(--em-800)}
+  .btn-sm{padding:10px 16px;font-size:14px;border-radius:12px}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+  .chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:7px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);color:#2d3f37}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.float,.btn-cta .pulse{animation:none!important}}
+
+  /* ---------- Nav ---------- */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(246,251,248,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(6,78,59,.06)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:18px}
+  .logo i{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--em-400),var(--em-700));color:#fff;font-style:normal;font-family:"Amiri",serif;font-size:22px;box-shadow:0 6px 14px -6px rgba(4,120,87,.7)}
+  .logo b{color:#c9971f}
+  .nav-links{display:flex;gap:22px;font-size:14px;font-weight:600;color:var(--muted)}
+  .nav-links a{text-decoration:none}
+  .nav-links a:hover{color:var(--em-700)}
+  @media (max-width:860px){.nav-links{display:none}}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;padding:44px 0 72px;overflow:hidden;background:
+    radial-gradient(800px 420px at 95% -10%,rgba(52,211,153,.22),transparent 60%),
+    radial-gradient(600px 400px at -10% 100%,rgba(252,211,77,.22),transparent 60%)}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+  .hero h1{font-size:clamp(34px,5.6vw,60px);font-weight:800;margin:16px 0 14px}
+  .hero .lead{max-width:560px}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 18px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .hero-visual{position:relative;height:600px}
+  .ayat{margin-top:22px;font-size:15px;color:var(--muted)}
+  .ayat .arab{font-size:26px;color:var(--em-800);display:block;line-height:1.7}
+  @media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero-visual{height:520px}}
+
+  /* ---------- Device frames ---------- */
+  .phone{position:absolute;width:270px;aspect-ratio:9/19.5;border-radius:44px;background:#0b1712;padding:10px;box-shadow:0 30px 60px -20px rgba(8,36,27,.55),inset 0 0 0 2px #26352f}
+  .phone::before{content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);width:84px;height:22px;border-radius:20px;background:#0b1712;z-index:2}
+  .phone .scr{width:100%;height:100%;border-radius:34px;overflow:hidden;background:#f4fbf7}
+  .phone .scr img{width:100%;height:100%;object-fit:cover;object-position:top}
+  .phone.p1{right:90px;top:10px;z-index:2}
+  .phone.p2{right:-10px;top:90px;transform:rotate(6deg) scale(.92);z-index:1;opacity:.97}
+  .float{animation:float 6s ease-in-out infinite}
+  @keyframes float{0%,100%{translate:0 0}50%{translate:0 -10px}}
+  .sticker{position:absolute;z-index:3;background:#fff;border-radius:16px;padding:10px 14px;font-size:13px;font-weight:700;box-shadow:var(--shadow);display:flex;align-items:center;gap:8px;border:1px solid var(--line)}
+  .sticker .ic{display:grid;place-items:center;width:30px;height:30px;border-radius:10px;font-size:16px}
+  .s1{left:0;top:70px}.s2{left:20px;bottom:120px}.s3{right:20px;bottom:10px}
+  @media (max-width:900px){.phone{width:230px}.phone.p1{right:auto;left:calc(50% - 175px)}.phone.p2{right:calc(50% - 190px)}.s1{left:4px;top:24px}.s2{left:0;bottom:60px}.s3{right:4px;bottom:0}}
+  @media (max-width:420px){.phone{width:205px}.phone.p1{left:calc(50% - 160px)}.phone.p2{right:calc(50% - 165px);top:70px}}
+
+  .devices{position:relative;display:grid;grid-template-columns:1fr;place-items:center;margin-top:40px}
+  .laptop{width:min(820px,100%)}
+  .laptop .lid{background:#0b1712;border-radius:18px 18px 6px 6px;padding:14px 14px 18px;box-shadow:0 30px 60px -25px rgba(8,36,27,.6)}
+  .laptop .lid img{border-radius:6px;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
+  .laptop .base{height:16px;margin:0 -6%;background:linear-gradient(#d9e0dc,#aeb8b3);border-radius:0 0 18px 18px;position:relative}
+  .laptop .base::after{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);width:16%;height:6px;background:#c3ccc7;border-radius:0 0 8px 8px}
+  .tablet{position:absolute;left:0;bottom:-20px;width:min(300px,34%);aspect-ratio:3/4;background:#0b1712;border-radius:26px;padding:12px;box-shadow:0 30px 60px -20px rgba(8,36,27,.6)}
+  .tablet img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:14px}
+  .phone.dev{position:absolute;right:2%;bottom:-30px;width:min(190px,24%)}
+  .phone.dev::before{width:56px;height:16px;top:14px}
+  .phone.dev .scr{border-radius:28px}
+  @media (max-width:700px){.tablet{left:-4px;bottom:-40px}.phone.dev{right:-4px;bottom:-50px;border-radius:30px;padding:6px}.phone.dev::before{display:none}.phone.dev .scr{border-radius:24px}}
+  .device-labels{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:70px}
+
+  /* ---------- Pain ---------- */
+  .pain{background:#fff}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+  @media (max-width:900px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.g3,.g4,.g2{grid-template-columns:1fr}}
+  .pain-item{display:flex;gap:14px;padding:18px;border-radius:18px;background:#fff7f7;border:1px solid #fde2e2}
+  .pain-item .e{font-size:26px;line-height:1}
+  .pain-item p{margin:0;font-size:15px}
+  .bridge{margin-top:28px;padding:22px;border-radius:22px;background:linear-gradient(135deg,var(--em-50),#fff);border:1px solid var(--em-200);font-size:18px;font-weight:700;text-align:center}
+
+  /* ---------- Steps ---------- */
+  .steps{counter-reset:s}
+  .step{padding:24px}
+  .step .n{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--em-400),var(--em-700));color:#fff;font-weight:800;font-size:18px;margin-bottom:14px}
+  .step img{border-radius:18px;margin-top:16px;border:1px solid var(--line);aspect-ratio:9/12;object-fit:cover;object-position:top;width:100%}
+  .step p{color:var(--muted);margin:6px 0 0;font-size:15px}
+
+  /* ---------- Features ---------- */
+  .features{background:linear-gradient(180deg,#f6fbf8,#fff)}
+  .feat{padding:22px}
+  .feat .ic{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;font-size:22px;margin-bottom:12px}
+  .feat p{margin:6px 0 0;color:var(--muted);font-size:14.5px}
+  @media (max-width:560px){.feat{display:flex;gap:14px;align-items:flex-start;padding:18px}.feat .ic{flex-shrink:0;margin:0}.feat h3{font-size:17px}}
+  .t-em{background:var(--em-100)}.t-gold{background:#fef3c7}.t-rose{background:#ffe4e6}.t-sky{background:#e0f2fe}.t-vi{background:#ede9fe}
+
+  /* ---------- Audience ---------- */
+  .aud{padding:20px;display:flex;gap:14px;align-items:flex-start}
+  .aud .em{font-size:30px;line-height:1}
+  .aud p{margin:4px 0 0;color:var(--muted);font-size:14.5px}
+
+  /* ---------- Holiday ---------- */
+  .holiday{background:linear-gradient(135deg,#065f46,#08241b);color:#fff;position:relative;overflow:hidden}
+  .holiday::before{content:"";position:absolute;inset:0;opacity:.18;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 4l7 13 15-3-3 15 13 7-13 7 3 15-15-3-7 13-7-13-15 3 3-15-13-7 13-7-3-15 15 3z' fill='none' stroke='%23fcd34d' stroke-width='1'/%3E%3C/svg%3E")}
+  .holiday .wrap{position:relative}
+  .holiday .lead{color:#c8f1df}
+  .plan{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:20px}
+  .plan .wk{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--gold-2);text-transform:uppercase}
+  .plan h3{margin:6px 0 6px;font-size:18px}
+  .plan p{margin:0;color:#d5efe4;font-size:14.5px}
+
+  /* ---------- Demo ---------- */
+  .demo .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:start}
+  @media (max-width:900px){.demo .wrap{grid-template-columns:1fr}}
+  .quiz{padding:22px}
+  .quiz .meta{display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:10px}
+  .bar{height:8px;border-radius:9px;background:#eef3f0;overflow:hidden;margin-bottom:18px}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--em-400),var(--em-600));transition:width .4s}
+  .q-prompt{font-size:19px;font-weight:800;margin:0 0 12px}
+  .q-arab{font-family:"Amiri",serif;direction:rtl;text-align:right;font-size:30px;line-height:2;background:var(--cream);border:1px solid #f1e3b7;border-radius:16px;padding:10px 16px;margin-bottom:14px}
+  .q-ref{display:block;font-family:"Plus Jakarta Sans";font-size:12px;color:#a17a1c;direction:ltr;text-align:right;line-height:1.3}
+  .opts{display:grid;gap:10px}
+  .opt{display:flex;align-items:center;gap:12px;text-align:left;width:100%;padding:14px;border-radius:16px;border:1.5px solid var(--line);background:#fff;font:inherit;font-size:16px;cursor:pointer;transition:border-color .15s,background .15s,transform .1s}
+  .opt:hover{border-color:var(--em-400)}
+  .opt:active{transform:scale(.99)}
+  .opt b{display:grid;place-items:center;width:30px;height:30px;flex-shrink:0;border-radius:50%;background:#eef3f0;font-size:13px}
+  .opt.ok{border-color:var(--em-500);background:var(--em-50)}.opt.ok b{background:var(--em-500);color:#fff}
+  .opt.no{border-color:#fb7185;background:#fff1f2}.opt.no b{background:var(--rose);color:#fff}
+  .opt[disabled]{cursor:default}
+  .fb{margin-top:14px;border-radius:16px;padding:14px 16px;font-size:15px;display:none}
+  .fb.show{display:block;animation:pop .3s ease}
+  .fb.ok{background:linear-gradient(135deg,#10b981,#0d9488);color:#fff}
+  .fb.no{background:linear-gradient(135deg,#f43f5e,#db2777);color:#fff}
+  .fb .why{margin-top:8px;background:rgba(255,255,255,.16);border-radius:12px;padding:10px 12px;font-size:14px}
+  @keyframes pop{0%{transform:scale(.96);opacity:0}100%{transform:none;opacity:1}}
+  .quiz-actions{display:flex;gap:10px;margin-top:14px}
+  .result{text-align:center;padding:10px 0}
+  .result .big{font-size:56px;font-weight:800;color:var(--em-700);line-height:1}
+  .demo-phone{position:relative;width:300px;max-width:100%;margin:0 auto;aspect-ratio:9/19.5;border-radius:46px;background:#0b1712;padding:11px;box-shadow:0 30px 60px -20px rgba(8,36,27,.55)}
+  .demo-phone .scr{position:relative;width:100%;height:100%;border-radius:36px;overflow:hidden;background:#f4fbf7}
+  .demo-phone iframe{width:100%;height:100%;border:0}
+  .demo-phone .cover{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:24px;background:linear-gradient(180deg,rgba(8,36,27,0) 30%,rgba(8,36,27,.85));}
+  .demo-phone .cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
+
+  /* ---------- Content ---------- */
+  .bab{display:flex;align-items:center;gap:12px;padding:14px 16px}
+  .bab .no{display:grid;place-items:center;width:36px;height:36px;border-radius:11px;font-weight:800;flex-shrink:0;font-size:14px}
+  .bab span{font-weight:700;font-size:15px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:30px 0}
+  .stat{padding:18px;text-align:center}
+  .stat .v{font-size:32px;font-weight:800;color:var(--em-700);line-height:1.1}
+  .stat .l{font-size:13px;color:var(--muted);font-weight:600}
+  @media (max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+  /* ---------- Compare ---------- */
+  .cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:15px;overflow:hidden;border-radius:18px;border:1px solid var(--line);background:#fff}
+  .cmp th,.cmp td{padding:13px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  .cmp th{background:var(--em-50);font-size:14px}
+  .cmp tr:last-child td{border-bottom:0}
+  .cmp td:nth-child(3){font-weight:700;color:var(--em-800);background:#f7fdf9}
+
+  /* ---------- Offer ---------- */
+  .offer{background:radial-gradient(700px 360px at 50% 0%,rgba(252,211,77,.25),transparent 70%)}
+  .offer-box{max-width:640px;margin:0 auto;padding:30px 24px;text-align:center;border:2px solid var(--gold-2);position:relative}
+  .ribbon{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#fbbf24,#d4a940);color:#3b2a05;font-weight:800;font-size:13px;padding:6px 16px;border-radius:999px;white-space:nowrap}
+  .price{display:flex;align-items:baseline;justify-content:center;gap:12px;margin:12px 0 4px}
+  .price .now{font-size:52px;font-weight:800;color:var(--em-700)}
+  .price s{font-size:22px;color:#9aa8a1}
+  .incl{list-style:none;padding:0;margin:18px auto 22px;text-align:left;max-width:440px;display:grid;gap:9px}
+  .incl li{display:flex;gap:10px;font-size:15px}
+  .incl li::before{content:"✓";display:grid;place-items:center;flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--em-500);color:#fff;font-size:12px;font-weight:800;margin-top:1px}
+  .secure{font-size:13px;color:var(--muted);margin-top:12px}
+
+  /* ---------- FAQ ---------- */
+  details{background:#fff;border:1px solid var(--line);border-radius:16px;padding:0 18px;margin-bottom:10px}
+  summary{cursor:pointer;list-style:none;font-weight:700;padding:16px 0;display:flex;justify-content:space-between;gap:12px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-size:22px;line-height:1;color:var(--em-600);transition:transform .2s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{margin:0 0 16px;color:var(--muted);font-size:15px}
+
+  /* ---------- Final ---------- */
+  .final{background:linear-gradient(135deg,#047857,#065f46 50%,#08241b);color:#fff;text-align:center}
+  .final .lead{color:#c8f1df}
+  footer{background:#08241b;color:#a7c4b8;font-size:13px;text-align:center;padding:28px 18px 110px}
+  footer b{color:#fff}
+
+  /* ---------- Sticky CTA (telefon) ---------- */
+  .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);display:flex;gap:10px;transform:translateY(110%);transition:transform .3s}
+  .sticky-cta.on{transform:none}
+  .sticky-cta .btn{flex:1;padding:14px 10px;font-size:15px}
+  @media (min-width:901px){.sticky-cta{display:none}footer{padding-bottom:28px}}
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="#"><i>ت</i><span>Pandai <b>Tajwid</b></span></a>
+    <div class="nav-links"><a href="#ciri">Ciri-ciri</a><a href="#untuk">Sesuai untuk</a><a href="#demo">Demo</a><a href="#kandungan">Kandungan</a><a href="#soalan">Soalan lazim</a></div>
+    <a class="btn btn-primary btn-sm" data-demo href="../">Cuba Demo</a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">🎒 Edisi Musim Cuti · Pelajar balik kampung</span>
+      <h1>Cuti panjang? <span class="grad">Jangan biar tajwid berkarat.</span></h1>
+      <p class="lead"><b>Pandai Tajwid</b> ialah aplikasi latih tubi tajwid dalam telefon — <b>1,100+ soalan</b>, nota 12 bab, penerangan bagi setiap jawapan dan <b>murajaah automatik</b> soalan yang salah. <b>Boleh guna tanpa internet.</b></p>
+      <div class="hero-ctas">
+        <a class="btn btn-cta" data-cta href="../"><span class="pulse">👉</span> Dapatkan Pandai Tajwid</a>
+        <a class="btn btn-ghost" href="#demo">▶ Cuba 5 soalan percuma</a>
+      </div>
+      <div class="chips">
+        <span class="chip">📴 Tanpa internet</span><span class="chip">📱 Telefon · tablet · laptop</span><span class="chip">👨‍👩‍👧 Ramai profil, satu peranti</span><span class="chip">🔒 Tiada pendaftaran</span>
+      </div>
+      <div class="ayat"><span class="arab">وَرَتِّلِ ٱلْقُرْءَانَ تَرْتِيلًا</span>“…dan bacalah al-Quran dengan tartil.” (al-Muzzammil: 4)</div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="phone p2 float" style="animation-delay:-3s"><div class="scr"><img src="img/phone-feedback.jpg" alt="" loading="eager"></div></div>
+      <div class="phone p1 float"><div class="scr"><img src="img/phone-home.jpg" alt="" loading="eager"></div></div>
+      <div class="sticker s1"><span class="ic t-em">✅</span>Tepat! +10 XP</div>
+      <div class="sticker s2"><span class="ic t-rose">🔁</span>Salah? Masuk murajaah</div>
+      <div class="sticker s3"><span class="ic t-gold">🔥</span>9 hari istiqamah</div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= PAIN ================= -->
+<section class="pain">
+  <div class="wrap">
+    <div class="center reveal"><span class="eyebrow">😟 Kenal situasi ini?</span><h2 style="margin-top:14px">Ilmu tajwid mudah hilang bila <span class="gold">tak diulang</span></h2></div>
+    <div class="grid g2" style="margin-top:32px">
+      <div class="pain-item reveal"><span class="e">🏡</span><p><b>Balik cuti dari pondok / tahfiz</b>, sebulan dua tak buka kitab — pulang semula, hukum yang dah hafal mula kabur.</p></div>
+      <div class="pain-item reveal"><span class="e">📚</span><p><b>Nak ulang kaji tapi buku tebal</b> — tak tahu mula dari mana, dan tiada siapa nak uji.</p></div>
+      <div class="pain-item reveal"><span class="e">🎓</span><p><b>Nak ambil tauliah mengajar al-Quran</b> — perlu latihan berulang, bukan sekadar membaca nota.</p></div>
+      <div class="pain-item reveal"><span class="e">📱</span><p><b>Anak asyik main telefon</b> masa cuti — mak ayah mahu masa skrin yang ada manfaat.</p></div>
+      <div class="pain-item reveal"><span class="e">❓</span><p><b>Jawab salah, tapi tak tahu kenapa</b> — kesalahan sama berulang kerana tiada penerangan.</p></div>
+      <div class="pain-item reveal"><span class="e">📶</span><p><b>Di kampung, internet perlahan</b> — aplikasi lain tak boleh dibuka tanpa data.</p></div>
+    </div>
+    <div class="bridge reveal">Pandai Tajwid dibina khusus untuk ini: <span class="grad">latih tubi ringkas, faham sebabnya, dan ulang yang salah — sampai mantap.</span></div>
+  </div>
+</section>
+
+<!-- ================= CARA ================= -->
+<section>
+  <div class="wrap">
+    <div class="center reveal"><span class="eyebrow">⚡ Semudah 1-2-3</span><h2 style="margin-top:14px">15 minit sehari pun dah cukup bermakna</h2></div>
+    <div class="grid g3 steps" style="margin-top:32px">
+      <div class="card step reveal"><div class="n">1</div><h3>Tekan “Mula Latih Tubi”</h3><p>Pilih rawak, ikut bab, Cabaran Harian atau Maraton tanpa had.</p><img src="img/phone-home.jpg" alt="Skrin utama Pandai Tajwid" loading="lazy"></div>
+      <div class="card step reveal"><div class="n">2</div><h3>Jawab — terus disemak</h3><p>Sentuh jawapan, keputusan keluar serta-merta. Ada ayat al-Quran sebagai contoh.</p><img src="img/phone-question.jpg" alt="Contoh soalan kenal hukum" loading="lazy"></div>
+      <div class="card step reveal"><div class="n">3</div><h3>Faham & ulang yang salah</h3><p>Setiap jawapan ada penerangan. Yang salah masuk <b>murajaah automatik</b> sehingga anda kuasai.</p><img src="img/phone-feedback.jpg" alt="Penerangan jawapan" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PERANTI ================= -->
+<section style="background:#fff;overflow:hidden;padding-bottom:90px">
+  <div class="wrap center">
+    <div class="reveal"><span class="eyebrow">💻 Satu aplikasi, semua peranti</span><h2 style="margin-top:14px">Telefon, tablet atau laptop — <span class="grad">semuanya boleh</span></h2>
+    <p class="lead" style="max-width:680px;margin:12px auto 0">Buka di pelayar, kemudian <b>“Tambah ke Skrin Utama”</b> — ia jadi seperti apl biasa. Tidak perlu Play Store atau App Store.</p></div>
+    <div class="devices reveal" aria-hidden="true">
+      <div class="laptop"><div class="lid"><img src="img/desktop-home.jpg" alt="" loading="lazy"></div><div class="base"></div></div>
+      <div class="tablet"><img src="img/tablet-nota.jpg" alt="" loading="lazy"></div>
+      <div class="phone dev"><div class="scr"><img src="img/phone-score.jpg" alt="" loading="lazy"></div></div>
+    </div>
+    <div class="device-labels"><span class="chip">📱 Android & iPhone</span><span class="chip">📲 iPad & tablet Android</span><span class="chip">💻 Laptop / PC</span><span class="chip">🌙 Mod gelap</span></div>
+  </div>
+</section>
+
+<!-- ================= CIRI ================= -->
+<section class="features" id="ciri">
+  <div class="wrap">
+    <div class="center reveal"><span class="eyebrow">✨ Ciri-ciri</span><h2 style="margin-top:14px">Semua yang anda perlukan untuk <span class="grad">mantapkan tajwid</span></h2></div>
+    <div class="grid g3" style="margin-top:32px">
+      <div class="card feat reveal"><div class="ic t-em">🎯</div><h3>1,100+ soalan latih tubi</h3><p>867 soalan objektif (ABCD, Benar/Salah, Padanan, Isi tempat kosong) + 250 soalan tauliah lepas.</p></div>
+      <div class="card feat reveal"><div class="ic t-gold">💡</div><h3>Penerangan setiap jawapan</h3><p>Kenapa betul, kenapa pilihan anda salah, dhobit dan contoh ayat — terus faham, bukan sekadar hafal.</p></div>
+      <div class="card feat reveal"><div class="ic t-rose">🔁</div><h3>Murajaah automatik</h3><p>Soalan yang salah diulang secara berjadual (kaedah Leitner) sehingga betul-betul melekat.</p></div>
+      <div class="card feat reveal"><div class="ic t-sky">📖</div><h3>Nota lengkap 12 bab</h3><p>Nota mendalam, nota ringkas, kad imbas, jadual perbandingan & peta minda. Ada carian dan penanda.</p></div>
+      <div class="card feat reveal"><div class="ic t-vi">🗂️</div><h3>Soalan tauliah lepas</h3><p>10 kertas tauliah tajwid Negeri Kedah (2014–2019, 2022–2025) dengan jawapan cadangan untuk semakan kendiri.</p></div>
+      <div class="card feat reveal"><div class="ic t-gold">🏅</div><h3>XP, tahap & lencana</h3><p>Dari <i>Mubtadi'</i> hingga <i>Penguasaan Tajwid</i>. Seronok macam main permainan — tapi isinya ilmu.</p></div>
+      <div class="card feat reveal"><div class="ic t-em">🏆</div><h3>Scoreboard keluarga / kelas</h3><p>Adik-beradik atau rakan sekelas berlumba XP mingguan, ketepatan dan istiqamah.</p></div>
+      <div class="card feat reveal"><div class="ic t-sky">👨‍👩‍👧‍👦</div><h3>Ramai profil, satu peranti</h3><p>Tiada had profil. Setiap anak ada rekod sendiri — tekan avatar untuk bertukar.</p></div>
+      <div class="card feat reveal"><div class="ic t-rose">📴</div><h3>Boleh guna tanpa internet</h3><p>Selepas dibuka sekali, latih tubi & nota berfungsi walaupun tiada liputan. Sesuai di kampung.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SESUAI UNTUK ================= -->
+<section id="untuk">
+  <div class="wrap">
+    <div class="center reveal"><span class="eyebrow">🤝 Sesuai untuk semua</span><h2 style="margin-top:14px">Siapa yang patut guna Pandai Tajwid?</h2></div>
+    <div class="grid g3" style="margin-top:32px">
+      <div class="card aud reveal"><span class="em">🌱</span><div><h3>Pemula</h3><p>Mula dari asas — takrif, makhraj, sifat huruf. Soalan bertahap dan penerangan mesra.</p></div></div>
+      <div class="card aud reveal"><span class="em">🔄</span><div><h3>Yang nak ulang kaji</h3><p>Pernah belajar tajwid? Segarkan semula dalam masa singkat, ikut bab yang lemah.</p></div></div>
+      <div class="card aud reveal"><span class="em">🕌</span><div><h3>Pelajar pondok</h3><p>Kekalkan ilmu sepanjang cuti, supaya pulang ke pondok dalam keadaan lebih mantap.</p></div></div>
+      <div class="card aud reveal"><span class="em">📖</span><div><h3>Pelajar tahfiz</h3><p>Hafazan kuat perlu disokong tajwid yang betul. Latih kenal hukum terus dari ayat.</p></div></div>
+      <div class="card aud reveal"><span class="em">🎓</span><div><h3>Calon tauliah</h3><p>Ikhtiar latih tubi sebelum peperiksaan tauliah mengajar al-Quran — termasuk soalan tahun lepas.</p></div></div>
+      <div class="card aud reveal"><span class="em">👳</span><div><h3>Guru, ustaz & ustazah</h3><p>Bahan latihan pemantapan untuk kelas, halaqah dan surau. Pantau kemajuan murid melalui scoreboard.</p></div></div>
+      <div class="card aud reveal"><span class="em">👨‍👩‍👧</span><div><h3>Ibu bapa</h3><p>Masa skrin anak jadi bermanfaat. Satu telefon, ramai anak — masing-masing ada profil sendiri.</p></div></div>
+      <div class="card aud reveal"><span class="em">🧕</span><div><h3>Kelas dewasa & muslimat</h3><p>Ulang kaji selepas kelas tajwid mingguan, ikut rentak sendiri, di mana-mana.</p></div></div>
+      <div class="card aud reveal"><span class="em">🏫</span><div><h3>Pelajar sekolah agama</h3><p>Persediaan untuk ujian tajwid & tilawah di sekolah, dengan latihan berulang yang menyeronokkan.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MUSIM CUTI ================= -->
+<section class="holiday">
+  <div class="wrap">
+    <div class="center reveal"><span class="eyebrow" style="background:rgba(255,255,255,.1);color:#fde68a;border-color:rgba(255,255,255,.2)">🗓️ Cadangan pelan cuti 4 minggu</span>
+      <h2 style="margin-top:14px">Jadikan cuti ini <span style="color:var(--gold-2)">musim pemantapan</span></h2>
+      <p class="lead" style="max-width:660px;margin:12px auto 0">Cukup 15–20 minit sehari. Pulang ke pondok / tahfiz dengan tajwid yang lebih mantap — atau bersedia untuk tauliah.</p></div>
+    <div class="grid g4" style="margin-top:32px">
+      <div class="plan reveal"><div class="wk">Minggu 1</div><h3>Asas yang kukuh</h3><p>Bab 1–3: pengenalan, makharij & sifat huruf. Baca nota ringkas, kemudian 10 soalan sehari.</p></div>
+      <div class="plan reveal"><div class="wk">Minggu 2</div><h3>Hukum teras</h3><p>Bab 4–7: nun & mim sakinah, musyaddadah, hukum lam. Fokus “kenal hukum” daripada ayat.</p></div>
+      <div class="plan reveal"><div class="wk">Minggu 3</div><h3>Mad, ra' & waqaf</h3><p>Bab 8–11. Guna Cabaran Harian + murajaah setiap pagi.</p></div>
+      <div class="plan reveal"><div class="wk">Minggu 4</div><h3>Uji diri</h3><p>Bab 12 + Maraton + soalan tauliah lepas. Sasarkan lencana “100 Soalan Betul” 💯</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DEMO ================= -->
+<section class="demo" id="demo">
+  <div class="wrap">
+    <div>
+      <div class="reveal"><span class="eyebrow">🧪 Cuba sekarang — percuma</span><h2 style="margin-top:14px">Uji diri anda: <span class="grad">5 soalan</span></h2>
+      <p class="lead" style="margin:10px 0 22px">Soalan sebenar daripada aplikasi. Lihat sendiri bagaimana penerangan membantu anda faham.</p></div>
+      <div class="card quiz reveal" id="quiz" aria-live="polite"></div>
+    </div>
+    <div class="reveal">
+      <div class="demo-phone">
+        <div class="scr" id="demoScr">
+          <img class="cover-img" src="img/phone-home.jpg" alt="Pratonton aplikasi" loading="lazy">
+          <div class="cover">
+            <button class="btn btn-cta" id="loadDemo" style="width:100%">▶ Buka demo penuh di sini</button>
+            <a data-demo href="../" target="_blank" rel="noopener" style="color:#fff;font-size:14px;margin-top:10px;font-weight:600">atau buka di tab baharu ↗</a>
+          </div>
+        </div>
+      </div>
+      <p class="center" style="font-size:13px;color:var(--muted);margin-top:14px">Demo penuh berjalan terus dalam pelayar anda — cipta profil, jawab soalan, lihat nota.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KANDUNGAN ================= -->
+<section id="kandungan" style="background:#fff">
+  <div class="wrap">
+    <div class="center reveal"><span class="eyebrow">📚 Kandungan</span><h2 style="margin-top:14px">12 bab tajwid, dari asas hingga bacaan gharib</h2></div>
+    <div class="stats">
+      <div class="card stat reveal"><div class="v" data-count="1117">1,117</div><div class="l">soalan</div></div>
+      <div class="card stat reveal"><div class="v" data-count="12">12</div><div class="l">bab nota</div></div>
+      <div class="card stat reveal"><div class="v" data-count="42">42</div><div class="l">topik</div></div>
+      <div class="card stat reveal"><div class="v" data-count="10">10</div><div class="l">kertas tauliah lepas</div></div>
+    </div>
+    <div class="grid g3" id="babList"></div>
+  </div>
+</section>
+
+<!-- ================= BANDING ================= -->
+<section>
+  <div class="wrap" style="max-width:860px">
+    <div class="center reveal"><span class="eyebrow">⚖️ Kenapa Pandai Tajwid?</span><h2 style="margin-top:14px">Lebih daripada sekadar membaca nota</h2></div>
+    <div class="reveal" style="margin-top:28px;overflow-x:auto">
+      <table class="cmp">
+        <thead><tr><th></th><th>Baca buku / nota sahaja</th><th>Pandai Tajwid</th></tr></thead>
+        <tbody>
+          <tr><td>Uji kefahaman</td><td>Perlu orang lain uji</td><td>1,100+ soalan, disemak serta-merta</td></tr>
+          <tr><td>Bila salah</td><td>Tak tahu di mana silap</td><td>Penerangan + pilihan anda diterangkan</td></tr>
+          <tr><td>Ulang kaji</td><td>Ulang semua dari awal</td><td>Murajaah automatik hanya yang salah</td></tr>
+          <tr><td>Motivasi</td><td>Mudah bosan</td><td>XP, tahap, lencana & scoreboard</td></tr>
+          <tr><td>Dibawa ke mana-mana</td><td>Berat & mudah tertinggal</td><td>Dalam poket, tanpa internet</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TAWARAN ================= -->
+<section class="offer" id="dapatkan">
+  <div class="wrap">
+    <div class="card offer-box reveal">
+      <span class="ribbon">🎒 TAWARAN MUSIM CUTI</span>
+      <h2 style="font-size:clamp(26px,4vw,36px);margin-top:8px">Dapatkan Pandai Tajwid</h2>
+      <div class="price" id="priceBox" hidden><span class="now" id="priceNow"></span><s id="priceOld"></s></div>
+      <div id="priceNote" style="font-size:14px;color:var(--muted)"></div>
+      <ul class="incl">
+        <li>867 soalan objektif + 250 soalan tauliah lepas</li>
+        <li>Nota 12 bab: mendalam, ringkas, kad imbas, jadual & peta minda</li>
+        <li>Penerangan setiap jawapan + murajaah automatik</li>
+        <li>XP, tahap, lencana & scoreboard keluarga/kelas</li>
+        <li>Profil tanpa had pada satu peranti</li>
+        <li>Boleh guna tanpa internet · telefon, tablet & laptop</li>
+      </ul>
+      <a class="btn btn-cta" data-cta href="../" style="width:100%;font-size:19px;padding:18px"><span class="pulse">👉</span> Ya, saya mahu Pandai Tajwid</a>
+      <div class="secure">🔒 Tiada pendaftaran akaun · data pembelajaran disimpan dalam peranti anda</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="soalan" style="background:#fff">
+  <div class="wrap" style="max-width:820px">
+    <div class="center reveal" style="margin-bottom:26px"><span class="eyebrow">💬 Soalan lazim</span><h2 style="margin-top:14px">Ada soalan?</h2></div>
+    <details class="reveal"><summary>Betul ke boleh guna tanpa internet?</summary><p>Ya. Buka aplikasi sekali ketika ada internet — selepas itu latih tubi, murajaah dan nota boleh digunakan walaupun tiada liputan. Internet hanya diperlukan untuk mendapatkan kemas kini.</p></details>
+    <details class="reveal"><summary>Perlu muat turun dari Play Store / App Store?</summary><p>Tidak. Pandai Tajwid ialah aplikasi web. Buka pautan di Chrome atau Safari, kemudian pilih “Tambah ke Skrin Utama” — ia akan muncul seperti apl biasa.</p></details>
+    <details class="reveal"><summary>Boleh dikongsi dengan adik-beradik?</summary><p>Boleh. Satu peranti boleh ada banyak profil tanpa had. Setiap profil ada XP, lencana dan rekod murajaah sendiri, dan mereka boleh bersaing di scoreboard.</p></details>
+    <details class="reveal"><summary>Sesuai untuk pemula yang langsung tak tahu tajwid?</summary><p>Sesuai. Mulakan dengan Bab 1–3 dan baca nota ringkas dahulu. Setiap soalan ada penerangan, jadi anda belajar sambil menjawab. Namun bacaan al-Quran tetap perlu dibetulkan secara talaqqi bersama guru.</p></details>
+    <details class="reveal"><summary>Adakah soalan-soalan ini telah disemak?</summary><p>Kami telus: sebahagian besar soalan objektif dijana daripada nota aplikasi dan dilabel <b>“Belum disemak”</b> sehingga disahkan guru penyemak. Jawapan diambil terus daripada nota, dan topik yang ada khilaf ulama tidak dijadikan soalan. Label ini dipaparkan pada setiap soalan berkaitan.</p></details>
+    <details class="reveal"><summary>Dari mana soalan tauliah lepas?</summary><p>Daripada 10 kertas soalan tauliah Tajwid Negeri Kedah (2014–2019 dan 2022–2025) yang ditranskripsi. Jawapan cadangan disediakan sebagai panduan ulang kaji (belum disemak) dan bukan skema pemarkahan rasmi. Pandai Tajwid tidak menjamin keputusan peperiksaan — ia alat bantu latihan.</p></details>
+    <details class="reveal"><summary>Di mana data saya disimpan?</summary><p>Dalam peranti anda sendiri. Tiada akaun, tiada emel diperlukan. Anda boleh eksport sandaran di halaman Profil jika mahu bertukar telefon.</p></details>
+    <details class="reveal"><summary>Boleh guru guna untuk kelas?</summary><p>Boleh. Gunakan sebagai latihan pemantapan selepas kelas, cabaran harian, atau pertandingan kecil di scoreboard dalam kelas / halaqah.</p></details>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section class="final">
+  <div class="wrap reveal">
+    <div class="arab" style="font-size:30px;color:#fde68a">خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ</div>
+    <p style="color:#c8f1df;margin:4px 0 22px;font-size:14px">“Sebaik-baik kamu ialah orang yang mempelajari al-Quran dan mengajarkannya.” (HR al-Bukhari)</p>
+    <h2>Mulakan hari ini — sebelum cuti berlalu.</h2>
+    <p class="lead" style="max-width:600px;margin:12px auto 26px">Setiap soalan yang dijawab ialah satu langkah ke arah bacaan yang lebih tepat.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a class="btn btn-cta" data-cta href="../"><span class="pulse">👉</span> Dapatkan Pandai Tajwid</a>
+      <a class="btn btn-white" data-demo href="../">Cuba demo dahulu</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div><b>Pandai Tajwid</b> · Aplikasi ini dibangunkan oleh <b>Abdul Latif</b></div>
+  <div style="margin-top:6px">Alat bantu ulang kaji — sahkan bacaan bersama guru bertalaqqi. Paparan skrin menggunakan data contoh.</div>
+</footer>
+
+<div class="sticky-cta" id="sticky">
+  <a class="btn btn-ghost" data-demo href="../">▶ Demo</a>
+  <a class="btn btn-cta" data-cta href="../">👉 Dapatkan sekarang</a>
+</div>
+
+<script>
+(function () {
+  var S = window.SALES;
+  // ---------- Pautan CTA & demo ----------
+  document.querySelectorAll("[data-cta]").forEach(function (a) { a.href = S.ctaUrl; });
+  document.querySelectorAll("[data-demo]").forEach(function (a) { a.href = S.demoUrl; });
+  // ---------- Harga ----------
+  if (S.price) { document.getElementById("priceBox").hidden = false; document.getElementById("priceNow").textContent = S.price; document.getElementById("priceOld").textContent = S.priceOld || ""; }
+  document.getElementById("priceNote").textContent = S.priceNote || "";
+
+  // ---------- Senarai bab ----------
+  var BAB = ["Pengenalan Ilmu Tajwid", "Makharij al-Huruf", "Sifat-Sifat Huruf", "Hukum Nun Sakinah dan Tanwin", "Hukum Mim Sakinah", "Mim dan Nun Musyaddadah", "Hukum Lam", "Hukum Ra'", "Hukum Mad", "Waqaf dan Ibtida'", "Hamzah Wasal dan Hamzah Qat'", "Bab Lanjutan & Bacaan Gharib Hafs"];
+  var TONE = ["t-em", "t-sky", "t-gold", "t-vi", "t-rose"];
+  document.getElementById("babList").innerHTML = BAB.map(function (t, i) { return '<div class="card bab reveal"><span class="no ' + TONE[i % 5] + '">' + (i + 1) + "</span><span>" + t + "</span></div>"; }).join("");
+
+  // ---------- Kuiz demo (soalan sebenar daripada bank soalan aplikasi) ----------
+  var Q = [
+    { p: "Apakah hukum nun sakinah dalam مِنْ خَوْفٍ ?", a: "ٱلَّذِىٓ أَطْعَمَهُم مِّن جُوعٍ وَءَامَنَهُم مِّنْ خَوْفٍۭ", r: "Quraisy: 4", o: ["Ikhfa' haqiqi", "Izhar halqi", "Idgham", "Iqlab"], c: 1, why: "Nun sakinah bertemu خ (huruf halq) → izhar halqi. Kaedah: jika selepas nun ialah ء ه ع ح غ خ → izhar.", w: { 0: "خ ialah huruf halq, bukan huruf ikhfa'." } },
+    { p: "Hukum mim sakinah dalam تَرْمِيهِم بِحِجَارَةٍ ?", a: "تَرْمِيهِم بِحِجَارَةٍ مِّن سِجِّيلٍ", r: "al-Fil: 4", o: ["Izhar syafawi", "Ikhfa' syafawi", "Idgham mimi", "Iqlab"], c: 1, why: "Mim sakinah bertemu ب → ikhfa' syafawi, dengung 2 harakat." },
+    { p: "Lam pada ٱلرَّحْمَٰنِ dibaca…", o: ["Izhar qamari", "Idgham syamsi", "Tafkhim", "Qalqalah"], c: 1, why: "Lam ta'rif bertemu huruf syamsiyyah (ر) → lam tidak dibaca, huruf selepasnya bertasydid." },
+    { p: "Mad dalam جَآءَ ialah…", o: ["Mad jaiz munfasil", "Mad wajib muttasil", "Mad badal", "Mad lazim"], c: 1, why: "Huruf mad dan hamzah dalam satu kalimah → mad wajib muttasil, 4/5 harakat." },
+    { p: "Huruf manakah keluar dari wasat al-halq (tengah kerongkong)?", o: ["ء ه", "ع ح", "غ خ", "ق ك"], c: 1, why: "Aqsa al-halq: ء ه · Wasat al-halq: ع ح · Adna al-halq: غ خ." },
+  ];
+  var i = 0, score = 0, el = document.getElementById("quiz");
+  function esc(s) { return s.replace(/[&<>]/g, function (m) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[m]; }); }
+  function render() {
+    if (i >= Q.length) return done();
+    var q = Q[i];
+    el.innerHTML = '<div class="meta"><span>Soalan ' + (i + 1) + "/" + Q.length + '</span><span>✓ ' + score + '</span></div><div class="bar"><i style="width:' + (i / Q.length * 100) + '%"></i></div>' +
+      '<p class="q-prompt">' + esc(q.p) + "</p>" + (q.a ? '<div class="q-arab">' + q.a + '<span class="q-ref">(' + q.r + ")</span></div>" : "") +
+      '<div class="opts">' + q.o.map(function (t, k) { return '<button class="opt" data-k="' + k + '"><b>' + "ABCD"[k] + "</b><span>" + esc(t) + "</span></button>"; }).join("") + "</div>" +
+      '<div class="fb" id="fb"></div><div class="quiz-actions" id="qa"></div>';
+    el.querySelectorAll(".opt").forEach(function (b) { b.addEventListener("click", function () { answer(+b.dataset.k); }); });
+  }
+  function answer(k) {
+    var q = Q[i], ok = k === q.c; if (ok) score++;
+    el.querySelectorAll(".opt").forEach(function (b, j) { b.disabled = true; if (j === q.c) b.classList.add("ok"); else if (j === k) b.classList.add("no"); });
+    var fb = document.getElementById("fb");
+    fb.className = "fb show " + (ok ? "ok" : "no");
+    fb.innerHTML = "<b>" + (ok ? "✅ Tepat! Barakallahu fik" : "❌ Belum tepat — jawapan: " + esc(q.o[q.c])) + "</b>" + (!ok && q.w && q.w[k] ? '<div class="why"><b>Pilihan anda:</b> ' + esc(q.w[k]) + "</div>" : "") + '<div class="why">💡 ' + esc(q.why) + "</div>";
+    document.getElementById("qa").innerHTML = '<button class="btn btn-primary" style="flex:1" id="nx">' + (i < Q.length - 1 ? "Seterusnya →" : "Lihat keputusan") + "</button>";
+    document.getElementById("nx").addEventListener("click", function () { i++; render(); });
+    if (navigator.vibrate && !ok) navigator.vibrate(40);
+  }
+  function done() {
+    var msg = score === 5 ? "Mumtaz! Anda sudah bersedia untuk cabaran 1,100+ soalan." : score >= 3 ? "Jayyid! Teruskan latihan untuk menguasai semua bab." : "Tak mengapa — inilah sebabnya latih tubi & murajaah penting.";
+    el.innerHTML = '<div class="result"><div style="font-size:44px">' + (score >= 4 ? "🏆" : score >= 3 ? "🌟" : "🌱") + '</div><div class="big">' + score + "/5</div><p style=\"font-weight:700\">" + msg + '</p><p style="color:var(--muted);font-size:14px;margin-top:-6px">Dalam aplikasi, soalan yang salah akan masuk <b>murajaah automatik</b>.</p>' +
+      '<a class="btn btn-cta" href="' + S.ctaUrl + '" style="width:100%;margin-top:8px">👉 Dapatkan Pandai Tajwid</a><button class="btn btn-ghost" id="again" style="width:100%;margin-top:10px">Cuba sekali lagi</button></div>';
+    document.getElementById("again").addEventListener("click", function () { i = 0; score = 0; render(); });
+  }
+  render();
+
+  // ---------- Demo penuh dalam bingkai telefon ----------
+  document.getElementById("loadDemo").addEventListener("click", function () {
+    document.getElementById("demoScr").innerHTML = '<iframe src="' + S.demoUrl + '" title="Demo Pandai Tajwid" loading="lazy"></iframe>';
+  });
+
+  // ---------- Animasi muncul & butang melekat ----------
+  var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }); }, { threshold: .12 }) : null;
+  document.querySelectorAll(".reveal").forEach(function (n) { io ? io.observe(n) : n.classList.add("in"); });
+  setTimeout(function(){ document.querySelectorAll(".reveal").forEach(function(n){ var r=n.getBoundingClientRect(); if (r.top < innerHeight) n.classList.add("in"); }); }, 300);
+  var sticky = document.getElementById("sticky"), hero = document.querySelector(".hero");
+  function onScroll() { sticky.classList.toggle("on", window.scrollY > hero.offsetHeight - 120); }
+  window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+})();
+</script>
+</body>
+</html>
