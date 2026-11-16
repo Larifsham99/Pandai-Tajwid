@@ -22,15 +22,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <script>
   /* ================== TETAPAN JUALAN — ubah di sini sahaja ==================
-     ctaUrl   : pautan butang "Dapatkan" (bayaran / borang / WhatsApp). Sementara ini = demo.
-     demoUrl  : pautan aplikasi demo.
+     ctaUrl   : pautan BAYARAN (ToyyibPay / Billplz / borang / WhatsApp) untuk butang dalam kotak tawaran.
+                Butang "Dapatkan" lain akan membawa pengunjung ke kotak tawaran dahulu.
      price    : harga jualan, cth "RM29". Biarkan "" untuk sembunyikan harga.
      priceOld : harga asal untuk dipotong, cth "RM59". Biarkan "" jika tiada.
      priceNote: ayat kecil di bawah harga.
   ============================================================================ */
   window.SALES = {
-    ctaUrl: "../",
-    demoUrl: "../",
+    ctaUrl: "",
     price: "",
     priceOld: "",
     priceNote: "Sekali bayar · guna seisi keluarga pada satu peranti",
@@ -200,9 +199,12 @@
   .result .big{font-size:56px;font-weight:800;color:var(--em-700);line-height:1}
   .demo-phone{position:relative;width:300px;max-width:100%;margin:0 auto;aspect-ratio:9/19.5;border-radius:46px;background:#0b1712;padding:11px;box-shadow:0 30px 60px -20px rgba(8,36,27,.55)}
   .demo-phone .scr{position:relative;width:100%;height:100%;border-radius:36px;overflow:hidden;background:#f4fbf7}
-  .demo-phone iframe{width:100%;height:100%;border:0}
-  .demo-phone .cover{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:24px;background:linear-gradient(180deg,rgba(8,36,27,0) 30%,rgba(8,36,27,.85));}
-  .demo-phone .cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
+  .demo-phone .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .6s}
+  .demo-phone .slide.on{opacity:1}
+  .slide-cap{text-align:center;font-weight:800;margin-top:16px;min-height:26px}
+  .dots{display:flex;justify-content:center;gap:8px;margin-top:10px}
+  .dots button{width:10px;height:10px;border-radius:50%;border:0;background:#cfe0d8;cursor:pointer;padding:0}
+  .dots button.on{background:var(--em-600);width:26px;border-radius:6px}
 
   /* ---------- Content ---------- */
   .bab{display:flex;align-items:center;gap:12px;padding:14px 16px}
@@ -261,7 +263,7 @@
   <div class="wrap">
     <a class="logo" href="#"><i>ت</i><span>Pandai <b>Tajwid</b></span></a>
     <div class="nav-links"><a href="#ciri">Ciri-ciri</a><a href="#untuk">Sesuai untuk</a><a href="#demo">Demo</a><a href="#kandungan">Kandungan</a><a href="#soalan">Soalan lazim</a></div>
-    <a class="btn btn-primary btn-sm" data-demo href="../">Cuba Demo</a>
+    <a class="btn btn-primary btn-sm" href="#demo">Cuba Demo</a>
   </div>
 </nav>
 
@@ -273,8 +275,8 @@
       <h1>Cuti panjang? <span class="grad">Jangan biar tajwid berkarat.</span></h1>
       <p class="lead"><b>Pandai Tajwid</b> ialah aplikasi latih tubi tajwid dalam telefon — <b>1,100+ soalan</b>, nota 12 bab, penerangan bagi setiap jawapan dan <b>murajaah automatik</b> soalan yang salah. <b>Boleh guna tanpa internet.</b></p>
       <div class="hero-ctas">
-        <a class="btn btn-cta" data-cta href="../"><span class="pulse">👉</span> Dapatkan Pandai Tajwid</a>
-        <a class="btn btn-ghost" href="#demo">▶ Cuba 5 soalan percuma</a>
+        <a class="btn btn-cta" data-cta href="#dapatkan"><span class="pulse">👉</span> Dapatkan Pandai Tajwid</a>
+        <a class="btn btn-ghost" href="#demo">▶ Cuba 10 soalan percuma</a>
       </div>
       <div class="chips">
         <span class="chip">📴 Tanpa internet</span><span class="chip">📱 Telefon · tablet · laptop</span><span class="chip">👨‍👩‍👧 Ramai profil, satu peranti</span><span class="chip">🔒 Tiada pendaftaran</span>
@@ -388,21 +390,22 @@
 <section class="demo" id="demo">
   <div class="wrap">
     <div>
-      <div class="reveal"><span class="eyebrow">🧪 Cuba sekarang — percuma</span><h2 style="margin-top:14px">Uji diri anda: <span class="grad">5 soalan</span></h2>
-      <p class="lead" style="margin:10px 0 22px">Soalan sebenar daripada aplikasi. Lihat sendiri bagaimana penerangan membantu anda faham.</p></div>
+      <div class="reveal"><span class="eyebrow">🧪 Cuba sekarang — percuma</span><h2 style="margin-top:14px">Uji diri anda: <span class="grad">10 soalan</span></h2>
+      <p class="lead" style="margin:10px 0 22px">Soalan sebenar daripada aplikasi, merangkumi 10 bab. Lihat sendiri bagaimana penerangan membantu anda faham.</p></div>
       <div class="card quiz reveal" id="quiz" aria-live="polite"></div>
     </div>
     <div class="reveal">
-      <div class="demo-phone">
-        <div class="scr" id="demoScr">
-          <img class="cover-img" src="img/phone-home.jpg" alt="Pratonton aplikasi" loading="lazy">
-          <div class="cover">
-            <button class="btn btn-cta" id="loadDemo" style="width:100%">▶ Buka demo penuh di sini</button>
-            <a data-demo href="../" target="_blank" rel="noopener" style="color:#fff;font-size:14px;margin-top:10px;font-weight:600">atau buka di tab baharu ↗</a>
-          </div>
+      <div class="demo-phone" aria-label="Tayangan skrin aplikasi">
+        <div class="scr" id="slides">
+          <img class="slide on" src="img/phone-home.jpg" alt="Skrin utama" loading="lazy">
+          <img class="slide" src="img/phone-question.jpg" alt="Soalan kenal hukum" loading="lazy">
+          <img class="slide" src="img/phone-feedback.jpg" alt="Penerangan jawapan" loading="lazy">
+          <img class="slide" src="img/phone-score.jpg" alt="Scoreboard" loading="lazy">
         </div>
       </div>
-      <p class="center" style="font-size:13px;color:var(--muted);margin-top:14px">Demo penuh berjalan terus dalam pelayar anda — cipta profil, jawab soalan, lihat nota.</p>
+      <div class="slide-cap" id="slideCap">Skrin utama: mula latih tubi & murajaah</div>
+      <div class="dots" id="dots"></div>
+      <p class="center" style="font-size:13px;color:var(--muted);margin-top:12px">Tayangan skrin sebenar aplikasi (data contoh).</p>
     </div>
   </div>
 </section>
@@ -455,8 +458,9 @@
         <li>XP, tahap, lencana & scoreboard keluarga/kelas</li>
         <li>Profil tanpa had pada satu peranti</li>
         <li>Boleh guna tanpa internet · telefon, tablet & laptop</li>
+        <li>Kod pengaktifan + pautan aktivasi dihantar selepas bayaran</li>
       </ul>
-      <a class="btn btn-cta" data-cta href="../" style="width:100%;font-size:19px;padding:18px"><span class="pulse">👉</span> Ya, saya mahu Pandai Tajwid</a>
+      <a class="btn btn-cta" data-buy href="#dapatkan" style="width:100%;font-size:19px;padding:18px"><span class="pulse">👉</span> Ya, saya mahu Pandai Tajwid</a>
       <div class="secure">🔒 Tiada pendaftaran akaun · data pembelajaran disimpan dalam peranti anda</div>
     </div>
   </div>
@@ -466,6 +470,8 @@
 <section id="soalan" style="background:#fff">
   <div class="wrap" style="max-width:820px">
     <div class="center reveal" style="margin-bottom:26px"><span class="eyebrow">💬 Soalan lazim</span><h2 style="margin-top:14px">Ada soalan?</h2></div>
+    <details class="reveal" open><summary>Bagaimana mula guna selepas bayar?</summary><p>Selepas pembayaran, anda akan menerima <b>kod pengaktifan</b> (contoh: PT-7K3M-Q9XA-2HDF) bersama <b>pautan aktivasi</b>. Tekan pautan itu di telefon — aplikasi terus dibuka sepenuhnya. Atau buka aplikasi dan masukkan kod secara manual. Sebelum membeli, cuba dahulu <a href="#demo">kuiz demo 10 soalan</a> di halaman ini.</p></details>
+    <details class="reveal"><summary>Satu kod boleh guna untuk berapa orang?</summary><p>Satu kod untuk <b>satu peranti</b>, dan <b>semua profil</b> pada peranti itu turut dibuka. Jadi satu telefon / tablet keluarga boleh digunakan oleh semua adik-beradik, masing-masing dengan rekod sendiri.</p></details>
     <details class="reveal"><summary>Betul ke boleh guna tanpa internet?</summary><p>Ya. Buka aplikasi sekali ketika ada internet — selepas itu latih tubi, murajaah dan nota boleh digunakan walaupun tiada liputan. Internet hanya diperlukan untuk mendapatkan kemas kini.</p></details>
     <details class="reveal"><summary>Perlu muat turun dari Play Store / App Store?</summary><p>Tidak. Pandai Tajwid ialah aplikasi web. Buka pautan di Chrome atau Safari, kemudian pilih “Tambah ke Skrin Utama” — ia akan muncul seperti apl biasa.</p></details>
     <details class="reveal"><summary>Boleh dikongsi dengan adik-beradik?</summary><p>Boleh. Satu peranti boleh ada banyak profil tanpa had. Setiap profil ada XP, lencana dan rekod murajaah sendiri, dan mereka boleh bersaing di scoreboard.</p></details>
@@ -485,8 +491,8 @@
     <h2>Mulakan hari ini — sebelum cuti berlalu.</h2>
     <p class="lead" style="max-width:600px;margin:12px auto 26px">Setiap soalan yang dijawab ialah satu langkah ke arah bacaan yang lebih tepat.</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <a class="btn btn-cta" data-cta href="../"><span class="pulse">👉</span> Dapatkan Pandai Tajwid</a>
-      <a class="btn btn-white" data-demo href="../">Cuba demo dahulu</a>
+      <a class="btn btn-cta" data-cta href="#dapatkan"><span class="pulse">👉</span> Dapatkan Pandai Tajwid</a>
+      <a class="btn btn-white" href="#demo">Cuba demo dahulu</a>
     </div>
   </div>
 </section>
@@ -497,16 +503,20 @@
 </footer>
 
 <div class="sticky-cta" id="sticky">
-  <a class="btn btn-ghost" data-demo href="../">▶ Demo</a>
-  <a class="btn btn-cta" data-cta href="../">👉 Dapatkan sekarang</a>
+  <a class="btn btn-ghost" href="#demo">▶ Demo</a>
+  <a class="btn btn-cta" data-cta href="#dapatkan">👉 Dapatkan sekarang</a>
 </div>
 
 <script>
 (function () {
   var S = window.SALES;
   // ---------- Pautan CTA & demo ----------
-  document.querySelectorAll("[data-cta]").forEach(function (a) { a.href = S.ctaUrl; });
-  document.querySelectorAll("[data-demo]").forEach(function (a) { a.href = S.demoUrl; });
+  // Butang "Dapatkan" → kotak tawaran (harga) dahulu; butang dalam kotak tawaran → pautan bayaran.
+  document.querySelectorAll("[data-cta]").forEach(function (a) { a.href = "#dapatkan"; });
+  document.querySelectorAll("[data-buy]").forEach(function (a) {
+    if (S.ctaUrl) { a.href = S.ctaUrl; a.target = "_blank"; a.rel = "noopener"; }
+    else { a.removeAttribute("href"); a.style.opacity = ".6"; a.style.pointerEvents = "none"; a.innerHTML = "⏳ Pautan pembelian akan dibuka tidak lama lagi"; }
+  });
   // ---------- Harga ----------
   if (S.price) { document.getElementById("priceBox").hidden = false; document.getElementById("priceNow").textContent = S.price; document.getElementById("priceOld").textContent = S.priceOld || ""; }
   document.getElementById("priceNote").textContent = S.priceNote || "";
@@ -523,7 +533,13 @@
     { p: "Lam pada ٱلرَّحْمَٰنِ dibaca…", o: ["Izhar qamari", "Idgham syamsi", "Tafkhim", "Qalqalah"], c: 1, why: "Lam ta'rif bertemu huruf syamsiyyah (ر) → lam tidak dibaca, huruf selepasnya bertasydid." },
     { p: "Mad dalam جَآءَ ialah…", o: ["Mad jaiz munfasil", "Mad wajib muttasil", "Mad badal", "Mad lazim"], c: 1, why: "Huruf mad dan hamzah dalam satu kalimah → mad wajib muttasil, 4/5 harakat." },
     { p: "Huruf manakah keluar dari wasat al-halq (tengah kerongkong)?", o: ["ء ه", "ع ح", "غ خ", "ق ك"], c: 1, why: "Aqsa al-halq: ء ه · Wasat al-halq: ع ح · Adna al-halq: غ خ." },
+    { p: "Hukum BERAMAL dengan tajwid ketika membaca al-Quran ialah…", o: ["Sunat", "Fardu kifayah", "Fardu 'ain", "Harus"], c: 2, why: "Beramal (membaca dengan bertajwid) ialah fardu 'ain bagi setiap pembaca; mempelajari teorinya ialah fardu kifayah.", w: { 1: "Fardu kifayah ialah hukum mempelajari teorinya." } },
+    { p: "فَحَثَّهُ شَخْصٌ سَكَتَ ialah himpunan huruf bagi sifat…", o: ["Jahr", "Hams", "Syiddah", "Isti'la'"], c: 1, why: "Hams — 10 huruf; nafas mengalir ketika menyebutnya." },
+    { p: "Hukum nun dalam إِنَّ ٱللَّهَ ?", o: ["Izhar", "Ghunnah musyaddadah (wajib ghunnah)", "Ikhfa'", "Qalqalah"], c: 1, why: "Nun bertasydid → wajib dengung 2 harakat." },
+    { p: "Ketika memulakan bacaan dengan ٱدْخُلُوا۟ , hamzah wasal dibaca…", o: ["Fathah", "Kasrah", "Dhammah", "Sukun"], c: 2, why: "Fi'il yang huruf ketiganya (خ) berbaris dhammah asli → hamzah wasal dibaca dhammah." },
+    { p: "Bacaan khas pada مَجْرٜىٰهَا (Hud: 41) dinamakan…", o: ["Isymam", "Imalah", "Tashil", "Saktah"], c: 1, why: "Satu-satunya imalah dalam riwayat Hafs." },
   ];
+  var ORDER = [5, 4, 6, 0, 1, 7, 2, 3, 8, 9]; Q = ORDER.map(function (k) { return Q[k]; });
   var i = 0, score = 0, el = document.getElementById("quiz");
   function esc(s) { return s.replace(/[&<>]/g, function (m) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[m]; }); }
   function render() {
@@ -546,17 +562,22 @@
     if (navigator.vibrate && !ok) navigator.vibrate(40);
   }
   function done() {
-    var msg = score === 5 ? "Mumtaz! Anda sudah bersedia untuk cabaran 1,100+ soalan." : score >= 3 ? "Jayyid! Teruskan latihan untuk menguasai semua bab." : "Tak mengapa — inilah sebabnya latih tubi & murajaah penting.";
-    el.innerHTML = '<div class="result"><div style="font-size:44px">' + (score >= 4 ? "🏆" : score >= 3 ? "🌟" : "🌱") + '</div><div class="big">' + score + "/5</div><p style=\"font-weight:700\">" + msg + '</p><p style="color:var(--muted);font-size:14px;margin-top:-6px">Dalam aplikasi, soalan yang salah akan masuk <b>murajaah automatik</b>.</p>' +
-      '<a class="btn btn-cta" href="' + S.ctaUrl + '" style="width:100%;margin-top:8px">👉 Dapatkan Pandai Tajwid</a><button class="btn btn-ghost" id="again" style="width:100%;margin-top:10px">Cuba sekali lagi</button></div>';
+    var msg = score >= 9 ? "Mumtaz! Anda sudah bersedia untuk cabaran 1,100+ soalan." : score >= 6 ? "Jayyid! Teruskan latihan untuk menguasai semua bab." : "Tak mengapa — inilah sebabnya latih tubi & murajaah penting.";
+    el.innerHTML = '<div class="result"><div style="font-size:44px">' + (score >= 9 ? "🏆" : score >= 6 ? "🌟" : "🌱") + '</div><div class="big">' + score + "/" + Q.length + "</div><p style=\"font-weight:700\">" + msg + '</p><p style="color:var(--muted);font-size:14px;margin-top:-6px">Dalam aplikasi, soalan yang salah akan masuk <b>murajaah automatik</b>.</p>' +
+      '<a class="btn btn-cta" href="#dapatkan" style="width:100%;margin-top:8px">👉 Dapatkan Pandai Tajwid</a><button class="btn btn-ghost" id="again" style="width:100%;margin-top:10px">Cuba sekali lagi</button></div>';
     document.getElementById("again").addEventListener("click", function () { i = 0; score = 0; render(); });
   }
   render();
 
-  // ---------- Demo penuh dalam bingkai telefon ----------
-  document.getElementById("loadDemo").addEventListener("click", function () {
-    document.getElementById("demoScr").innerHTML = '<iframe src="' + S.demoUrl + '" title="Demo Pandai Tajwid" loading="lazy"></iframe>';
-  });
+  // ---------- Tayangan skrin aplikasi ----------
+  var slides = document.querySelectorAll("#slides .slide"), dots = document.getElementById("dots"), cap = document.getElementById("slideCap"), cur = 0, timer;
+  var CAPS = ["Skrin utama: mula latih tubi & murajaah", "Soalan kenal hukum daripada ayat al-Quran", "Penerangan serta-merta selepas menjawab", "Scoreboard keluarga / kelas"];
+  dots.innerHTML = CAPS.map(function (_, k) { return '<button aria-label="Skrin ' + (k + 1) + '"></button>'; }).join("");
+  function show(k) { cur = k; slides.forEach(function (s, j) { s.classList.toggle("on", j === k); }); dots.querySelectorAll("button").forEach(function (b, j) { b.classList.toggle("on", j === k); }); cap.textContent = CAPS[k]; }
+  function auto() { clearInterval(timer); timer = setInterval(function () { show((cur + 1) % slides.length); }, 3200); }
+  dots.querySelectorAll("button").forEach(function (b, k) { b.addEventListener("click", function () { show(k); auto(); }); });
+  document.getElementById("slides").addEventListener("click", function () { show((cur + 1) % slides.length); auto(); });
+  show(0); auto();
 
   // ---------- Animasi muncul & butang melekat ----------
   var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }); }, { threshold: .12 }) : null;

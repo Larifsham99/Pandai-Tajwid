@@ -9,11 +9,12 @@ import { AVATARS, ProfileForm } from "./Welcome";
 import { APP_NAME, CREDIT, VERSION } from "../components/brand";
 import { download, fmtDate, timeAgo } from "../lib/util";
 import { cloudEnabled } from "../lib/scoreboard";
+import { useActivation, formatCode } from "../lib/activation";
 
 type Tab = "pencapaian" | "kemajuan" | "tetapan";
 
 export default function Profil() {
-  const me = useMe()!; const d = useDb();
+  const me = useMe()!; const d = useDb(); const act = useActivation();
   const s = summary(d, me.id);
   const [tab, setTab] = useState<Tab>("pencapaian");
   const [editing, setEditing] = useState(false);
@@ -121,6 +122,7 @@ export default function Profil() {
           <Card className="p-4 text-center text-sm">
             <div className="font-bold">{APP_NAME} <span className="text-xs font-normal text-slate-400">v{VERSION}</span></div>
             <div className="text-slate-500">Aplikasi ini dibangunkan oleh <b>{CREDIT}</b>.</div>
+            {act.code && <div className="mt-2 font-mono text-xs text-emerald-700 dark:text-emerald-300">✅ Diaktifkan · {formatCode(act.code).slice(0, 8)}-••••-••••</div>}
             <div className="mt-2 text-xs text-slate-400">Kandungan nota & soalan latihan berstatus “belum disemak” sehingga disahkan guru penyemak. Rujukan kitab dinyatakan tanpa nombor halaman kerana belum disahkan.</div>
           </Card>
         </>

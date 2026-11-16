@@ -124,3 +124,36 @@ describe("banyak profil", () => {
     expect(st.getDB().attempts.some((a) => a.userId === ids[3])).toBe(false);
   });
 });
+
+describe("kod pengaktifan", () => {
+  it("normalisasi format kod", async () => {
+    const { normalizeCode, formatCode } = await import("../src/lib/activation");
+    expect(normalizeCode("pt-7k3m q9xa-2hdf")).toBe("7K3MQ9XA2HDF");
+    expect(normalizeCode("7K3M-Q9XA-2HDF")).toBe("7K3MQ9XA2HDF");
+    expect(normalizeCode("PT-0000-1111-OOOO")).toBe(""); // aksara mengelirukan tidak digunakan
+    expect(normalizeCode("abc")).toBe("");
+    expect(formatCode("7K3MQ9XA2HDF")).toBe("PT-7K3M-Q9XA-2HDF");
+  });
+  it("hanya kod yang hashnya disenaraikan diterima", async () => {
+    const { verifyAgainst, hashCode } = await import("../src/lib/activation");
+    const set = new Set([await hashCode("7K3MQ9XA2HDF")]);
+    expect(await verifyAgainst("pt-7k3m-q9xa-2hdf", set)).toBe("7K3MQ9XA2HDF");
+    expect(await verifyAgainst("PT-7K3M-Q9XA-2HDG", set)).toBeNull();
+  });
+  it("hash sama dengan penjana kod (node:crypto)", async () => {
+    const { createHash } = await import("node:crypto");
+    const { hashCode } = await import("../src/lib/activation");
+    expect(await hashCode("ABCDEFGH2345")).toBe(createHash("sha256").update("pandai-tajwid|v1|ABCDEFGH2345").digest("hex").slice(0, 24));
+  });
+  it("tanpa kod: aplikasi belum aktif; kod salah ditolak", async () => {
+    const { initActivation, isActive, activate } = await import("../src/lib/activation");
+    await initActivation();
+    expect(isActive()).toBe(false);
+    expect(await activate("PT-AAAA-BBBB-CCCC")).toMatch(/tidak sah/);
+    expect(isActive()).toBe(false);
+  });
+  it("tiada kod sebenar dalam repo — hanya hash 24 aksara hex", async () => {
+    const hashes = (await import("../src/data/activation-hashes.json")).default as string[];
+    hashes.forEach((h) => expect(h).toMatch(/^[0-9a-f]{24}$/));
+  });
+});
