@@ -34,10 +34,10 @@ function BadgeCelebration() {
 }
 
 /** Lembaran profil: tukar antara profil atau tambah profil baharu (tiada had bilangan). */
-export function ProfileSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
+export function ProfileSheet({ open, onClose, startAdding = false }: { open: boolean; onClose: () => void; startAdding?: boolean }) {
   const d = useDb(); const nav = useNavigate();
   const [adding, setAdding] = useState(false);
-  useEffect(() => { if (!open) setAdding(false); }, [open]);
+  useEffect(() => { setAdding(open && startAdding); }, [open, startAdding]);
   return (
     <Modal open={open} onClose={onClose} title={adding ? "Profil baharu" : "Tukar profil"}>
       {adding ? <ProfileForm submitLabel="Cipta & guna profil" onDone={() => { onClose(); toast("Profil baharu dicipta"); }} /> : (
