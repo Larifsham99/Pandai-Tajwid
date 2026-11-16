@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { Cloud, Smartphone, UserPlus } from "lucide-react";
 import { useDb } from "../lib/store";
 import type { Board, BoardRow } from "../lib/gamification";
 import { cloudEnabled, fetchBoard, pushScore } from "../lib/scoreboard";
 import { Card, Empty, PageHeader, Tabs, cx } from "../components/ui";
+import { ProfileSheet } from "../components/Layout";
 
 const BOARDS: { id: Board; label: string }[] = [
   { id: "keseluruhan", label: "Keseluruhan" },
@@ -17,6 +17,7 @@ const MEDAL = ["🥇", "🥈", "🥉"];
 export default function Scoreboard() {
   const d = useDb();
   const [board, setBoard] = useState<Board>("keseluruhan");
+  const [adding, setAdding] = useState(false);
   const [data, setData] = useState<{ rows: BoardRow[]; source: "tempatan" | "awan" } | null>(null);
   useEffect(() => { let live = true; (async () => { await pushScore(); const r = await fetchBoard(board); if (live) setData(r); })(); return () => { live = false; }; }, [board, d]);
   const rows = data?.rows ?? [];
@@ -58,7 +59,8 @@ export default function Scoreboard() {
           </Card>
         </>
       )}
-      {data?.source !== "awan" && <div className="mt-4 text-center"><Link to="/profil#profil" className="btn btn-outline"><UserPlus size={16} /> Tambah profil pada peranti ini</Link></div>}
+      {data?.source !== "awan" && <div className="mt-4 text-center"><button className="btn btn-outline" onClick={() => setAdding(true)}><UserPlus size={16} /> Tambah profil pada peranti ini</button></div>}
+      <ProfileSheet open={adding} onClose={() => setAdding(false)} startAdding />
     </div>
   );
 }

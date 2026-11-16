@@ -5,12 +5,12 @@ import { useDb, useMe } from "../lib/store";
 import { CHAPTERS, chapterById } from "../data";
 import { PageHeader, Progress, Tabs, Empty, TONES, CHAPTER_TONES } from "../components/ui";
 import { norm } from "../lib/util";
-import { chapterStats } from "../lib/gamification";
+import { summary } from "../lib/gamification";
 
 export default function Nota() {
   const me = useMe()!; const d = useDb();
   const [q, setQ] = useState(""); const [tab, setTab] = useState<"bab" | "penanda">("bab");
-  const stats = chapterStats(d, me.id);
+  const stats = summary(d, me.id).stats;
   const results = useMemo(() => {
     const t = norm(q); if (t.length < 2) return [];
     return CHAPTERS.flatMap((c) => c.sections.filter((s) => norm([s.title, s.takrif, s.takrifArab, ...s.huraian, s.ringkas, ...(s.contoh?.map((e) => e.arab + " " + e.huraian) ?? [])].join(" ")).includes(t)).map((s) => ({ c, s }))).slice(0, 30);

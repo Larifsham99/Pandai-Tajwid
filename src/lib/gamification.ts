@@ -21,9 +21,11 @@ export function totalXp(d: DB, userId: string) { return d.xp.reduce((s, x) => (x
 
 export interface ChapterStat { chapterId: string; attempts: number; correct: number; acc: number; readPct: number; mastered: boolean; lastTs?: number }
 export function chapterStats(d: DB, userId: string): ChapterStat[] {
-  const atts = d.attempts.filter((a) => a.userId === userId);
+  // satu laluan sahaja ke atas senarai cubaan (pantas walaupun ribuan rekod)
+  const by = new Map<string, DB["attempts"]>();
+  for (const a of d.attempts) { if (a.userId !== userId) continue; const l = by.get(a.chapterId); if (l) l.push(a); else by.set(a.chapterId, [a]); }
   return CHAPTERS.map((c) => {
-    const ca = atts.filter((a) => a.chapterId === c.id).sort((a, b) => a.ts - b.ts);
+    const ca = by.get(c.id) ?? []; // sudah tersusun ikut masa (ditambah secara kronologi)
     const recent = ca.slice(-20);
     const correct = recent.reduce((s, a) => s + a.score, 0);
     const acc = recent.length ? Math.round((correct / recent.length) * 100) : 0;
@@ -57,7 +59,14 @@ export function streak(d: DB, userId: string) {
 }
 export const answeredToday = (d: DB, userId: string) => { const t = startOfDay(); return d.attempts.filter((a) => a.userId === userId && a.ts >= t).length; };
 
+/** Ringkasan untuk paparan — dicache bagi setiap versi DB supaya setiap halaman tidak mengira semula. */
+const summaryCache = new WeakMap<DB, Map<string, ReturnType<typeof computeSummary>>>();
 export function summary(d: DB, userId: string) {
+  let m = summaryCache.get(d); if (!m) { m = new Map(); summaryCache.set(d, m); }
+  let v = m.get(userId); if (!v) { v = computeSummary(d, userId); m.set(userId, v); }
+  return v;
+}
+function computeSummary(d: DB, userId: string) {
   const atts = d.attempts.filter((a) => a.userId === userId);
   const correct = atts.reduce((s, a) => s + a.score, 0);
   const stats = chapterStats(d, userId);

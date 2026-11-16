@@ -6,7 +6,7 @@ import { reviewQueue, dueReviews } from "../lib/actions";
 import { CHAPTERS } from "../data";
 import { BarChart, Card, Modal, Stat, Tabs, cx, toast } from "../components/ui";
 import { AVATARS, ProfileForm } from "./Welcome";
-import { APP_NAME, CREDIT } from "../components/Layout";
+import { APP_NAME, CREDIT } from "../components/brand";
 import { download, fmtDate, timeAgo } from "../lib/util";
 import { cloudEnabled } from "../lib/scoreboard";
 
@@ -45,6 +45,20 @@ export default function Profil() {
         <Stat label="Istiqamah" value={`${s.streak} hari`} icon="🔥" tone="rose" />
         <Stat label="Murajaah" value={reviewQueue(d, me.id).length} icon="🔁" hint={`${dueReviews(d, me.id).length} perlu diulang sekarang`} tone="violet" />
       </div>
+
+      <Card id="profil" className="p-4">
+        <div className="mb-2 flex items-center justify-between"><div className="font-bold">Profil pada peranti ini <span className="text-xs font-normal text-slate-500">({d.profiles.length})</span></div><button className="btn btn-primary !py-1.5 text-xs" onClick={() => setAdding(true)}><UserPlus size={14} /> Tambah profil</button></div>
+        <div className="space-y-1">
+          {d.profiles.map((p) => (
+            <div key={p.id} className={cx("flex items-center gap-3 rounded-xl px-2 py-2", p.id === me.id && "bg-zamrud-50 dark:bg-zamrud-500/10")}>
+              <span className="text-2xl">{p.avatar}</span><span className="min-w-0 flex-1 truncate font-semibold">{p.name}</span>
+              {p.id === me.id ? <span className="chip bg-zamrud-100 text-zamrud-800"><Check size={12} /> Aktif</span> : <button className="btn btn-outline !py-1 text-xs" onClick={() => { switchProfile(p.id); toast(`Bertukar ke ${p.name}`); }}>Guna</button>}
+              {d.profiles.length > 1 && <button className="rounded-lg p-1.5 text-slate-400 hover:text-rose-600" aria-label={`Padam ${p.name}`} onClick={() => { if (confirm(`Padam profil "${p.name}" dan semua rekodnya?`)) deleteProfile(p.id); }}><Trash2 size={16} /></button>}
+            </div>
+          ))}
+        </div>
+        <p className="mt-2 text-xs text-slate-500">Tiada had bilangan profil. Tukar profil pantas dengan menekan avatar di bahagian atas skrin.</p>
+      </Card>
 
       <Tabs value={tab} onChange={setTab} tabs={[{ id: "pencapaian", label: "Lencana" }, { id: "kemajuan", label: "Kemajuan" }, { id: "tetapan", label: "Tetapan" }]} />
 
@@ -92,17 +106,6 @@ export default function Profil() {
               <div className="flex flex-wrap gap-2">{[10, 20, 30, 50].map((n) => <button key={n} onClick={() => updateSettings({ dailyGoal: n })} className={cx("btn", d.settings.dailyGoal === n ? "btn-primary" : "btn-ghost")}>{n} soalan</button>)}</div>
             </div>
             <label className="flex items-start gap-3 text-sm"><input type="checkbox" className="mt-1 h-4 w-4 accent-emerald-600" checked={d.settings.includeGenerated} onChange={(e) => updateSettings({ includeGenerated: e.target.checked })} /><span><b>Sertakan soalan dijana daripada nota</b><br /><span className="text-xs text-slate-500">Soalan objektif tambahan berlabel “belum disemak”. Jawapan diambil terus daripada nota.</span></span></label>
-          </Card>
-
-          <Card id="profil" className="p-4">
-            <div className="mb-2 flex items-center justify-between"><div className="font-bold">Profil pada peranti ini</div><button className="btn btn-ghost !py-1.5 text-xs" onClick={() => setAdding(true)}><UserPlus size={14} /> Tambah</button></div>
-            {d.profiles.map((p) => (
-              <div key={p.id} className="flex items-center gap-3 border-t border-slate-100 py-2 first:border-0 dark:border-white/5">
-                <span className="text-2xl">{p.avatar}</span><span className="flex-1 truncate font-semibold">{p.name}</span>
-                {p.id === me.id ? <span className="chip bg-zamrud-100 text-zamrud-800"><Check size={12} /> Aktif</span> : <button className="btn btn-outline !py-1 text-xs" onClick={() => { switchProfile(p.id); toast(`Bertukar ke ${p.name}`); }}>Guna</button>}
-                {d.profiles.length > 1 && <button className="rounded-lg p-1.5 text-slate-400 hover:text-rose-600" aria-label={`Padam ${p.name}`} onClick={() => { if (confirm(`Padam profil "${p.name}" dan semua rekodnya?`)) deleteProfile(p.id); }}><Trash2 size={16} /></button>}
-              </div>
-            ))}
           </Card>
 
           <Card className="space-y-3 p-4">

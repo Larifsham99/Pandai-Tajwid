@@ -1,23 +1,37 @@
 import { useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Play, RotateCcw, Target, CalendarDays, Sparkles, ScrollText, ChevronRight, Flame } from "lucide-react";
-import { useDb, useMe, updateSettings } from "../lib/store";
+import { useNavigate } from "react-router-dom";
+import { Play, RotateCcw, Target, CalendarDays, Infinity as InfinityIcon, ChevronDown, SlidersHorizontal, ScrollText, Flame } from "lucide-react";
+import { useDb, useMe } from "../lib/store";
 import { answeredToday, summary } from "../lib/gamification";
 import { dueReviews, reviewQueue } from "../lib/actions";
 import { filterPool, toParams, TYPE_LABEL, SOURCE_LABEL, type PracticeConfig } from "../lib/practice";
-import { CHAPTERS, PAPERS, SEED_QUESTIONS } from "../data";
-import { Card, Progress, cx, TONES, CHAPTER_TONES } from "../components/ui";
+import { CHAPTERS, PAPERS } from "../data";
+import { cx, TONES, CHAPTER_TONES } from "../components/ui";
 
 function Chip({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
-  return <button onClick={onClick} className={cx("whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-semibold ring-1 transition", active ? "bg-zamrud-600 text-white ring-zamrud-600 shadow" : "bg-white text-slate-600 ring-slate-200 hover:bg-zamrud-50 dark:bg-white/5 dark:text-slate-300 dark:ring-white/10")}>{children}</button>;
+  return <button onClick={onClick} className={cx("whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-semibold ring-1 transition", active ? "bg-zamrud-600 text-white ring-zamrud-600" : "bg-white text-slate-600 ring-slate-200 dark:bg-white/5 dark:text-slate-300 dark:ring-white/10")}>{children}</button>;
 }
 
-function Ring({ value, max, children }: { value: number; max: number; children: React.ReactNode }) {
-  const r = 30; const c = 2 * Math.PI * r; const p = Math.min(1, value / Math.max(1, max));
+function Ring({ value, max }: { value: number; max: number }) {
+  const r = 26; const c = 2 * Math.PI * r; const p = Math.min(1, value / Math.max(1, max));
   return (
-    <div className="relative grid h-20 w-20 shrink-0 place-items-center">
-      <svg viewBox="0 0 72 72" className="absolute inset-0 -rotate-90"><circle cx="36" cy="36" r={r} fill="none" stroke="currentColor" strokeOpacity=".18" strokeWidth="7" /><circle cx="36" cy="36" r={r} fill="none" stroke="#fcd34d" strokeWidth="7" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - p)} className="transition-all duration-700" /></svg>
-      <div className="text-center leading-none">{children}</div>
+    <div className="relative grid h-16 w-16 shrink-0 place-items-center">
+      <svg viewBox="0 0 64 64" className="absolute inset-0 -rotate-90"><circle cx="32" cy="32" r={r} fill="none" stroke="currentColor" strokeOpacity=".18" strokeWidth="6" /><circle cx="32" cy="32" r={r} fill="none" stroke="#fcd34d" strokeWidth="6" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - p)} className="transition-all duration-700" /></svg>
+      <div className="text-center leading-none"><div className="text-lg font-extrabold">{value}</div><div className="text-[9px] opacity-80">/{max}</div></div>
+    </div>
+  );
+}
+
+function Collapsible({ title, icon, children, defaultOpen = false }: { title: string; icon: React.ReactNode; children: React.ReactNode; defaultOpen?: boolean }) {
+  const [open, setOpen] = useState(defaultOpen);
+  return (
+    <div className="card overflow-hidden">
+      <button className="flex w-full items-center gap-3 p-4 text-left" onClick={() => setOpen(!open)} aria-expanded={open}>
+        <span className="grid h-9 w-9 place-items-center rounded-xl bg-zamrud-50 text-zamrud-700 dark:bg-white/10 dark:text-zamrud-300">{icon}</span>
+        <span className="flex-1 font-bold">{title}</span>
+        <ChevronDown size={18} className={cx("text-slate-400 transition", open && "rotate-180")} />
+      </button>
+      {open && <div className="border-t border-slate-100 p-4 dark:border-white/5">{children}</div>}
     </div>
   );
 }
@@ -29,96 +43,84 @@ export default function LatihTubi() {
   const due = dueReviews(d, me.id).length;
   const queued = reviewQueue(d, me.id).length;
   const [cfg, setCfg] = useState<PracticeConfig>({ mode: "rawak", bab: "", jenis: "", sumber: "", n: 10 });
-  const avail = useMemo(() => filterPool(d, cfg).length, [d, cfg]);
-  const total = useMemo(() => filterPool(d, {}).length, [d]);
-  const generated = SEED_QUESTIONS.filter((q) => q.source === "jana").length;
+  const avail = useMemo(() => filterPool(d, cfg).length, [d.settings.includeGenerated, cfg]); // eslint-disable-line react-hooks/exhaustive-deps
   const go = (c: PracticeConfig) => nav(`/latih/sesi?${toParams(c)}`);
   const set = (p: Partial<PracticeConfig>) => setCfg((c) => ({ ...c, ...p }));
 
   return (
     <div className="space-y-5">
       {/* ---------- Hero ---------- */}
-      <section className="hero relative overflow-hidden rounded-3xl p-5 text-white shadow-xl shadow-zamrud-900/20 sm:p-6 rise">
-        <div className="pointer-events-none absolute -right-6 -top-8 font-arab text-[9rem] leading-none text-white/5" aria-hidden>تجويد</div>
+      <section className="hero relative overflow-hidden rounded-3xl p-5 text-white shadow-xl shadow-zamrud-900/20">
         <div className="flex items-center gap-4">
-          <Ring value={today} max={d.settings.dailyGoal}><div className="text-xl font-extrabold">{today}</div><div className="text-[10px] opacity-80">/{d.settings.dailyGoal}</div></Ring>
+          <Ring value={today} max={d.settings.dailyGoal} />
           <div className="min-w-0 flex-1">
-            <div className="text-sm text-emerald-100">Assalamualaikum,</div>
-            <div className="truncate text-xl font-extrabold sm:text-2xl">{me.name} {me.avatar}</div>
-            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs">
-              <span className="chip bg-white/15 text-emas-200">{s.lvl.level.name} <span className="font-arab">{s.lvl.level.arab}</span></span>
-              <span className="chip bg-white/15"><Flame size={12} /> {s.streak} hari</span>
+            <div className="truncate text-lg font-extrabold">Salam, {me.name} {me.avatar}</div>
+            <div className="mt-0.5 flex items-center gap-2 text-xs text-emerald-100">
+              <span className="font-semibold text-emas-200">{s.lvl.level.name}</span>·<span className="inline-flex items-center gap-0.5"><Flame size={12} /> {s.streak} hari</span>·<span>{s.xp} XP</span>
             </div>
+            <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/15"><div className="h-full rounded-full bg-gradient-to-r from-amber-300 to-emas-400 transition-all duration-700" style={{ width: `${s.lvl.progress}%` }} /></div>
           </div>
         </div>
-        <div className="mt-4">
-          <div className="mb-1 flex justify-between text-[11px] text-emerald-100"><span>{s.xp} XP</span><span>{s.lvl.next ? `Seterusnya: ${s.lvl.next.name}` : "Tahap tertinggi"}</span></div>
-          <div className="h-2.5 overflow-hidden rounded-full bg-white/15"><div className="h-full rounded-full bg-gradient-to-r from-amber-300 to-emas-400 transition-all duration-700" style={{ width: `${s.lvl.progress}%` }} /></div>
-        </div>
-        <div className="mt-4 grid grid-cols-2 gap-2">
-          <button className="btn btn-gold !py-3 text-base" onClick={() => go({ mode: "rawak", n: 10 })}><Play size={18} fill="currentColor" /> Mula 10 Soalan</button>
-          <button className={cx("btn !py-3 text-base", due ? "bg-rose-500 text-white shadow-md shadow-rose-900/30 hover:bg-rose-600" : "bg-white/15 text-white hover:bg-white/20")} onClick={() => go({ mode: "murajaah", n: 15 })} disabled={!due}>
-            <RotateCcw size={18} /> Murajaah {due ? `(${due})` : ""}
-          </button>
-        </div>
-        <div className="mt-2 text-center text-[11px] text-emerald-100/90">{due ? `${due} soalan salah menunggu diulang kaji` : queued ? `${queued} soalan dalam barisan murajaah — akan muncul mengikut jadual` : "Soalan yang dijawab salah akan masuk murajaah secara automatik"}</div>
+        <button className="btn btn-gold mt-4 w-full !py-3.5 text-base" onClick={() => go({ mode: "rawak", n: 10 })}><Play size={18} fill="currentColor" /> Mula Latih Tubi</button>
+        <button className={cx("btn mt-2 w-full !py-3", due ? "bg-white text-rose-600 hover:bg-rose-50" : "bg-white/10 text-white/80")} onClick={() => go({ mode: "murajaah", n: 15 })} disabled={!due}>
+          <RotateCcw size={17} /> {due ? `Murajaah ${due} soalan salah` : queued ? `Murajaah: ${queued} soalan dijadualkan` : "Murajaah: belum ada soalan salah"}
+        </button>
       </section>
 
-      {/* ---------- Pintasan ---------- */}
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-        <button onClick={() => go({ mode: "harian" })} className="card flex items-center gap-3 p-4 text-left"><span className={cx("grid h-10 w-10 place-items-center rounded-xl", TONES.sky.bubble)}><CalendarDays size={20} /></span><div><div className="text-sm font-bold">Cabaran Harian</div><div className="text-xs text-slate-500">10 soalan hari ini</div></div></button>
-        <button onClick={() => go({ mode: "lemah", n: 15 })} disabled={!s.weak.length && s.answered < 10} className="card flex items-center gap-3 p-4 text-left disabled:opacity-60"><span className={cx("grid h-10 w-10 place-items-center rounded-xl", TONES.rose.bubble)}><Target size={20} /></span><div><div className="text-sm font-bold">Fokus Kelemahan</div><div className="text-xs text-slate-500">{s.weak.length ? `${s.weak.length} bab perlu diperkukuh` : "Bab ketepatan terendah"}</div></div></button>
-        <button onClick={() => go({ mode: "rawak", n: 0 })} className="card col-span-2 flex items-center gap-3 p-4 text-left sm:col-span-1"><span className={cx("grid h-10 w-10 place-items-center rounded-xl", TONES.violet.bubble)}><Sparkles size={20} /></span><div><div className="text-sm font-bold">Maraton</div><div className="text-xs text-slate-500">Jawab tanpa had — {total} soalan</div></div></button>
+      {/* ---------- Mod pantas ---------- */}
+      <div className="grid grid-cols-3 gap-2">
+        {[
+          { label: "Harian", sub: "10 soalan", icon: <CalendarDays size={20} />, tone: TONES.sky.bubble, on: () => go({ mode: "harian" }) },
+          { label: "Kelemahan", sub: s.weak.length ? `${s.weak.length} bab` : "bab terlemah", icon: <Target size={20} />, tone: TONES.rose.bubble, on: () => go({ mode: s.answered >= 10 ? "lemah" : "rawak", n: 15 }) },
+          { label: "Maraton", sub: "tanpa had", icon: <InfinityIcon size={20} />, tone: TONES.violet.bubble, on: () => go({ mode: "rawak", n: 0 }) },
+        ].map((m) => (
+          <button key={m.label} onClick={m.on} className="card flex flex-col items-center gap-1.5 px-2 py-3 text-center active:scale-[.97]">
+            <span className={cx("grid h-10 w-10 place-items-center rounded-xl", m.tone)}>{m.icon}</span>
+            <span className="text-sm font-bold leading-tight">{m.label}</span>
+            <span className="text-[11px] leading-tight text-slate-500">{m.sub}</span>
+          </button>
+        ))}
       </div>
 
-      {/* ---------- Pembina latihan ---------- */}
-      <Card className="p-4 sm:p-5">
-        <div className="mb-3 flex items-baseline justify-between gap-2"><h2 className="text-lg font-extrabold text-hutan-900 dark:text-white">Latih Tubi Pilihan</h2><span className="text-xs text-slate-500">{avail} soalan tersedia</span></div>
-        <div className="label">Bab</div>
-        <div className="-mx-4 mb-3 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">
-          <Chip active={!cfg.bab} onClick={() => set({ bab: "" })}>Semua bab</Chip>
-          {CHAPTERS.map((c) => <Chip key={c.id} active={cfg.bab === c.id} onClick={() => set({ bab: c.id })}>{c.no}. {c.title.replace(/^Hukum /, "")}</Chip>)}
-        </div>
-        <div className="label">Jenis soalan</div>
-        <div className="-mx-4 mb-3 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">{Object.entries(TYPE_LABEL).map(([k, v]) => <Chip key={k} active={(cfg.jenis ?? "") === k} onClick={() => set({ jenis: k as PracticeConfig["jenis"] })}>{v}</Chip>)}</div>
-        <div className="label">Sumber</div>
-        <div className="-mx-4 mb-3 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">{Object.entries(SOURCE_LABEL).filter(([k]) => k !== "jana" || d.settings.includeGenerated).map(([k, v]) => <Chip key={k} active={(cfg.sumber ?? "") === k} onClick={() => set({ sumber: k as PracticeConfig["sumber"] })}>{v}</Chip>)}</div>
-        <div className="label">Bilangan</div>
-        <div className="mb-4 flex flex-wrap gap-2">{[10, 20, 30, 50, 0].map((n) => <Chip key={n} active={cfg.n === n} onClick={() => set({ n })}>{n === 0 ? "∞ Semua" : n}</Chip>)}</div>
-        <button className="btn btn-primary w-full !py-3 text-base" disabled={!avail} onClick={() => go(cfg)}><Play size={18} fill="currentColor" /> Mula Latih Tubi{avail ? ` (${cfg.n === 0 ? avail : Math.min(avail, cfg.n ?? 10)} soalan)` : ""}</button>
-        {d.settings.includeGenerated ? (
-          <p className="mt-3 rounded-xl bg-violet-50 p-3 text-xs text-violet-900 dark:bg-violet-500/10 dark:text-violet-200">✨ Termasuk <b>{generated}</b> soalan objektif yang <b>dijana automatik daripada nota</b> dan berlabel <b>“belum disemak”</b>. Jawapan diambil terus daripada nota; topik khilaf tidak dijadikan soalan. <button className="font-semibold underline" onClick={() => updateSettings({ includeGenerated: false })}>Sembunyikan</button></p>
-        ) : (
-          <p className="mt-3 text-xs text-slate-500">Soalan dijana disembunyikan. <button className="font-semibold text-zamrud-700 underline" onClick={() => updateSettings({ includeGenerated: true })}>Tunjukkan semula</button></p>
-        )}
-      </Card>
-
-      {/* ---------- Mengikut bab (kemajuan) ---------- */}
+      {/* ---------- Bab ---------- */}
       <section>
-        <h2 className="mb-2 text-lg font-extrabold text-hutan-900 dark:text-white">Latihan Mengikut Bab</h2>
-        <div className="grid gap-2 sm:grid-cols-2">
+        <h2 className="mb-2 px-1 text-base font-extrabold text-hutan-900 dark:text-white">Latih ikut bab</h2>
+        <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
           {CHAPTERS.map((c, i) => {
-            const st = s.stats[i]; const t = TONES[CHAPTER_TONES[i]];
+            const st = s.stats[i];
             return (
-              <button key={c.id} onClick={() => go({ mode: "rawak", bab: c.id, n: 10 })} className="card flex items-center gap-3 p-3 text-left">
-                <div className={cx("grid h-11 w-11 shrink-0 place-items-center rounded-xl text-lg font-extrabold", t.bubble)}>{st.mastered ? "👑" : c.no}</div>
-                <div className="min-w-0 flex-1">
-                  <div className="truncate text-sm font-bold">{c.title}</div>
-                  <div className="mt-1 flex items-center gap-2"><Progress value={st.acc} className="!h-1.5" tone={st.acc >= 80 ? "zamrud" : st.acc >= 60 ? "emas" : "rose"} /><span className="w-24 shrink-0 text-right text-[11px] text-slate-500">{st.attempts ? `${st.acc}% · ${st.attempts} cubaan` : "belum mula"}</span></div>
+              <button key={c.id} onClick={() => go({ mode: "rawak", bab: c.id, n: 10 })} className="card flex flex-col items-start gap-1 p-3 text-left active:scale-[.97]">
+                <div className="flex w-full items-center justify-between">
+                  <span className={cx("grid h-7 w-7 place-items-center rounded-lg text-xs font-extrabold", TONES[CHAPTER_TONES[i]].bubble)}>{c.no}</span>
+                  {st.mastered ? <span className="text-sm">👑</span> : st.attempts ? <span className={cx("text-[11px] font-bold", st.acc >= 80 ? "text-emerald-600" : st.acc >= 60 ? "text-amber-600" : "text-rose-500")}>{st.acc}%</span> : null}
                 </div>
-                <ChevronRight size={16} className="text-slate-300" />
+                <span className="line-clamp-2 text-[13px] font-semibold leading-tight">{c.title.replace(/^Hukum /, "")}</span>
               </button>
             );
           })}
         </div>
       </section>
 
-      {/* ---------- Tauliah ---------- */}
-      <Card className="p-4 sm:p-5">
-        <div className="mb-1 flex items-center gap-2"><ScrollText size={18} className="text-emas-600" /><h2 className="text-lg font-extrabold text-hutan-900 dark:text-white">Soalan Tauliah Lepas (Kedah)</h2></div>
-        <p className="mb-3 text-xs text-slate-500">Soalan subjektif sebenar dengan jawapan cadangan (belum disemak) — tulis jawapan, kemudian nilai sendiri.</p>
-        <div className="flex flex-wrap gap-2">{PAPERS.map((p) => <Link key={p.year} to={`/latih/sesi?${toParams({ mode: "tahun", tahun: p.year })}`} className="btn btn-outline !px-3 !py-1.5">{p.year}</Link>)}</div>
-      </Card>
+      {/* ---------- Latihan pilihan ---------- */}
+      <Collapsible title="Latihan pilihan" icon={<SlidersHorizontal size={18} />}>
+        <div className="label">Bab</div>
+        <select className="input mb-3" value={cfg.bab} onChange={(e) => set({ bab: e.target.value })}>
+          <option value="">Semua bab</option>{CHAPTERS.map((c) => <option key={c.id} value={c.id}>Bab {c.no}: {c.title}</option>)}
+        </select>
+        <div className="label">Jenis soalan</div>
+        <div className="mb-3 flex flex-wrap gap-2">{Object.entries(TYPE_LABEL).map(([k, v]) => <Chip key={k} active={(cfg.jenis ?? "") === k} onClick={() => set({ jenis: k as PracticeConfig["jenis"] })}>{v}</Chip>)}</div>
+        <div className="label">Sumber</div>
+        <div className="mb-3 flex flex-wrap gap-2">{Object.entries(SOURCE_LABEL).filter(([k]) => k !== "jana" || d.settings.includeGenerated).map(([k, v]) => <Chip key={k} active={(cfg.sumber ?? "") === k} onClick={() => set({ sumber: k as PracticeConfig["sumber"] })}>{v}</Chip>)}</div>
+        <div className="label">Bilangan</div>
+        <div className="mb-4 flex flex-wrap gap-2">{[10, 20, 30, 50, 0].map((n) => <Chip key={n} active={cfg.n === n} onClick={() => set({ n })}>{n === 0 ? "Semua" : n}</Chip>)}</div>
+        <button className="btn btn-primary w-full !py-3" disabled={!avail} onClick={() => go(cfg)}><Play size={17} fill="currentColor" /> Mula ({cfg.n === 0 ? avail : Math.min(avail, cfg.n ?? 10)} soalan)</button>
+        {d.settings.includeGenerated && <p className="mt-3 text-xs text-slate-500">✨ Termasuk soalan dijana daripada nota (label “belum disemak”). Boleh dimatikan di Profil → Tetapan.</p>}
+      </Collapsible>
+
+      <Collapsible title="Soalan tauliah lepas (Kedah)" icon={<ScrollText size={18} />}>
+        <p className="mb-3 text-xs text-slate-500">Soalan subjektif sebenar dengan jawapan cadangan (belum disemak). Tulis jawapan, kemudian nilai sendiri.</p>
+        <div className="grid grid-cols-5 gap-2">{PAPERS.map((p) => <button key={p.year} onClick={() => go({ mode: "tahun", tahun: p.year })} className="btn btn-outline !px-0 !py-2 text-sm">{p.year}</button>)}</div>
+      </Collapsible>
     </div>
   );
 }
