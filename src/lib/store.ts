@@ -2,6 +2,7 @@ import { useSyncExternalStore } from "react";
 import type { DB, Profile, Question, Settings } from "../types";
 import { SEED_QUESTIONS } from "../data";
 import { uid } from "./util";
+import { isChapterUnlocked } from "./activation";
 
 /**
  * Stor data TEMPATAN (localStorage). Semua rekod pengguna disimpan dalam pelayar.
@@ -101,4 +102,5 @@ export function allQuestions(): Question[] { return SEED_QUESTIONS; }
 let qMap: Map<string, Question> | null = null;
 export const questionById = (id: string) => (qMap ??= new Map(SEED_QUESTIONS.map((q) => [q.id, q]))).get(id);
 /** Soalan objektif yang layak untuk latih tubi (ikut tetapan soalan dijana). */
-export const objectiveQuestions = (d: DB = db) => SEED_QUESTIONS.filter((q) => q.type !== "subjective" && (d.settings.includeGenerated || q.source !== "jana"));
+/** Hanya bab yang dibuka (demo: Bab 1–2; versi penuh: semua). */
+export const objectiveQuestions = (d: DB = db) => SEED_QUESTIONS.filter((q) => q.type !== "subjective" && (d.settings.includeGenerated || q.source !== "jana") && isChapterUnlocked(q.chapterId));

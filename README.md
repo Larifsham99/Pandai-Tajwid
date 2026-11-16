@@ -49,3 +49,11 @@ window.SALES = { ctaUrl: "../", demoUrl: "../", price: "", priceOld: "", priceNo
 ```
 - `ctaUrl` — pautan butang "Dapatkan" (sementara ini menuju ke demo).
 - `price` / `priceOld` — isi (cth. `"RM29"`) untuk memaparkan harga; biarkan kosong untuk menyembunyikannya.
+
+## Kod pengaktifan (versi penuh)
+- **Demo:** Bab 1–2 dibuka. Bab 3–12 & soalan tauliah memerlukan kod.
+- **Jana kod baharu:** `node scripts/jana-kod.mjs 100`
+  - Senarai kod sebenar → `kod-pengaktifan/kod-<masa>.csv` (**rahsia**, tidak di-commit; ada lajur pautan aktivasi, pembeli & tarikh).
+  - Hash kod → `src/data/activation-hashes.json` (commit & terbitkan supaya kod baharu berfungsi).
+- **Hantar kepada pembeli:** kod (cth. `PT-7K3M-Q9XA-2HDF`) atau pautan `https://…/Pandai-Tajwid/?kod=PT-…` — tekan sekali, terus aktif.
+- Satu kod mengaktifkan satu peranti (semua profil). Semakan berlaku dalam peranti; untuk had kod yang ketat (satu kod satu peranti), naik taraf ke Supabase.

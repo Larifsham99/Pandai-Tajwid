@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { Bookmark, Check, Dumbbell, ChevronLeft, ChevronRight, RotateCw } from "lucide-react";
 import { useDb, useMe } from "../lib/store";
+import { useActivation, isChapterUnlocked } from "../lib/activation";
+import { LockedCard } from "../components/Activation";
 import { markSectionRead, toggleBookmark } from "../lib/actions";
 import { CHAPTERS, chapterById } from "../data";
 import { Arabic, Card, PageHeader, Progress, RichText, Tabs, cx, toast, Empty } from "../components/ui";
@@ -62,11 +64,19 @@ function Flashcards({ cards }: { cards: { front: string; back: string }[] }) {
 
 export default function NotaBab() {
   const { id = "b1" } = useParams(); const loc = useLocation();
-  const me = useMe()!; const d = useDb();
+  const me = useMe()!; const d = useDb(); const act = useActivation();
   const ch = chapterById(id);
   const [view, setView] = useState<View>("mendalam");
   useEffect(() => { const h = decodeURIComponent(loc.hash.slice(1)); if (h) setTimeout(() => document.getElementById(h)?.scrollIntoView({ behavior: "smooth" }), 150); }, [loc.hash, id]);
   if (!ch) return <Empty title="Bab tidak dijumpai" />;
+  if (!isChapterUnlocked(ch.id, act.active)) return (
+    <div>
+      <div className="mb-2 text-sm"><Link to="/nota" className="text-zamrud-700 dark:text-zamrud-300">← Semua nota</Link></div>
+      <PageHeader title={`Bab ${ch.no}: ${ch.title}`} subtitle={ch.summary} icon={<span className="font-arab">{ch.icon}</span>} />
+      <Card className="mb-4 p-4"><div className="mb-2 text-xs font-bold uppercase tracking-wide text-slate-500">Kandungan bab ini</div><ul className="space-y-1.5 text-sm">{ch.sections.map((s) => <li key={s.id} className="flex items-center gap-2 text-slate-600 dark:text-slate-300">🔒 {s.title}</li>)}</ul></Card>
+      <LockedCard title="Bab ini dalam versi penuh">Nota mendalam, nota ringkas, kad imbas, jadual dan latih tubi untuk Bab {ch.no} dibuka selepas pengaktifan.</LockedCard>
+    </div>
+  );
   const np = d.notes.find((n) => n.userId === me.id && n.chapterId === ch.id);
   const read = new Set(np?.read ?? []);
   const pct = Math.round((ch.sections.filter((s) => read.has(s.id)).length / ch.sections.length) * 100);

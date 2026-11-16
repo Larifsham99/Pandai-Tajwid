@@ -2,7 +2,9 @@ import { cx } from "./ui";
 
 export const APP_NAME = "Pandai Tajwid";
 export const CREDIT = "Abdul Latif";
-export const VERSION = "1.3";
+export const VERSION = "1.4";
+/** Pautan beli kod pengaktifan (halaman jualan → bahagian tawaran). */
+export const BUY_URL = "./jualan/#dapatkan";
 
 export function Logo({ className }: { className?: string }) {
   return (

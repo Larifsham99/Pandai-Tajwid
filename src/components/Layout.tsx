@@ -8,6 +8,7 @@ import { BADGES } from "../lib/gamification";
 import { onNewBadges } from "../lib/actions";
 import { Modal, Toaster, cx, toast } from "./ui";
 import { Logo, APP_NAME, CREDIT, VERSION } from "./brand";
+import { ActivationModal } from "./Activation";
 
 const NAV = [
   { to: "/", label: "Latih Tubi", icon: Dumbbell, end: true },
@@ -105,6 +106,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       </nav>}
       <Toaster />
       <ProfileSheet open={sheet} onClose={() => setSheet(false)} />
+      <ActivationModal />
       <BadgeCelebration />
     </div>
   );

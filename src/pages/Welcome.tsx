@@ -43,6 +43,7 @@ export default function Welcome() {
         <h1 className="mb-1 text-lg font-extrabold">Ahlan wa sahlan! 👋</h1>
         <p className="mb-4 text-sm text-slate-500">Tiada pendaftaran diperlukan. Data anda disimpan dalam peranti ini.</p>
         <ProfileForm />
+        <p className="mt-4 text-center text-xs text-slate-500">Versi demo membuka Bab 1–2. Sudah ada kod pengaktifan? Masukkan selepas mencipta profil.</p>
       </div>
       <p className="mt-6 text-center text-xs text-slate-400">Aplikasi ini dibangunkan oleh <b>{CREDIT}</b></p>
     </div>
