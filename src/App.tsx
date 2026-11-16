@@ -10,19 +10,24 @@ import NotaBab from "./pages/NotaBab";
 import Scoreboard from "./pages/Scoreboard";
 import Profil from "./pages/Profil";
 import { Toaster, toast } from "./components/ui";
+import { ActivationGate } from "./components/Activation";
 
 // Sahkan kod tersimpan, dan aktifkan terus jika dibuka melalui pautan ?kod=PT-XXXX-XXXX-XXXX
 const kodParam = new URLSearchParams(location.search).get("kod");
-initActivation().then(async () => {
-  if (!kodParam) return;
-  const err = await activate(kodParam);
-  history.replaceState(null, "", location.pathname + location.hash);
-  setTimeout(() => toast(err ? `Kod tidak sah: ${err}` : "✅ Versi penuh diaktifkan melalui pautan. Selamat belajar!", err ? "err" : "ok"), 600);
-});
+(async () => {
+  if (kodParam) {
+    const err = await activate(kodParam); // aktifkan dahulu supaya skrin kunci tidak berkelip
+    history.replaceState(null, "", location.pathname + location.hash);
+    setTimeout(() => toast(err ? `Kod dalam pautan tidak sah. ${err}` : "✅ Aplikasi diaktifkan. Selamat belajar!", err ? "err" : "ok"), 600);
+  }
+  await initActivation();
+})();
 
 export default function App() {
   const me = useMe();
-  useActivation(); // render semula seluruh aplikasi apabila status pengaktifan berubah
+  const act = useActivation();
+  if (!act.ready) return <div className="grid min-h-dvh place-items-center text-sm text-slate-400">Memuatkan…</div>;
+  if (!act.active) return <><ActivationGate /><Toaster /></>;
   if (!me) return <><Welcome /><Toaster /></>;
   return (
     <HashRouter>

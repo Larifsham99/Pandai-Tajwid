@@ -1,9 +1,7 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Play, RotateCcw, Target, CalendarDays, Infinity as InfinityIcon, ChevronDown, SlidersHorizontal, ScrollText, Flame, Lock } from "lucide-react";
-import { useActivation, isChapterUnlocked } from "../lib/activation";
-import { DemoBanner, LockedCard, openActivation } from "../components/Activation";
-import { useDb, useMe, questionById } from "../lib/store";
+import { Play, RotateCcw, Target, CalendarDays, Infinity as InfinityIcon, ChevronDown, SlidersHorizontal, ScrollText, Flame } from "lucide-react";
+import { useDb, useMe } from "../lib/store";
 import { answeredToday, summary } from "../lib/gamification";
 import { dueReviews, reviewQueue } from "../lib/actions";
 import { filterPool, toParams, TYPE_LABEL, SOURCE_LABEL, type PracticeConfig } from "../lib/practice";
@@ -39,14 +37,13 @@ function Collapsible({ title, icon, children, defaultOpen = false }: { title: st
 }
 
 export default function LatihTubi() {
-  const me = useMe()!; const d = useDb(); const nav = useNavigate(); const act = useActivation();
+  const me = useMe()!; const d = useDb(); const nav = useNavigate();
   const s = summary(d, me.id);
   const today = answeredToday(d, me.id);
-  const openQ = (r: { questionId: string }) => { const q = questionById(r.questionId); return !!q && isChapterUnlocked(q.chapterId, act.active); };
-  const due = dueReviews(d, me.id).filter(openQ).length;
-  const queued = reviewQueue(d, me.id).filter(openQ).length;
+  const due = dueReviews(d, me.id).length;
+  const queued = reviewQueue(d, me.id).length;
   const [cfg, setCfg] = useState<PracticeConfig>({ mode: "rawak", bab: "", jenis: "", sumber: "", n: 10 });
-  const avail = useMemo(() => filterPool(d, cfg).length, [d.settings.includeGenerated, cfg, act.active]); // eslint-disable-line react-hooks/exhaustive-deps
+  const avail = useMemo(() => filterPool(d, cfg).length, [d.settings.includeGenerated, cfg]); // eslint-disable-line react-hooks/exhaustive-deps
   const go = (c: PracticeConfig) => nav(`/latih/sesi?${toParams(c)}`);
   const set = (p: Partial<PracticeConfig>) => setCfg((c) => ({ ...c, ...p }));
 
@@ -70,8 +67,6 @@ export default function LatihTubi() {
         </button>
       </section>
 
-      <DemoBanner />
-
       {/* ---------- Mod pantas ---------- */}
       <div className="grid grid-cols-3 gap-2">
         {[
@@ -92,12 +87,12 @@ export default function LatihTubi() {
         <h2 className="mb-2 px-1 text-base font-extrabold text-hutan-900 dark:text-white">Latih ikut bab</h2>
         <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
           {CHAPTERS.map((c, i) => {
-            const st = s.stats[i]; const open = isChapterUnlocked(c.id, act.active);
+            const st = s.stats[i];
             return (
-              <button key={c.id} onClick={() => (open ? go({ mode: "rawak", bab: c.id, n: 10 }) : openActivation())} className={cx("card flex flex-col items-start gap-1 p-3 text-left active:scale-[.97]", !open && "opacity-70")}>
+              <button key={c.id} onClick={() => go({ mode: "rawak", bab: c.id, n: 10 })} className="card flex flex-col items-start gap-1 p-3 text-left active:scale-[.97]">
                 <div className="flex w-full items-center justify-between">
                   <span className={cx("grid h-7 w-7 place-items-center rounded-lg text-xs font-extrabold", TONES[CHAPTER_TONES[i]].bubble)}>{c.no}</span>
-                  {!open ? <Lock size={14} className="text-amber-600" /> : st.mastered ? <span className="text-sm">👑</span> : st.attempts ? <span className={cx("text-[11px] font-bold", st.acc >= 80 ? "text-emerald-600" : st.acc >= 60 ? "text-amber-600" : "text-rose-500")}>{st.acc}%</span> : null}
+                  {st.mastered ? <span className="text-sm">👑</span> : st.attempts ? <span className={cx("text-[11px] font-bold", st.acc >= 80 ? "text-emerald-600" : st.acc >= 60 ? "text-amber-600" : "text-rose-500")}>{st.acc}%</span> : null}
                 </div>
                 <span className="line-clamp-2 text-[13px] font-semibold leading-tight">{c.title.replace(/^Hukum /, "")}</span>
               </button>
@@ -110,7 +105,7 @@ export default function LatihTubi() {
       <Collapsible title="Latihan pilihan" icon={<SlidersHorizontal size={18} />}>
         <div className="label">Bab</div>
         <select className="input mb-3" value={cfg.bab} onChange={(e) => set({ bab: e.target.value })}>
-          <option value="">{act.active ? "Semua bab" : "Semua bab yang dibuka"}</option>{CHAPTERS.map((c) => { const open = isChapterUnlocked(c.id, act.active); return <option key={c.id} value={c.id} disabled={!open}>{open ? "" : "🔒 "}Bab {c.no}: {c.title}</option>; })}
+          <option value="">Semua bab</option>{CHAPTERS.map((c) => <option key={c.id} value={c.id}>Bab {c.no}: {c.title}</option>)}
         </select>
         <div className="label">Jenis soalan</div>
         <div className="mb-3 flex flex-wrap gap-2">{Object.entries(TYPE_LABEL).map(([k, v]) => <Chip key={k} active={(cfg.jenis ?? "") === k} onClick={() => set({ jenis: k as PracticeConfig["jenis"] })}>{v}</Chip>)}</div>
@@ -124,8 +119,7 @@ export default function LatihTubi() {
 
       <Collapsible title="Soalan tauliah lepas (Kedah)" icon={<ScrollText size={18} />}>
         <p className="mb-3 text-xs text-slate-500">Soalan subjektif sebenar dengan jawapan cadangan (belum disemak). Tulis jawapan, kemudian nilai sendiri.</p>
-        {act.active ? <div className="grid grid-cols-5 gap-2">{PAPERS.map((p) => <button key={p.year} onClick={() => go({ mode: "tahun", tahun: p.year })} className="btn btn-outline !px-0 !py-2 text-sm">{p.year}</button>)}</div>
-          : <LockedCard title="Soalan tauliah — versi penuh">10 kertas tauliah lepas (250 soalan) dengan jawapan cadangan dibuka dalam versi penuh.</LockedCard>}
+        <div className="grid grid-cols-5 gap-2">{PAPERS.map((p) => <button key={p.year} onClick={() => go({ mode: "tahun", tahun: p.year })} className="btn btn-outline !px-0 !py-2 text-sm">{p.year}</button>)}</div>
       </Collapsible>
     </div>
   );

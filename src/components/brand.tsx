@@ -5,6 +5,8 @@ export const CREDIT = "Abdul Latif";
 export const VERSION = "1.4";
 /** Pautan beli kod pengaktifan (halaman jualan → bahagian tawaran). */
 export const BUY_URL = "./jualan/#dapatkan";
+/** Demo untuk bakal pembeli (kuiz & tayangan skrin di halaman jualan). */
+export const DEMO_URL = "./jualan/#demo";
 
 export function Logo({ className }: { className?: string }) {
   return (

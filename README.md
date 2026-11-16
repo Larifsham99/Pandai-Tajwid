@@ -45,13 +45,13 @@ Penempatan: `.github/workflows/pages.yml` membina dan menerbitkan ke GitHub Page
 `public/jualan/index.html` diterbitkan di `…/Pandai-Tajwid/jualan/` (sesuai untuk iklan media sosial; ada gambar kongsian `og.jpg`).
 Ubah pautan butang & harga di blok `window.SALES` di bahagian atas fail:
 ```js
-window.SALES = { ctaUrl: "../", demoUrl: "../", price: "", priceOld: "", priceNote: "…" };
+window.SALES = { ctaUrl: "", price: "", priceOld: "", priceNote: "…" };
 ```
-- `ctaUrl` — pautan butang "Dapatkan" (sementara ini menuju ke demo).
+- `ctaUrl` — pautan **bayaran** untuk butang dalam kotak tawaran (butang "Dapatkan" lain membawa ke kotak tawaran dahulu). Kosong = butang memaparkan "akan dibuka tidak lama lagi".
 - `price` / `priceOld` — isi (cth. `"RM29"`) untuk memaparkan harga; biarkan kosong untuk menyembunyikannya.
 
 ## Kod pengaktifan (versi penuh)
-- **Demo:** Bab 1–2 dibuka. Bab 3–12 & soalan tauliah memerlukan kod.
+- **Aplikasi memerlukan kod** sebelum boleh digunakan. Demo untuk bakal pembeli ialah kuiz 10 soalan + tayangan skrin di halaman jualan (`/jualan/#demo`).
 - **Jana kod baharu:** `node scripts/jana-kod.mjs 100`
   - Senarai kod sebenar → `kod-pengaktifan/kod-<masa>.csv` (**rahsia**, tidak di-commit; ada lajur pautan aktivasi, pembeli & tarikh).
   - Hash kod → `src/data/activation-hashes.json` (commit & terbitkan supaya kod baharu berfungsi).

@@ -10,7 +10,6 @@ import { APP_NAME, CREDIT, VERSION } from "../components/brand";
 import { download, fmtDate, timeAgo } from "../lib/util";
 import { cloudEnabled } from "../lib/scoreboard";
 import { useActivation, formatCode } from "../lib/activation";
-import { DemoBanner } from "../components/Activation";
 
 type Tab = "pencapaian" | "kemajuan" | "tetapan";
 
@@ -61,13 +60,6 @@ export default function Profil() {
         </div>
         <p className="mt-2 text-xs text-slate-500">Tiada had bilangan profil. Tukar profil pantas dengan menekan avatar di bahagian atas skrin.</p>
       </Card>
-
-      {act.active ? (
-        <Card className="flex items-center gap-3 p-4">
-          <span className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-100 text-xl">✅</span>
-          <div className="min-w-0 flex-1"><div className="font-bold">Versi penuh aktif</div><div className="font-mono text-xs text-slate-500">{act.code ? formatCode(act.code).replace(/-(\w{4})-(\w{2})/, "-••••-••") : ""}</div></div>
-        </Card>
-      ) : <DemoBanner />}
 
       <Tabs value={tab} onChange={setTab} tabs={[{ id: "pencapaian", label: "Lencana" }, { id: "kemajuan", label: "Kemajuan" }, { id: "tetapan", label: "Tetapan" }]} />
 
@@ -130,6 +122,7 @@ export default function Profil() {
           <Card className="p-4 text-center text-sm">
             <div className="font-bold">{APP_NAME} <span className="text-xs font-normal text-slate-400">v{VERSION}</span></div>
             <div className="text-slate-500">Aplikasi ini dibangunkan oleh <b>{CREDIT}</b>.</div>
+            {act.code && <div className="mt-2 font-mono text-xs text-emerald-700 dark:text-emerald-300">✅ Diaktifkan · {formatCode(act.code).slice(0, 8)}-••••-••••</div>}
             <div className="mt-2 text-xs text-slate-400">Kandungan nota & soalan latihan berstatus “belum disemak” sehingga disahkan guru penyemak. Rujukan kitab dinyatakan tanpa nombor halaman kerana belum disahkan.</div>
           </Card>
         </>

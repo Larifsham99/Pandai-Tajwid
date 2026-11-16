@@ -145,10 +145,12 @@ describe("kod pengaktifan", () => {
     const { hashCode } = await import("../src/lib/activation");
     expect(await hashCode("ABCDEFGH2345")).toBe(createHash("sha256").update("pandai-tajwid|v1|ABCDEFGH2345").digest("hex").slice(0, 24));
   });
-  it("versi demo: hanya Bab 1–2 dalam latih tubi", async () => {
-    const { objectiveQuestions, getDB } = await import("../src/lib/store");
-    const chs = new Set(objectiveQuestions(getDB()).map((q) => q.chapterId));
-    expect([...chs].sort()).toEqual(["b1", "b2"]);
+  it("tanpa kod: aplikasi belum aktif; kod salah ditolak", async () => {
+    const { initActivation, isActive, activate } = await import("../src/lib/activation");
+    await initActivation();
+    expect(isActive()).toBe(false);
+    expect(await activate("PT-AAAA-BBBB-CCCC")).toMatch(/tidak sah/);
+    expect(isActive()).toBe(false);
   });
   it("tiada kod sebenar dalam repo — hanya hash 24 aksara hex", async () => {
     const hashes = (await import("../src/data/activation-hashes.json")).default as string[];

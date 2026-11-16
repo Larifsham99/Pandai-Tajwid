@@ -4,7 +4,6 @@ import { chapterStats } from "./gamification";
 import { dueReviews } from "./actions";
 import { chapterById, PAPERS } from "../data";
 import { dayKey, shuffle } from "./util";
-import { isActive, isChapterUnlocked } from "./activation";
 
 export interface PracticeConfig {
   mode: "rawak" | "murajaah" | "tahun" | "lemah" | "serupa" | "harian";
@@ -51,11 +50,11 @@ export function buildSet(d: DB, userId: string, c: PracticeConfig): { title: str
   const ch = c.bab ? chapterById(c.bab) : undefined;
   switch (c.mode) {
     case "murajaah": {
-      const qs = dueReviews(d, userId).sort((a, b) => a.due - b.due).map((r) => questionById(r.questionId)).filter((q): q is Question => !!q && isChapterUnlocked(q.chapterId));
+      const qs = dueReviews(d, userId).sort((a, b) => a.due - b.due).map((r) => questionById(r.questionId)).filter((q): q is Question => !!q);
       return { title: "Murajaah Automatik", qs: qs.slice(0, c.n === 0 ? undefined : Math.max(n, 15)) };
     }
     case "tahun": {
-      const paper = isActive() ? PAPERS.find((p) => p.year === c.tahun) : undefined;
+      const paper = PAPERS.find((p) => p.year === c.tahun);
       return { title: `Soalan Tauliah ${c.tahun ?? ""}`, qs: paper ? allQuestions().filter((q) => q.source === "tauliah" && q.year === c.tahun) : [] };
     }
     case "lemah": {

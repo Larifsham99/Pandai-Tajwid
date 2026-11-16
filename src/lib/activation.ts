@@ -4,13 +4,12 @@ import HASHES from "../data/activation-hashes.json";
 /**
  * KOD PENGAKTIFAN (versi penuh)
  * -----------------------------
- * • Demo: hanya FREE_CHAPTERS boleh digunakan. Kod yang sah membuka semua bab & soalan tauliah.
+ * • Aplikasi memerlukan kod yang sah sebelum boleh digunakan (demo hanya di halaman jualan /jualan/).
  * • Aplikasi hanya menyimpan HASH kod (src/data/activation-hashes.json) — kod sebenar tidak ada dalam repo.
  *   Jana kod baharu dengan:  node scripts/jana-kod.mjs 100
  * • Pengaktifan disimpan per peranti (semua profil), dan disahkan semula setiap kali aplikasi dibuka.
  * • Semakan berlaku dalam peranti (tanpa pelayan). Untuk had "satu kod satu peranti", naik taraf ke Supabase kemudian.
  */
-export const FREE_CHAPTERS = ["b1", "b2"];
 const KEY = "pandai-tajwid:aktif";
 const SALT = "pandai-tajwid|v1|";
 const ALPHA = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ"; // tanpa 0/O/1/I yang mengelirukan
@@ -63,6 +62,5 @@ export async function activate(input: string): Promise<string | null> {
   set({ active: true, code: ok, ready: true });
   return null;
 }
+/** Untuk ujian/sokongan sahaja. */
 export function deactivate() { try { storage()?.removeItem(KEY); } catch { /* abaikan */ } set({ active: false, code: null, ready: true }); }
-
-export const isChapterUnlocked = (chapterId: string, active = state.active) => active || FREE_CHAPTERS.includes(chapterId);
