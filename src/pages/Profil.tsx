@@ -9,6 +9,7 @@ import { AVATARS, ProfileForm } from "./Welcome";
 import { APP_NAME, CREDIT, VERSION } from "../components/brand";
 import { download, fmtDate, timeAgo } from "../lib/util";
 import { cloudEnabled } from "../lib/scoreboard";
+import { sfx } from "../lib/sound";
 import { useActivation, formatCode } from "../lib/activation";
 
 type Tab = "pencapaian" | "kemajuan" | "tetapan";
@@ -105,6 +106,11 @@ export default function Profil() {
             <div>
               <div className="label">Sasaran harian</div>
               <div className="flex flex-wrap gap-2">{[10, 20, 30, 50].map((n) => <button key={n} onClick={() => updateSettings({ dailyGoal: n })} className={cx("btn", d.settings.dailyGoal === n ? "btn-primary" : "btn-ghost")}>{n} soalan</button>)}</div>
+            </div>
+            <div className="flex items-start gap-3 text-sm">
+              <input id="bunyi" type="checkbox" className="mt-1 h-4 w-4 accent-emerald-600" checked={d.settings.sound} onChange={(e) => { updateSettings({ sound: e.target.checked }); if (e.target.checked) setTimeout(() => sfx.correct(), 50); }} />
+              <label htmlFor="bunyi" className="flex-1"><b>Kesan bunyi</b><br /><span className="text-xs text-slate-500">Bunyi loceng lembut ketika mengetik, menjawab betul/salah, mendapat lencana & tamat sesi.</span></label>
+              {d.settings.sound && <span data-nosound className="flex gap-1"><button className="btn btn-ghost !px-2 !py-1 text-xs" onClick={() => sfx.correct()}>✓ Betul</button><button className="btn btn-ghost !px-2 !py-1 text-xs" onClick={() => sfx.wrong()}>✗ Salah</button></span>}
             </div>
             <label className="flex items-start gap-3 text-sm"><input type="checkbox" className="mt-1 h-4 w-4 accent-emerald-600" checked={d.settings.includeGenerated} onChange={(e) => updateSettings({ includeGenerated: e.target.checked })} /><span><b>Sertakan soalan dijana daripada nota</b><br /><span className="text-xs text-slate-500">Soalan objektif tambahan berlabel “belum disemak”. Jawapan diambil terus daripada nota.</span></span></label>
           </Card>

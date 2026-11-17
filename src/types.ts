@@ -164,6 +164,7 @@ export interface Settings {
   arabicSize: number; // px
   dailyGoal: number;
   includeGenerated: boolean; // sertakan soalan dijana (belum disemak) dalam latih tubi
+  sound: boolean; // kesan bunyi
 }
 
 export interface DB {
