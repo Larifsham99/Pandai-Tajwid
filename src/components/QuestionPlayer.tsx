@@ -7,6 +7,7 @@ import { useMe } from "../lib/store";
 import { chapterById } from "../data";
 import { Arabic, Celebrate, RichText, cx, toast } from "./ui";
 import { shuffle } from "../lib/util";
+import { sfx } from "../lib/sound";
 
 export interface PlayResult { correct: boolean; score: number }
 
@@ -42,7 +43,7 @@ export default function QuestionPlayer({ q, mode, onAnswered, onNext, onSimilar,
 
   function finish(r: PlayResult, given: string) {
     setResult(r);
-    if (!r.correct) navigator.vibrate?.(40);
+    if (r.correct) sfx.correct(); else if (r.score > 0) sfx.partial(); else { sfx.wrong(); navigator.vibrate?.(40); }
     if (recordable) recordAnswer(me.id, q, r, given, mode, Date.now() - t0.current);
     onAnswered?.(r);
   }
@@ -75,7 +76,7 @@ export default function QuestionPlayer({ q, mode, onAnswered, onNext, onSimilar,
             {(q.type === "tf" ? [{ id: "B", text: "Benar" }, { id: "S", text: "Salah" }] : q.options!).map((o) => {
               const isAns = o.id === q.answer; const isSel = o.id === sel;
               return (
-                <button key={o.id} disabled={answered} onClick={() => { setSel(o.id); submit(o.id); }}
+                <button key={o.id} data-nosound disabled={answered} onClick={() => { setSel(o.id); submit(o.id); }}
                   className={cx("flex items-center gap-3 rounded-2xl bg-white px-3.5 py-3.5 text-left text-[15px] shadow-sm ring-1 transition duration-150 active:scale-[.98] dark:bg-hutan-900",
                     q.type === "tf" && "justify-center py-5 text-base font-bold",
                     !answered && "ring-slate-200 hover:ring-zamrud-400 dark:ring-white/10",
@@ -120,7 +121,7 @@ export default function QuestionPlayer({ q, mode, onAnswered, onNext, onSimilar,
           <div className="rounded-2xl bg-amber-50 p-3 text-xs text-amber-900 dark:bg-amber-500/10 dark:text-amber-200">⚠️ Jawapan cadangan <b>belum disemak</b> guru penyemak — panduan ulang kaji, bukan skema rasmi.</div>
           <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 dark:bg-hutan-900 dark:ring-white/10"><div className="mb-2 text-xs font-bold uppercase tracking-wide text-zamrud-700 dark:text-zamrud-300">Jawapan cadangan</div><RichText text={q.modelAnswer || "—"} className="text-sm" /></div>
           {!answered && <div className="text-sm font-semibold">Nilai jawapan anda:</div>}
-          {!answered && <div className="grid grid-cols-3 gap-2">
+          {!answered && <div data-nosound className="grid grid-cols-3 gap-2">
             <button className="btn bg-emerald-500 text-white" onClick={() => finish({ correct: true, score: 1 }, text)}>✅ Tepat</button>
             <button className="btn bg-amber-300 text-hutan-900" onClick={() => finish({ correct: false, score: 0.5 }, text)}>🟡 Separa</button>
             <button className="btn bg-rose-500 text-white" onClick={() => finish({ correct: false, score: 0 }, text)}>❌ Belum</button>
@@ -181,7 +182,7 @@ export default function QuestionPlayer({ q, mode, onAnswered, onNext, onSimilar,
           <>{onNext && <button className="btn btn-ghost flex-1 !py-3.5" onClick={onNext}>Langkau</button>}</>
         ) : (
           <>{onNext && <button className="btn btn-ghost !py-3.5" onClick={onNext}>Langkau</button>}
-            <button className="btn btn-primary flex-1 !py-3.5 text-base" disabled={!canCheck} onClick={() => submit()}>Semak jawapan</button></>
+            <button data-nosound className="btn btn-primary flex-1 !py-3.5 text-base" disabled={!canCheck} onClick={() => submit()}>Semak jawapan</button></>
         )}
       </ActionBar>
     </div>

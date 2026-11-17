@@ -3,6 +3,7 @@ import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
 import { Dumbbell, BookOpen, Trophy, UserRound, Flame, Zap, Plus, Check, Settings } from "lucide-react";
 import { useDb, useMe, switchProfile } from "../lib/store";
 import { ProfileForm } from "../pages/Welcome";
+import { sfx } from "../lib/sound";
 import { summary } from "../lib/gamification";
 import { BADGES } from "../lib/gamification";
 import { onNewBadges } from "../lib/actions";
@@ -29,7 +30,7 @@ function useTheme() {
 
 /** Lencana baharu dimaklumkan melalui notifikasi kecil — tidak menghalang sesi menjawab. */
 function BadgeCelebration() {
-  useEffect(() => onNewBadges((ids) => ids.forEach((id, i) => { const b = BADGES.find((x) => x.id === id); if (b) setTimeout(() => toast(`🏅 Lencana baharu: ${b.name} ${b.icon}`, "info"), i * 700); })), []);
+  useEffect(() => onNewBadges((ids) => ids.forEach((id, i) => { const b = BADGES.find((x) => x.id === id); if (b) setTimeout(() => { toast(`🏅 Lencana baharu: ${b.name} ${b.icon}`, "info"); sfx.badge(); }, 600 + i * 700); })), []);
   return null;
 }
 
@@ -71,6 +72,11 @@ export default function Layout({ children }: { children: ReactNode }) {
   const [sheet, setSheet] = useState(false);
   const focus = loc.pathname.startsWith("/latih/sesi"); // mod fokus semasa menjawab
   useEffect(() => { window.scrollTo(0, 0); }, [loc.pathname]);
+  // Ketikan lembut bagi butang & pautan (kecuali pilihan jawapan yang ada bunyi keputusan sendiri)
+  useEffect(() => {
+    const h = (e: MouseEvent) => { const el = (e.target as HTMLElement).closest("button, a, select, [role=tab]"); if (el && !el.closest("[data-nosound]") && !(el as HTMLButtonElement).disabled) sfx.tap(); };
+    document.addEventListener("click", h, true); return () => document.removeEventListener("click", h, true);
+  }, []);
   return (
     <div className={cx("min-h-dvh", focus ? "pb-4" : "pb-24 lg:pb-8")}>
       <header className="sticky top-0 z-40 border-b border-zamrud-900/5 bg-white/80 backdrop-blur-md dark:border-white/5 dark:bg-hutan-950/80 no-print" style={{ paddingTop: "env(safe-area-inset-top)" }}>

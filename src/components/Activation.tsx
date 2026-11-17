@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { KeyRound, ShoppingBag, PlayCircle } from "lucide-react";
 import { activate } from "../lib/activation";
+import { sfx } from "../lib/sound";
 import { Logo, BUY_URL, DEMO_URL, CREDIT } from "./brand";
 
 /**
@@ -12,7 +13,7 @@ export function ActivationGate() {
   async function submit(e: React.FormEvent) {
     e.preventDefault(); setBusy(true);
     const r = await activate(code); setBusy(false);
-    if (r) setErr(r);
+    if (r) { setErr(r); sfx.wrong(); } else sfx.complete(true);
   }
   return (
     <div className="mx-auto flex min-h-dvh max-w-md flex-col justify-center px-4 py-8">

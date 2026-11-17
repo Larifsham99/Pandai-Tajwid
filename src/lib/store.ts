@@ -10,7 +10,7 @@ import { uid } from "./util";
 const KEY = "pandai-tajwid:db:v1";
 export const DB_VERSION = 1;
 
-export const DEFAULT_SETTINGS: Settings = { theme: "system", arabicSize: 28, dailyGoal: 20, includeGenerated: true };
+export const DEFAULT_SETTINGS: Settings = { theme: "system", arabicSize: 28, dailyGoal: 20, includeGenerated: true, sound: true };
 
 export function emptyDB(): DB {
   return { version: DB_VERSION, profiles: [], attempts: [], runs: [], review: [], xp: [], badges: [], notes: [], bookmarks: [], activity: [], settings: DEFAULT_SETTINGS };

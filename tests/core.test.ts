@@ -157,3 +157,12 @@ describe("kod pengaktifan", () => {
     hashes.forEach((h) => expect(h).toMatch(/^[0-9a-f]{24}$/));
   });
 });
+
+describe("kesan bunyi", () => {
+  it("tidak ralat di persekitaran tanpa Web Audio & tetapan lalai aktif", async () => {
+    const { sfx } = await import("../src/lib/sound");
+    const { DEFAULT_SETTINGS } = await import("../src/lib/store");
+    expect(DEFAULT_SETTINGS.sound).toBe(true);
+    expect(() => { sfx.tap(); sfx.correct(); sfx.wrong(); sfx.partial(); sfx.badge(); sfx.complete(true); }).not.toThrow();
+  });
+});

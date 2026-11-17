@@ -3,6 +3,7 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { X } from "lucide-react";
 import { getDB, useMe } from "../lib/store";
 import { completeExercise } from "../lib/actions";
+import { sfx } from "../lib/sound";
 import { buildSet, fromParams, toParams } from "../lib/practice";
 import { XP_RULES } from "../lib/gamification";
 import { chapterById } from "../data";
@@ -33,7 +34,7 @@ function SesiInner() {
 
   function finish() {
     setDone(true);
-    if (answered) completeExercise(me.id, set.title, answered, score);
+    if (answered) { completeExercise(me.id, set.title, answered, score); setTimeout(() => sfx.complete(score / answered >= 0.6), 150); }
   }
 
   if (done) {
