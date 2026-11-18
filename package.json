@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Pandai Tajwid — latih tubi tajwid yang ringkas, ceria dan mesra telefon. Dibangunkan oleh Abdul Latif.",
+  "description": "Pandai Tajwid — latih tubi tajwid yang ringkas, ceria dan mesra telefon. Dibangunkan oleh Mawar Ikhlas Brand.",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

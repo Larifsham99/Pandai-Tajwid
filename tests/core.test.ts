@@ -166,3 +166,14 @@ describe("kesan bunyi", () => {
     expect(() => { sfx.tap(); sfx.correct(); sfx.wrong(); sfx.partial(); sfx.badge(); sfx.complete(true); }).not.toThrow();
   });
 });
+
+describe("semakan pra-jualan: kenyataan Salah tidak mengelirukan", () => {
+  it("kenyataan Salah tidak memaparkan nilai yang sebenarnya termasuk dalam jawapan betul", () => {
+    const bad = GENERATED_QUESTIONS.filter((q) => q.type === "tf" && q.answer === "S").filter((q) =>
+      /'Aridh lissukun» ialah «6»|«'Ain» ialah «(4|6)»|«Wajib muttasil» ialah «4\/5»|«مـ» ialah «Disuruh berhenti»/.test(q.prompt));
+    expect(bad.map((q) => q.id)).toEqual([]);
+  });
+  it("tiada soalan dijana tentang بِئْسَ ٱلِٱسْمُ (dua wajah ketika ibtida')", () => {
+    expect(GENERATED_QUESTIONS.filter((q) => JSON.stringify(q).includes("ٱلِٱسْمُ")).map((q) => q.id)).toEqual([]);
+  });
+});

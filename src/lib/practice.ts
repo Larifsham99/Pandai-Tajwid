@@ -55,7 +55,7 @@ export function buildSet(d: DB, userId: string, c: PracticeConfig): { title: str
     }
     case "tahun": {
       const paper = PAPERS.find((p) => p.year === c.tahun);
-      return { title: `Soalan Tauliah ${c.tahun ?? ""}`, qs: paper ? allQuestions().filter((q) => q.source === "tauliah" && q.year === c.tahun) : [] };
+      return { title: `Rujukan dari Soalan Tauliah ${c.tahun ?? ""}`, qs: paper ? allQuestions().filter((q) => q.source === "tauliah" && q.year === c.tahun) : [] };
     }
     case "lemah": {
       const weak = chapterStats(d, userId).filter((s) => s.attempts >= 3).sort((a, b) => a.acc - b.acc).slice(0, 3).map((s) => s.chapterId);

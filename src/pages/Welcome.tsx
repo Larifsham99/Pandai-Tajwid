@@ -32,11 +32,11 @@ export default function Welcome() {
       <div className="mb-6 flex justify-center"><Logo className="scale-125" /></div>
       <div className="hero mb-5 rounded-3xl p-6 text-center text-white shadow-xl">
         <div className="font-arab text-4xl text-emas-200" dir="rtl">وَرَتِّلِ ٱلْقُرْءَانَ تَرْتِيلًا</div>
-        <div className="mt-1 text-xs text-emerald-100">(al-Muzzammil:4)</div>
+        <div className="mt-1 text-xs text-zamrud-100">(al-Muzzammil:4)</div>
         <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-          <div className="rounded-2xl bg-white/10 p-2"><div className="text-xl font-extrabold">{objective}+</div><div className="text-[10px] text-emerald-100">soalan latih tubi</div></div>
-          <div className="rounded-2xl bg-white/10 p-2"><div className="text-xl font-extrabold">12</div><div className="text-[10px] text-emerald-100">bab nota</div></div>
-          <div className="rounded-2xl bg-white/10 p-2"><div className="text-xl font-extrabold">🔁</div><div className="text-[10px] text-emerald-100">murajaah automatik</div></div>
+          <div className="rounded-2xl bg-white/10 p-2"><div className="text-xl font-extrabold">{objective}+</div><div className="text-[10px] text-zamrud-100">soalan latih tubi</div></div>
+          <div className="rounded-2xl bg-white/10 p-2"><div className="text-xl font-extrabold">12</div><div className="text-[10px] text-zamrud-100">bab nota</div></div>
+          <div className="rounded-2xl bg-white/10 p-2"><div className="text-xl font-extrabold">🔁</div><div className="text-[10px] text-zamrud-100">murajaah automatik</div></div>
         </div>
       </div>
       <div className="card p-5">

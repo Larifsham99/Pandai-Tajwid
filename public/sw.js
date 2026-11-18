@@ -1,8 +1,8 @@
 // Service worker: HTML sentiasa diambil segar dari rangkaian (tanpa cache pelayar) supaya versi baharu
 // terus dipaparkan; aset berhash (assets/*) dicache untuk kegunaan luar talian.
-const CACHE = 'pandai-tajwid-v3';
+const CACHE = 'pandai-tajwid-v4';
 const FONTS = 'pandai-tajwid-fonts-v1';
-self.addEventListener('install', (e) => { self.skipWaiting(); e.waitUntil(caches.open(CACHE).then((c) => c.addAll(['./manifest.webmanifest', './icon.svg']))); });
+self.addEventListener('install', (e) => { self.skipWaiting(); e.waitUntil(caches.open(CACHE).then((c) => c.addAll(['./manifest.webmanifest', './icon.svg', './icon-192.png']))); });
 self.addEventListener('activate', (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE && k !== FONTS).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', (e) => {
   const req = e.request;

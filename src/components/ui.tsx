@@ -13,9 +13,9 @@ export function PageHeader({ title, subtitle, icon, actions }: { title: string; 
   return (
     <div className="mb-5 flex flex-wrap items-end justify-between gap-3 rise">
       <div className="flex items-center gap-3">
-        {icon && <div className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-zamrud-400 to-zamrud-700 text-xl text-white shadow-lg shadow-zamrud-600/25 ring-2 ring-white/70">{icon}</div>}
+        {icon && <div className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-zamrud-600 to-zamrud-900 text-xl text-emas-200 shadow-lg shadow-zamrud-900/25 ring-1 ring-emas-300/50">{icon}</div>}
         <div>
-          <h1 className="text-xl font-extrabold tracking-tight text-hutan-900 dark:text-white sm:text-2xl">{title}</h1>
+          <h1 className="text-xl font-extrabold tracking-tight text-hutan-900 dark:text-krim-50 sm:text-2xl">{title}</h1>
           {subtitle && <p className="text-sm text-slate-500 dark:text-slate-400">{subtitle}</p>}
         </div>
       </div>
@@ -25,16 +25,16 @@ export function PageHeader({ title, subtitle, icon, actions }: { title: string; 
 }
 
 export function Progress({ value, className, tone = "zamrud" }: { value: number; className?: string; tone?: "zamrud" | "emas" | "rose" }) {
-  const c = tone === "emas" ? "bg-emas-400" : tone === "rose" ? "bg-rose-500" : "bg-zamrud-600";
+  const c = tone === "emas" ? "bg-emas-400" : tone === "rose" ? "bg-merah-500" : "bg-zamrud-600";
   return <div className={cx("h-2 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-white/10", className)}><div className={cx("h-full rounded-full transition-all duration-500", c)} style={{ width: `${Math.max(0, Math.min(100, value))}%` }} /></div>;
 }
 
 export const TONES = {
-  zamrud: { bubble: "bg-emerald-100 text-emerald-700", bar: "from-emerald-400 to-teal-500" },
-  sky: { bubble: "bg-sky-100 text-sky-700", bar: "from-sky-400 to-blue-500" },
-  emas: { bubble: "bg-amber-100 text-amber-700", bar: "from-amber-300 to-orange-400" },
-  rose: { bubble: "bg-rose-100 text-rose-700", bar: "from-rose-400 to-pink-500" },
-  violet: { bubble: "bg-violet-100 text-violet-700", bar: "from-violet-400 to-fuchsia-500" },
+  zamrud: { bubble: "bg-zamrud-50 text-zamrud-700 ring-1 ring-inset ring-zamrud-200", bar: "from-zamrud-500 to-zamrud-700" },
+  sky: { bubble: "bg-biru-50 text-biru-700 ring-1 ring-inset ring-biru-200", bar: "from-biru-400 to-biru-600" },
+  emas: { bubble: "bg-emas-50 text-emas-700 ring-1 ring-inset ring-emas-200", bar: "from-emas-300 to-emas-500" },
+  rose: { bubble: "bg-merah-50 text-merah-700 ring-1 ring-inset ring-merah-200", bar: "from-merah-400 to-merah-600" },
+  violet: { bubble: "bg-ungu-50 text-ungu-700 ring-1 ring-inset ring-ungu-200", bar: "from-ungu-400 to-ungu-600" },
 } as const;
 export type Tone = keyof typeof TONES;
 export const CHAPTER_TONES: Tone[] = ["zamrud", "sky", "emas", "violet", "rose", "zamrud", "sky", "emas", "violet", "rose", "zamrud", "sky"];
@@ -90,8 +90,8 @@ export function Empty({ icon = "🕌", title, children }: { icon?: string; title
 
 const STATUS: Record<ReviewStatus, [string, string]> = {
   draf: ["Draf", "bg-slate-200 text-slate-700"],
-  belum_disemak: ["Belum disemak", "bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-200"],
-  disemak: ["Disemak guru", "bg-sky-100 text-sky-800 dark:bg-sky-500/20 dark:text-sky-200"],
+  belum_disemak: ["Belum disemak", "bg-emas-100 text-emas-800 dark:bg-emas-500/20 dark:text-emas-200"],
+  disemak: ["Disemak guru", "bg-biru-100 text-biru-800 dark:bg-biru-500/20 dark:text-biru-200"],
   diterbitkan: ["Disahkan & diterbitkan", "bg-zamrud-100 text-zamrud-800 dark:bg-zamrud-500/20 dark:text-zamrud-200"],
 };
 export const StatusBadge = ({ s }: { s: ReviewStatus }) => <span className={cx("chip", STATUS[s][1])}>{STATUS[s][0]}</span>;
@@ -136,7 +136,7 @@ export const toast = (text: string, tone: Toast["tone"] = "ok") => pushToast({ t
 export function Toaster() {
   const [items, set] = useState<Toast[]>([]);
   useEffect(() => { pushToast = (t) => { const id = Date.now() + Math.random(); set([{ ...t, id }]); setTimeout(() => set((s) => s.filter((x) => x.id !== id)), 2400); }; }, []);
-  return <div className="pointer-events-none fixed inset-x-0 top-16 z-[60] flex flex-col items-center gap-2 px-4">{items.map((t) => <div key={t.id} className={cx("pop pointer-events-auto rounded-2xl px-4 py-2.5 text-sm font-semibold shadow-xl", t.tone === "ok" ? "bg-zamrud-800 text-white" : t.tone === "err" ? "bg-rose-600 text-white" : "bg-hutan-900 text-emas-200")}>{t.text}</div>)}</div>;
+  return <div className="pointer-events-none fixed inset-x-0 top-16 z-[60] flex flex-col items-center gap-2 px-4">{items.map((t) => <div key={t.id} className={cx("pop pointer-events-auto rounded-2xl px-4 py-2.5 text-sm font-semibold shadow-xl", t.tone === "ok" ? "bg-zamrud-800 text-white" : t.tone === "err" ? "bg-merah-600 text-white" : "bg-hutan-900 text-emas-200")}>{t.text}</div>)}</div>;
 }
 
 export function BarChart({ data, max = 100, suffix = "%" }: { data: { label: string; value: number; tone?: string }[]; max?: number; suffix?: string }) {
@@ -145,7 +145,7 @@ export function BarChart({ data, max = 100, suffix = "%" }: { data: { label: str
       {data.map((d) => (
         <div key={d.label} className="grid grid-cols-[minmax(0,9rem)_1fr_3rem] items-center gap-2 text-xs">
           <div className="truncate text-slate-600 dark:text-slate-300" title={d.label}>{d.label}</div>
-          <div className="h-3 overflow-hidden rounded-full bg-slate-100 dark:bg-white/10"><div className={cx("h-full rounded-full", d.tone || (d.value >= 80 ? "bg-zamrud-600" : d.value >= 60 ? "bg-emas-400" : "bg-rose-400"))} style={{ width: `${Math.min(100, (d.value / max) * 100)}%` }} /></div>
+          <div className="h-3 overflow-hidden rounded-full bg-slate-100 dark:bg-white/10"><div className={cx("h-full rounded-full", d.tone || (d.value >= 80 ? "bg-zamrud-600" : d.value >= 60 ? "bg-emas-400" : "bg-merah-400"))} style={{ width: `${Math.min(100, (d.value / max) * 100)}%` }} /></div>
           <div className="text-right font-semibold tabular-nums">{d.value}{suffix}</div>
         </div>
       ))}

@@ -70,7 +70,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   const me = useMe()!; const d = useDb(); const loc = useLocation();
   const s = summary(d, me.id);
   const [sheet, setSheet] = useState(false);
-  const focus = loc.pathname.startsWith("/latih/sesi"); // mod fokus semasa menjawab
+  const focus = loc.pathname.startsWith("/latih/sesi") || loc.pathname.startsWith("/ujian"); // mod fokus semasa menjawab
   useEffect(() => { window.scrollTo(0, 0); }, [loc.pathname]);
   // Ketikan lembut bagi butang & pautan (kecuali pilihan jawapan yang ada bunyi keputusan sendiri)
   useEffect(() => {
@@ -79,15 +79,15 @@ export default function Layout({ children }: { children: ReactNode }) {
   }, []);
   return (
     <div className={cx("min-h-dvh", focus ? "pb-4" : "pb-24 lg:pb-8")}>
-      <header className="sticky top-0 z-40 border-b border-zamrud-900/5 bg-white/80 backdrop-blur-md dark:border-white/5 dark:bg-hutan-950/80 no-print" style={{ paddingTop: "env(safe-area-inset-top)" }}>
+      <header className="sticky top-0 z-40 border-b border-emas-200/60 bg-krim-50/85 backdrop-blur-md dark:border-white/5 dark:bg-hutan-950/80 no-print" style={{ paddingTop: "env(safe-area-inset-top)" }}>
         <div className="mx-auto flex h-14 max-w-5xl items-center gap-3 px-4">
           <Link to="/" aria-label={APP_NAME}><Logo /></Link>
           <nav className="ml-6 hidden gap-1 lg:flex">
-            {NAV.map((n) => <NavLink key={n.to} to={n.to} end={n.end} className={({ isActive }) => cx("flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold transition", isActive ? "bg-zamrud-600 text-white shadow" : "text-slate-600 hover:bg-zamrud-50 dark:text-slate-300 dark:hover:bg-white/5")}><n.icon size={16} />{n.label}</NavLink>)}
+            {NAV.map((n) => <NavLink key={n.to} to={n.to} end={n.end} className={({ isActive }) => cx("flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold transition", isActive ? "bg-zamrud-800 text-krim-50 shadow ring-1 ring-emas-300/40" : "text-slate-600 hover:bg-zamrud-50 dark:text-slate-300 dark:hover:bg-white/5")}><n.icon size={16} />{n.label}</NavLink>)}
           </nav>
           <div className="ml-auto flex items-center gap-1.5">
-            <span className="chip bg-orange-100 text-orange-700 dark:bg-orange-500/20 dark:text-orange-200" title="Hari berturut-turut"><Flame size={13} />{s.streak}</span>
-            <span className="chip bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-200" title="Jumlah XP"><Zap size={13} />{s.xp}</span>
+            <span className="chip bg-merah-50 text-merah-700 ring-1 ring-inset ring-merah-200 dark:bg-merah-500/20 dark:text-merah-200" title="Hari berturut-turut"><Flame size={13} />{s.streak}</span>
+            <span className="chip bg-emas-50 text-emas-700 ring-1 ring-inset ring-emas-200 dark:bg-emas-500/20 dark:text-emas-200" title="Jumlah XP"><Zap size={13} />{s.xp}</span>
             <button onClick={() => setSheet(true)} className="ml-1 grid h-9 w-9 place-items-center rounded-full bg-zamrud-50 text-lg ring-2 ring-zamrud-200 transition active:scale-95 dark:bg-white/10 dark:ring-white/10" aria-label={`Profil: ${me.name}. Tukar profil`}>{me.avatar}</button>
           </div>
         </div>
@@ -100,11 +100,11 @@ export default function Layout({ children }: { children: ReactNode }) {
         <div className="mt-0.5">Kandungan latihan sebagai bantuan ulang kaji — sahkan bacaan bersama guru bertalaqqi.</div>
       </footer>}
 
-      {!focus && <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-zamrud-900/5 bg-white/95 backdrop-blur-md dark:border-white/5 dark:bg-hutan-950/95 lg:hidden no-print" style={{ paddingBottom: "env(safe-area-inset-bottom)" }}>
+      {!focus && <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-emas-200/60 bg-krim-50/95 backdrop-blur-md dark:border-white/5 dark:bg-hutan-950/95 lg:hidden no-print" style={{ paddingBottom: "env(safe-area-inset-bottom)" }}>
         <div className="mx-auto grid max-w-md grid-cols-4">
           {NAV.map((n) => (
             <NavLink key={n.to} to={n.to} end={n.end} className={({ isActive }) => cx("flex flex-col items-center gap-0.5 py-2.5 text-[11px] font-semibold transition", isActive ? "text-zamrud-700 dark:text-emas-300" : "text-slate-500 dark:text-slate-400")}>
-              {({ isActive }) => <><span className={cx("grid h-8 w-14 place-items-center rounded-full transition", isActive && "bg-zamrud-100 dark:bg-white/10")}><n.icon size={20} /></span>{n.label}</>}
+              {({ isActive }) => <><span className={cx("grid h-8 w-14 place-items-center rounded-full transition", isActive && "bg-zamrud-800 text-emas-200 dark:bg-white/10")}><n.icon size={20} /></span>{n.label}</>}
             </NavLink>
           ))}
         </div>

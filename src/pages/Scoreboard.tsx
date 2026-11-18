@@ -27,7 +27,7 @@ export default function Scoreboard() {
   return (
     <div>
       <PageHeader title="Scoreboard" subtitle={data?.source === "awan" ? "Kedudukan dalam talian" : "Kedudukan profil pada peranti ini"} icon="🏆" />
-      <div className={cx("mb-4 flex items-start gap-2 rounded-2xl p-3 text-xs", data?.source === "awan" ? "bg-sky-50 text-sky-900 dark:bg-sky-500/10 dark:text-sky-200" : "bg-amber-50 text-amber-900 dark:bg-amber-500/10 dark:text-amber-200")}>
+      <div className={cx("mb-4 flex items-start gap-2 rounded-2xl p-3 text-xs", data?.source === "awan" ? "bg-biru-50 text-biru-900 dark:bg-biru-500/10 dark:text-biru-200" : "bg-emas-50 text-emas-900 dark:bg-emas-500/10 dark:text-emas-200")}>
         {data?.source === "awan" ? <Cloud size={16} className="shrink-0" /> : <Smartphone size={16} className="shrink-0" />}
         <div>{data?.source === "awan" ? "Skor anda disegerakkan ke papan skor dalam talian." : cloudEnabled ? "Tidak dapat menyambung ke pelayan — memaparkan kedudukan tempatan." : <>Mod <b>tempatan</b>: papan skor menyenaraikan semua profil pada peranti ini (sesuai untuk keluarga/kelas yang berkongsi telefon). Papan skor dalam talian boleh diaktifkan kemudian.</>}</div>
       </div>

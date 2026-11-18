@@ -1,14 +1,15 @@
 # Pandai Tajwid
 
 Aplikasi latih tubi tajwid yang ringkas, ceria dan mesra telefon.
-**Aplikasi ini dibangunkan oleh Abdul Latif.**
+**Aplikasi ini dibangunkan oleh Mawar Ikhlas Brand.**
 
 ## Menu
 | Menu | Kandungan |
 |---|---|
-| **Latih Tubi** (utama) | ~870 soalan objektif (ABCD, Benar/Salah, Padanan, Isi tempat kosong), pilih bab/jenis/sumber/bilangan, Cabaran Harian, Fokus Kelemahan, Maraton, **Murajaah automatik**, dan soalan tauliah lepas Kedah 2014–2025 (semakan kendiri). |
+| **Latih Tubi** (utama) | ~870 soalan objektif (ABCD, Benar/Salah, Padanan, Isi tempat kosong), pilih bab/jenis/sumber/bilangan, Cabaran Harian, Fokus Kelemahan, Maraton, **Murajaah automatik**, dan rujukan dari soalan tauliah 2014–2025 (semakan kendiri). |
 | **Nota** | 12 bab sedia ada: nota mendalam, ringkas, kad imbas, jadual, peta minda, rujukan, carian & penanda. |
 | **Scoreboard** | Keseluruhan, mingguan, ketepatan, istiqamah. |
+| **Ujian Bertempoh** | Simulasi peperiksaan 20/40 soalan dengan pemasa; keputusan, pecahan ikut bab & semakan jawapan di akhir. |
 | **Profil** | Tahap, XP, lencana, kemajuan bab, tetapan, beberapa profil pada satu peranti, sandaran JSON. |
 
 Satu mod sahaja — tiada akaun guru/admin, tiada log masuk.
@@ -43,12 +44,14 @@ Penempatan: `.github/workflows/pages.yml` membina dan menerbitkan ke GitHub Page
 
 ## Halaman jualan
 `public/jualan/index.html` diterbitkan di `…/Pandai-Tajwid/jualan/` (sesuai untuk iklan media sosial; ada gambar kongsian `og.jpg`).
-Ubah pautan butang & harga di blok `window.SALES` di bahagian atas fail:
+Ubah pautan bayaran, harga & maklumat penjual di `public/jualan/config.js`:
 ```js
-window.SALES = { ctaUrl: "https://toyyibpay.com/…", price: "RM29", priceNext: "RM49", priceNote: "…" };
+// public/jualan/config.js (dikongsi oleh index.html, terima-kasih.html & terma.html)
+window.SALES = { ctaUrl: "https://toyyibpay.com/…", price: "RM19", priceNext: "", seller: "Mawar Ikhlas Brand", ssm: "", email: "", whatsapp: "" };
 ```
 - `ctaUrl` — pautan **bayaran** untuk butang dalam kotak tawaran (butang "Dapatkan" lain membawa ke kotak tawaran dahulu). Kosong = butang memaparkan "akan dibuka tidak lama lagi".
-- `price` — harga sekarang; `priceNext` — harga biasa selepas promosi (dipaparkan sebagai makluman, bukan harga dipotong).
+- `price` — harga sekarang; `priceNext` — harga biasa selepas promosi (makluman, bukan harga dipotong).
+- `ssm`, `email`, `whatsapp` — maklumat hubungan penjual (dipaparkan di kaki halaman, halaman terima kasih & `terma.html`).
 
 ## Kod pengaktifan (versi penuh)
 - **Aplikasi memerlukan kod** sebelum boleh digunakan. Demo untuk bakal pembeli ialah kuiz 10 soalan + tayangan skrin di halaman jualan (`/jualan/#demo`).
