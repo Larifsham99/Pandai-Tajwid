@@ -97,14 +97,14 @@ function Exam({ cfg, onRestart }: { cfg: Cfg; onRestart: () => void }) {
   const ch = chapterById(q.chapterId);
   return (
     <div className="mx-auto max-w-2xl pb-28">
-      <div className="sticky top-14 z-30 -mx-4 mb-4 border-b border-zamrud-900/5 bg-[#f4fbf7] px-4 pb-3 pt-2 shadow-sm dark:border-white/5 dark:bg-hutan-950">
+      <div className="sticky top-14 z-30 -mx-4 mb-4 border-b border-zamrud-900/5 bg-krim-50 px-4 pb-3 pt-2 shadow-sm dark:border-white/5 dark:bg-hutan-950">
         <div className="flex items-center justify-between gap-3">
-          <span className={cx("chip !text-sm tabular-nums", left <= 60 ? "bg-rose-100 text-rose-700" : "bg-zamrud-100 text-zamrud-800")}><Timer size={14} /> {fmt(left)}</span>
+          <span className={cx("chip !text-sm tabular-nums", left <= 60 ? "bg-merah-100 text-merah-700" : "bg-zamrud-100 text-zamrud-800")}><Timer size={14} /> {fmt(left)}</span>
           <span className="text-sm font-bold text-slate-500">Soalan {i + 1}/{qs.length} · dijawab {answeredN}</span>
           <button className="btn btn-gold !px-3 !py-1.5 text-xs" onClick={() => { if (answeredN < qs.length && !confirm(`${qs.length - answeredN} soalan belum dijawab. Hantar juga?`)) return; submit(); }}>Hantar</button>
         </div>
         <div className="mt-2 flex gap-1 overflow-x-auto pb-1">
-          {qs.map((x, k) => <button key={x.id} data-nosound onClick={() => setI(k)} aria-label={`Soalan ${k + 1}`} className={cx("h-7 min-w-7 shrink-0 rounded-lg px-1 text-[11px] font-bold", k === i ? "bg-zamrud-600 text-white" : ans[x.id] ? "bg-zamrud-100 text-zamrud-800" : "bg-slate-100 text-slate-500 dark:bg-white/10", flag[x.id] && "ring-2 ring-amber-400")}>{k + 1}</button>)}
+          {qs.map((x, k) => <button key={x.id} data-nosound onClick={() => setI(k)} aria-label={`Soalan ${k + 1}`} className={cx("h-7 min-w-7 shrink-0 rounded-lg px-1 text-[11px] font-bold", k === i ? "bg-zamrud-600 text-white" : ans[x.id] ? "bg-zamrud-100 text-zamrud-800" : "bg-slate-100 text-slate-500 dark:bg-white/10", flag[x.id] && "ring-2 ring-emas-400")}>{k + 1}</button>)}
         </div>
       </div>
       <div className="mb-2 text-xs font-semibold text-zamrud-700 dark:text-zamrud-300">Bab {ch?.no} · {ch?.title}</div>
@@ -118,7 +118,7 @@ function Exam({ cfg, onRestart }: { cfg: Cfg; onRestart: () => void }) {
           </button>
         ))}
       </div>
-      <button className={cx("btn mt-4 !py-2 text-sm", flag[q.id] ? "bg-amber-100 text-amber-800" : "btn-ghost")} onClick={() => setFlag({ ...flag, [q.id]: !flag[q.id] })}><Flag size={15} /> {flag[q.id] ? "Ditanda untuk semak semula" : "Tanda untuk semak semula"}</button>
+      <button className={cx("btn mt-4 !py-2 text-sm", flag[q.id] ? "bg-emas-100 text-emas-800" : "btn-ghost")} onClick={() => setFlag({ ...flag, [q.id]: !flag[q.id] })}><Flag size={15} /> {flag[q.id] ? "Ditanda untuk semak semula" : "Tanda untuk semak semula"}</button>
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-zamrud-900/5 bg-white/95 px-4 pt-3 backdrop-blur-md dark:border-white/10 dark:bg-hutan-950/95" style={{ paddingBottom: "max(12px, env(safe-area-inset-bottom))" }}>
         <div className="mx-auto flex max-w-2xl gap-2">
           <button className="btn btn-ghost !py-3.5" disabled={i === 0} onClick={() => setI(i - 1)}><ChevronLeft size={18} /> Sebelum</button>
@@ -141,7 +141,7 @@ function Result({ qs, ans, usedSec, onRestart }: { qs: Question[]; ans: Record<s
     <div className="mx-auto max-w-2xl space-y-4">
       <Card className="motif p-6 text-center">
         <div className="text-5xl">{pct >= 80 ? "🏆" : pct >= 60 ? "🌟" : "🌱"}</div>
-        <div className="mt-2 text-5xl font-extrabold text-zamrud-700 dark:text-emas-300">{pct}%</div>
+        <div className="mt-2 font-display text-6xl font-bold text-zamrud-800 dark:text-emas-300">{pct}%</div>
         <div className="text-sm text-slate-500">{right.length} betul daripada {qs.length} · masa {fmt(usedSec)}</div>
         <div className="mt-2 text-sm font-semibold">{pct >= 80 ? "Mumtaz! Anda bersedia menghadapi peperiksaan." : pct >= 60 ? "Jayyid. Fokus pada bab yang lemah di bawah." : "Teruskan latihan — ulang kaji nota bab yang lemah."}</div>
         <div className="mt-4 grid gap-2 sm:flex sm:justify-center">
@@ -159,17 +159,17 @@ function Result({ qs, ans, usedSec, onRestart }: { qs: Question[]; ans: Record<s
             return (
               <div key={q.id} className="py-2">
                 <button className="flex w-full items-start gap-2 text-left" onClick={() => setOpen(open === q.id ? null : q.id)}>
-                  {ok ? <CheckCircle2 className="mt-0.5 shrink-0 text-emerald-500" size={18} /> : <XCircle className="mt-0.5 shrink-0 text-rose-500" size={18} />}
+                  {ok ? <CheckCircle2 className="mt-0.5 shrink-0 text-zamrud-500" size={18} /> : <XCircle className="mt-0.5 shrink-0 text-merah-500" size={18} />}
                   <span className="flex-1 text-sm"><b>{k + 1}.</b> <RichText text={q.prompt} className="inline" /></span>
                   <ChevronDown size={16} className={cx("mt-0.5 shrink-0 text-slate-400 transition", open === q.id && "rotate-180")} />
                 </button>
                 {open === q.id && (
                   <div className="ml-7 mt-2 space-y-1 text-sm">
                     {q.arabic && <div className="arab-block !text-xl">{q.arabic}</div>}
-                    <div>Jawapan anda: <b className={ok ? "text-emerald-700" : "text-rose-600"}><RichText text={label(q, ans[q.id])} className="inline" /></b></div>
-                    {!ok && <div>Jawapan betul: <b className="text-emerald-700"><RichText text={label(q, q.answer as string)} className="inline" /></b></div>}
+                    <div>Jawapan anda: <b className={ok ? "text-zamrud-700" : "text-merah-600"}><RichText text={label(q, ans[q.id])} className="inline" /></b></div>
+                    {!ok && <div>Jawapan betul: <b className="text-zamrud-700"><RichText text={label(q, q.answer as string)} className="inline" /></b></div>}
                     {q.explanation?.why && <div className="rounded-xl bg-zamrud-50 p-2.5 dark:bg-white/5"><RichText text={q.explanation.why} /></div>}
-                    {q.status === "belum_disemak" && <div className="text-[11px] text-amber-700">Belum disemak guru penyemak.</div>}
+                    {q.status === "belum_disemak" && <div className="text-[11px] text-emas-700">Belum disemak guru penyemak.</div>}
                   </div>
                 )}
               </div>

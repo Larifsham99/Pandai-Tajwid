@@ -5,8 +5,9 @@
 :root { --arab-size: 26px; color-scheme: light; }
 :root.dark { color-scheme: dark; }
 html, body { @apply text-slate-800; }
-body { background: radial-gradient(900px 500px at 100% -10%, rgba(52,211,153,.16), transparent 60%), radial-gradient(700px 420px at -10% 110%, rgba(250,204,21,.14), transparent 60%), linear-gradient(180deg, #f4fbf7, #fffaf0) fixed; }
-.dark body { background: radial-gradient(900px 500px at 100% -10%, rgba(16,185,129,.14), transparent 60%), #051a13 fixed; }
+/* Latar gading premium dengan sinar emas & zamrud yang sangat halus */
+body { background: radial-gradient(900px 520px at 100% -12%, rgba(201,162,75,.10), transparent 60%), radial-gradient(760px 460px at -12% 108%, rgba(36,99,74,.08), transparent 60%), linear-gradient(180deg, #fdfbf6, #f8f3e7) fixed; }
+.dark body { background: radial-gradient(900px 520px at 100% -12%, rgba(201,162,75,.08), transparent 60%), #06110c fixed; }
 .dark body, html.dark { @apply bg-hutan-950 text-slate-100; }
 body { font-family: "Plus Jakarta Sans", system-ui, sans-serif; -webkit-tap-highlight-color: transparent; }
 
@@ -18,20 +19,20 @@ body { font-family: "Plus Jakarta Sans", system-ui, sans-serif; -webkit-tap-high
 
 /* Motif geometri Islamik minimal */
 @layer components {
-.motif { background-image: radial-gradient(circle at 1px 1px, rgba(212,169,64,.18) 1px, transparent 0); background-size: 18px 18px; }
-.motif-star { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 4l7 13 15-3-3 15 13 7-13 7 3 15-15-3-7 13-7-13-15 3 3-15-13-7 13-7-3-15 15 3z' fill='none' stroke='%23d4a940' stroke-opacity='.16' stroke-width='1'/%3E%3C/svg%3E"); }
-.hero { background-color: #065f46; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 4l7 13 15-3-3 15 13 7-13 7 3 15-15-3-7 13-7-13-15 3 3-15-13-7 13-7-3-15 15 3z' fill='none' stroke='%23d4a940' stroke-opacity='.16' stroke-width='1'/%3E%3C/svg%3E"), linear-gradient(135deg, #065f46, #08241b) !important; }
+.motif { background-image: radial-gradient(circle at 1px 1px, rgba(176,137,57,.16) 1px, transparent 0); background-size: 18px 18px; }
+.motif-star { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 4l7 13 15-3-3 15 13 7-13 7 3 15-15-3-7 13-7-13-15 3 3-15-13-7 13-7-3-15 15 3z' fill='none' stroke='%23c9a24b' stroke-opacity='.18' stroke-width='1'/%3E%3C/svg%3E"); }
+.hero { background-color: #0f3126; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 4l7 13 15-3-3 15 13 7-13 7 3 15-15-3-7 13-7-13-15 3 3-15-13-7 13-7-3-15 15 3z' fill='none' stroke='%23c9a24b' stroke-opacity='.18' stroke-width='1'/%3E%3C/svg%3E"), linear-gradient(140deg, #1a503c 0%, #0f3126 55%, #081c15 100%) !important; box-shadow: inset 0 0 0 1px rgba(201,162,75,.28), 0 24px 48px -24px rgba(8,28,21,.55) !important; }
 }
 
 @layer components {
-.card { @apply rounded-3xl bg-white/90 shadow-kad ring-1 ring-zamrud-900/5 backdrop-blur-sm transition duration-200 dark:bg-hutan-900 dark:ring-white/5; }
-a.card:hover, button.card:hover { @apply -translate-y-0.5 shadow-lg ring-zamrud-300; }
-.btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition active:scale-[.98] disabled:opacity-50 disabled:pointer-events-none; }
-.btn-primary { @apply bg-gradient-to-br from-zamrud-500 to-zamrud-700 text-white shadow-md shadow-zamrud-600/25 hover:from-zamrud-600 hover:to-zamrud-800; }
-.btn-gold { @apply bg-gradient-to-br from-amber-300 to-emas-400 text-hutan-900 shadow-md shadow-amber-400/30 hover:from-amber-200 hover:to-emas-300; }
-.btn-ghost { @apply bg-zamrud-50 text-zamrud-800 hover:bg-zamrud-100 dark:bg-white/5 dark:text-zamrud-200 dark:hover:bg-white/10; }
-.btn-outline { @apply ring-1 ring-zamrud-700/30 text-zamrud-800 hover:bg-zamrud-50 dark:text-zamrud-200 dark:ring-white/15 dark:hover:bg-white/5; }
-.btn-danger { @apply bg-rose-600 text-white hover:bg-rose-700; }
+.card { @apply rounded-3xl bg-white/95 shadow-kad ring-1 ring-emas-200/70 backdrop-blur-sm transition duration-200 dark:bg-hutan-900 dark:ring-emas-400/15; }
+a.card:hover, button.card:hover { @apply -translate-y-0.5 shadow-lg ring-emas-300; }
+.btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold tracking-[.01em] transition active:scale-[.98] disabled:opacity-50 disabled:pointer-events-none; }
+.btn-primary { @apply bg-gradient-to-br from-zamrud-600 to-zamrud-800 text-krim-50 shadow-md shadow-zamrud-900/25 ring-1 ring-inset ring-emas-300/25 hover:from-zamrud-700 hover:to-zamrud-900; }
+.btn-gold { @apply bg-gradient-to-br from-emas-200 via-emas-300 to-emas-400 text-hutan-900 shadow-emas ring-1 ring-inset ring-white/40 hover:from-emas-100 hover:to-emas-300; }
+.btn-ghost { @apply bg-krim-100 text-zamrud-800 ring-1 ring-inset ring-emas-200/60 hover:bg-krim-200 dark:ring-white/10 dark:bg-white/5 dark:text-zamrud-200 dark:hover:bg-white/10; }
+.btn-outline { @apply ring-1 ring-emas-400/60 text-zamrud-800 hover:bg-zamrud-50 dark:text-zamrud-200 dark:ring-white/15 dark:hover:bg-white/5; }
+.btn-danger { @apply bg-merah-600 text-white hover:bg-merah-700; }
 .input { @apply w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-zamrud-500 focus:ring-2 focus:ring-zamrud-200 dark:border-white/10 dark:bg-hutan-950 dark:focus:ring-zamrud-800; }
 .label { @apply mb-1 block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400; }
 .chip { @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold; }
@@ -59,3 +60,7 @@ a.card:hover, button.card:hover { @apply -translate-y-0.5 shadow-lg ring-zamrud-
   .print-only { display: block !important; }
 }
 .print-only { display: none; }
+
+/* Tajuk premium (serif) */
+.font-display { font-family: "Playfair Display", Georgia, serif; letter-spacing: -.01em; }
+.chip { letter-spacing: .01em; }

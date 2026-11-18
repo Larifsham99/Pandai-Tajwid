@@ -34,11 +34,11 @@ export default function Profil() {
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2"><h1 className="truncate text-xl font-extrabold">{me.name}</h1><button className="rounded-full p-1.5 hover:bg-white/10" onClick={() => { setName(me.name); setAvatar(me.avatar); setEditing(true); }} aria-label="Sunting profil"><Pencil size={15} /></button></div>
             <div className="text-sm text-emas-200">{s.lvl.level.name} · <span className="font-arab">{s.lvl.level.arab}</span></div>
-            <div className="text-xs text-emerald-100">Ahli sejak {fmtDate(me.createdAt)}</div>
+            <div className="text-xs text-zamrud-100">Ahli sejak {fmtDate(me.createdAt)}</div>
           </div>
         </div>
-        <div className="mt-4 h-2.5 overflow-hidden rounded-full bg-white/15"><div className="h-full rounded-full bg-gradient-to-r from-amber-300 to-emas-400" style={{ width: `${s.lvl.progress}%` }} /></div>
-        <div className="mt-1 text-[11px] text-emerald-100">{s.lvl.next ? `${s.lvl.progress}% ke ${s.lvl.next.name} — ${s.lvl.next.desc}` : "Tahap tertinggi dicapai. Masya-Allah!"}</div>
+        <div className="mt-4 h-2.5 overflow-hidden rounded-full bg-white/15"><div className="h-full rounded-full bg-gradient-to-r from-emas-300 to-emas-400" style={{ width: `${s.lvl.progress}%` }} /></div>
+        <div className="mt-1 text-[11px] text-zamrud-100">{s.lvl.next ? `${s.lvl.progress}% ke ${s.lvl.next.name} — ${s.lvl.next.desc}` : "Tahap tertinggi dicapai. Masya-Allah!"}</div>
       </section>
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -55,7 +55,7 @@ export default function Profil() {
             <div key={p.id} className={cx("flex items-center gap-3 rounded-xl px-2 py-2", p.id === me.id && "bg-zamrud-50 dark:bg-zamrud-500/10")}>
               <span className="text-2xl">{p.avatar}</span><span className="min-w-0 flex-1 truncate font-semibold">{p.name}</span>
               {p.id === me.id ? <span className="chip bg-zamrud-100 text-zamrud-800"><Check size={12} /> Aktif</span> : <button className="btn btn-outline !py-1 text-xs" onClick={() => { switchProfile(p.id); toast(`Bertukar ke ${p.name}`); }}>Guna</button>}
-              {d.profiles.length > 1 && <button className="rounded-lg p-1.5 text-slate-400 hover:text-rose-600" aria-label={`Padam ${p.name}`} onClick={() => { if (confirm(`Padam profil "${p.name}" dan semua rekodnya?`)) deleteProfile(p.id); }}><Trash2 size={16} /></button>}
+              {d.profiles.length > 1 && <button className="rounded-lg p-1.5 text-slate-400 hover:text-merah-600" aria-label={`Padam ${p.name}`} onClick={() => { if (confirm(`Padam profil "${p.name}" dan semua rekodnya?`)) deleteProfile(p.id); }}><Trash2 size={16} /></button>}
             </div>
           ))}
         </div>
@@ -69,7 +69,7 @@ export default function Profil() {
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
             {BADGES.map((b) => { const ts = mine.get(b.id); return (
               <Card key={b.id} className={cx("p-4 text-center", !ts && "opacity-55 grayscale")}>
-                <div className={cx("mx-auto grid h-14 w-14 place-items-center rounded-full text-3xl", ts ? "bg-gradient-to-br from-amber-200 to-emas-400 shadow-md shadow-amber-400/30" : "bg-slate-100 dark:bg-white/10")}>{b.icon}</div>
+                <div className={cx("mx-auto grid h-14 w-14 place-items-center rounded-full text-3xl", ts ? "bg-gradient-to-br from-emas-200 to-emas-400 shadow-md shadow-emas-400/30" : "bg-slate-100 dark:bg-white/10")}>{b.icon}</div>
                 <div className="mt-2 text-sm font-bold">{b.name}</div>
                 <div className="text-[11px] text-slate-500">{b.desc}</div>
                 {ts && <div className="mt-1 text-[10px] font-semibold text-zamrud-700 dark:text-zamrud-300">✓ {fmtDate(ts)}</div>}
@@ -86,7 +86,7 @@ export default function Profil() {
       {tab === "kemajuan" && (
         <>
           <Card className="p-4"><div className="mb-3 font-bold">Ketepatan mengikut bab <span className="text-xs font-normal text-slate-500">(20 cubaan terkini)</span></div><BarChart data={CHAPTERS.map((c, i) => ({ label: `${c.no}. ${c.title}`, value: s.stats[i].acc }))} /></Card>
-          <Card className="p-4"><div className="mb-3 font-bold">Bacaan nota</div><BarChart data={CHAPTERS.map((c, i) => ({ label: `${c.no}. ${c.title}`, value: s.stats[i].readPct, tone: "bg-sky-500" }))} /><p className="mt-3 text-xs text-slate-500">Bab dikuasai: baca semua seksyen nota, ≥ 8 cubaan dan ketepatan ≥ 80%. Dikuasai: <b>{s.mastered}/12</b>.</p></Card>
+          <Card className="p-4"><div className="mb-3 font-bold">Bacaan nota</div><BarChart data={CHAPTERS.map((c, i) => ({ label: `${c.no}. ${c.title}`, value: s.stats[i].readPct, tone: "bg-biru-500" }))} /><p className="mt-3 text-xs text-slate-500">Bab dikuasai: baca semua seksyen nota, ≥ 8 cubaan dan ketepatan ≥ 80%. Dikuasai: <b>{s.mastered}/12</b>.</p></Card>
           <Card className="p-4"><div className="mb-2 font-bold">Aktiviti terkini</div>{acts.length ? acts.map((a) => <div key={a.id} className="flex justify-between gap-3 border-t border-slate-100 py-2 text-sm first:border-0 dark:border-white/5"><span>{a.text}</span><span className="shrink-0 text-xs text-slate-400">{timeAgo(a.ts)}</span></div>) : <p className="text-sm text-slate-500">Belum ada aktiviti.</p>}</Card>
         </>
       )}
@@ -100,7 +100,7 @@ export default function Profil() {
             </div>
             <div>
               <div className="label">Saiz tulisan Arab ({d.settings.arabicSize}px)</div>
-              <input type="range" min={20} max={40} value={d.settings.arabicSize} onChange={(e) => updateSettings({ arabicSize: Number(e.target.value) })} className="w-full accent-emerald-600" />
+              <input type="range" min={20} max={40} value={d.settings.arabicSize} onChange={(e) => updateSettings({ arabicSize: Number(e.target.value) })} className="w-full accent-zamrud-600" />
               <div className="arab-block">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
             </div>
             <div>
@@ -108,11 +108,11 @@ export default function Profil() {
               <div className="flex flex-wrap gap-2">{[10, 20, 30, 50].map((n) => <button key={n} onClick={() => updateSettings({ dailyGoal: n })} className={cx("btn", d.settings.dailyGoal === n ? "btn-primary" : "btn-ghost")}>{n} soalan</button>)}</div>
             </div>
             <div className="flex items-start gap-3 text-sm">
-              <input id="bunyi" type="checkbox" className="mt-1 h-4 w-4 accent-emerald-600" checked={d.settings.sound} onChange={(e) => { updateSettings({ sound: e.target.checked }); if (e.target.checked) setTimeout(() => sfx.correct(), 50); }} />
+              <input id="bunyi" type="checkbox" className="mt-1 h-4 w-4 accent-zamrud-600" checked={d.settings.sound} onChange={(e) => { updateSettings({ sound: e.target.checked }); if (e.target.checked) setTimeout(() => sfx.correct(), 50); }} />
               <label htmlFor="bunyi" className="flex-1"><b>Kesan bunyi</b><br /><span className="text-xs text-slate-500">Bunyi loceng lembut ketika mengetik, menjawab betul/salah, mendapat lencana & tamat sesi.</span></label>
               {d.settings.sound && <span data-nosound className="flex gap-1"><button className="btn btn-ghost !px-2 !py-1 text-xs" onClick={() => sfx.correct()}>✓ Betul</button><button className="btn btn-ghost !px-2 !py-1 text-xs" onClick={() => sfx.wrong()}>✗ Salah</button></span>}
             </div>
-            <label className="flex items-start gap-3 text-sm"><input type="checkbox" className="mt-1 h-4 w-4 accent-emerald-600" checked={d.settings.includeGenerated} onChange={(e) => updateSettings({ includeGenerated: e.target.checked })} /><span><b>Sertakan soalan dijana daripada nota</b><br /><span className="text-xs text-slate-500">Soalan objektif tambahan berlabel “belum disemak”. Jawapan diambil terus daripada nota.</span></span></label>
+            <label className="flex items-start gap-3 text-sm"><input type="checkbox" className="mt-1 h-4 w-4 accent-zamrud-600" checked={d.settings.includeGenerated} onChange={(e) => updateSettings({ includeGenerated: e.target.checked })} /><span><b>Sertakan soalan dijana daripada nota</b><br /><span className="text-xs text-slate-500">Soalan objektif tambahan berlabel “belum disemak”. Jawapan diambil terus daripada nota.</span></span></label>
           </Card>
 
           <Card className="space-y-3 p-4">
@@ -128,7 +128,7 @@ export default function Profil() {
           <Card className="p-4 text-center text-sm">
             <div className="font-bold">{APP_NAME} <span className="text-xs font-normal text-slate-400">v{VERSION}</span></div>
             <div className="text-slate-500">Aplikasi ini dibangunkan oleh <b>{CREDIT}</b>.</div>
-            {act.code && <div className="mt-2 font-mono text-xs text-emerald-700 dark:text-emerald-300">✅ Diaktifkan · {formatCode(act.code).slice(0, 8)}-••••-••••</div>}
+            {act.code && <div className="mt-2 font-mono text-xs text-zamrud-700 dark:text-zamrud-300">✅ Diaktifkan · {formatCode(act.code).slice(0, 8)}-••••-••••</div>}
             <div className="mt-2 text-xs text-slate-400">Kandungan nota & soalan latihan berstatus “belum disemak” sehingga disahkan guru penyemak. Rujukan kitab dinyatakan tanpa nombor halaman kerana belum disahkan.</div>
           </Card>
         </>

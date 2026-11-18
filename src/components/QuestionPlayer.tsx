@@ -62,8 +62,8 @@ export default function QuestionPlayer({ q, mode, onAnswered, onNext, onSimilar,
         <div className="mb-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-500">
           <span className="font-semibold text-zamrud-700 dark:text-zamrud-300">Bab {ch?.no} · {ch?.title}</span>
           {q.source === "tauliah" && <span className="chip bg-emas-100 text-emas-700">Tauliah {q.year} · S{q.qNo}({q.part})</span>}
-          {q.source === "jana" && <span className="chip bg-violet-100 text-violet-700 dark:bg-violet-500/20 dark:text-violet-200">✨ Dijana daripada nota</span>}
-          {q.status === "belum_disemak" && <span className="chip bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-200">Belum disemak</span>}
+          {q.source === "jana" && <span className="chip bg-ungu-100 text-ungu-700 dark:bg-ungu-500/20 dark:text-ungu-200">✨ Dijana daripada nota</span>}
+          {q.status === "belum_disemak" && <span className="chip bg-emas-100 text-emas-800 dark:bg-emas-500/20 dark:text-emas-200">Belum disemak</span>}
         </div>
         <RichText text={q.prompt} className="text-lg font-bold leading-snug text-hutan-900 dark:text-white" />
         {q.arabic && <Arabic className="mt-3" refText={q.arabicRef}>{q.arabic}</Arabic>}
@@ -80,14 +80,14 @@ export default function QuestionPlayer({ q, mode, onAnswered, onNext, onSimilar,
                   className={cx("flex items-center gap-3 rounded-2xl bg-white px-3.5 py-3.5 text-left text-[15px] shadow-sm ring-1 transition duration-150 active:scale-[.98] dark:bg-hutan-900",
                     q.type === "tf" && "justify-center py-5 text-base font-bold",
                     !answered && "ring-slate-200 hover:ring-zamrud-400 dark:ring-white/10",
-                    answered && isAns && "!bg-emerald-50 ring-2 !ring-emerald-500 dark:!bg-emerald-500/15",
-                    answered && isSel && !isAns && "!bg-rose-50 ring-2 !ring-rose-500 dark:!bg-rose-500/15",
+                    answered && isAns && "!bg-zamrud-50 ring-2 !ring-zamrud-500 dark:!bg-zamrud-500/15",
+                    answered && isSel && !isAns && "!bg-merah-50 ring-2 !ring-merah-500 dark:!bg-merah-500/15",
                     answered && !isSel && !isAns && "opacity-50 ring-slate-200 dark:ring-white/10")}>
-                  {q.type === "mcq" && <span className={cx("grid h-7 w-7 shrink-0 place-items-center rounded-full text-xs font-bold", answered && isAns ? "bg-emerald-500 text-white" : answered && isSel ? "bg-rose-500 text-white" : "bg-slate-100 text-slate-600 dark:bg-white/10 dark:text-slate-300")}>{o.id.toUpperCase()}</span>}
+                  {q.type === "mcq" && <span className={cx("grid h-7 w-7 shrink-0 place-items-center rounded-full text-xs font-bold", answered && isAns ? "bg-zamrud-500 text-white" : answered && isSel ? "bg-merah-500 text-white" : "bg-slate-100 text-slate-600 dark:bg-white/10 dark:text-slate-300")}>{o.id.toUpperCase()}</span>}
                   {q.type === "tf" && <span>{o.id === "B" ? "✓" : "✗"}</span>}
                   <RichText text={o.text} className={cx(q.type === "mcq" && "flex-1")} />
-                  {answered && isAns && q.type === "mcq" && <CheckCircle2 className="shrink-0 text-emerald-500" size={20} />}
-                  {answered && isSel && !isAns && q.type === "mcq" && <XCircle className="shrink-0 text-rose-500" size={20} />}
+                  {answered && isAns && q.type === "mcq" && <CheckCircle2 className="shrink-0 text-zamrud-500" size={20} />}
+                  {answered && isSel && !isAns && q.type === "mcq" && <XCircle className="shrink-0 text-merah-500" size={20} />}
                 </button>
               );
             })}
@@ -99,12 +99,12 @@ export default function QuestionPlayer({ q, mode, onAnswered, onNext, onSimilar,
             {q.pairs!.map((p) => {
               const ok = answered && matchSel[p.left] === p.right;
               return (
-                <div key={p.left} className={cx("rounded-2xl bg-white p-3 shadow-sm ring-1 dark:bg-hutan-900", answered ? (ok ? "ring-2 ring-emerald-500" : "ring-2 ring-rose-400") : "ring-slate-200 dark:ring-white/10")}>
+                <div key={p.left} className={cx("rounded-2xl bg-white p-3 shadow-sm ring-1 dark:bg-hutan-900", answered ? (ok ? "ring-2 ring-zamrud-500" : "ring-2 ring-merah-400") : "ring-slate-200 dark:ring-white/10")}>
                   <RichText text={p.left} className="mb-2 font-semibold" />
                   <select className="input" disabled={answered} value={matchSel[p.left] ?? ""} onChange={(e) => setMatchSel({ ...matchSel, [p.left]: e.target.value })}>
                     <option value="">— pilih padanan —</option>{rights.map((r) => <option key={r} value={r}>{r}</option>)}
                   </select>
-                  {answered && !ok && <div className="mt-1 text-xs font-semibold text-rose-600">Betul: {p.right}</div>}
+                  {answered && !ok && <div className="mt-1 text-xs font-semibold text-merah-600">Betul: {p.right}</div>}
                 </div>
               );
             })}
@@ -118,13 +118,13 @@ export default function QuestionPlayer({ q, mode, onAnswered, onNext, onSimilar,
       {/* ---------- Subjektif: jawapan cadangan ---------- */}
       {q.type === "subjective" && revealed && (
         <div className="mt-4 space-y-3 pop">
-          <div className="rounded-2xl bg-amber-50 p-3 text-xs text-amber-900 dark:bg-amber-500/10 dark:text-amber-200">⚠️ Jawapan cadangan <b>belum disemak</b> guru penyemak — panduan ulang kaji, bukan skema rasmi.</div>
+          <div className="rounded-2xl bg-emas-50 p-3 text-xs text-emas-900 dark:bg-emas-500/10 dark:text-emas-200">⚠️ Jawapan cadangan <b>belum disemak</b> guru penyemak — panduan ulang kaji, bukan skema rasmi.</div>
           <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 dark:bg-hutan-900 dark:ring-white/10"><div className="mb-2 text-xs font-bold uppercase tracking-wide text-zamrud-700 dark:text-zamrud-300">Jawapan cadangan</div><RichText text={q.modelAnswer || "—"} className="text-sm" /></div>
           {!answered && <div className="text-sm font-semibold">Nilai jawapan anda:</div>}
           {!answered && <div data-nosound className="grid grid-cols-3 gap-2">
-            <button className="btn bg-emerald-500 text-white" onClick={() => finish({ correct: true, score: 1 }, text)}>✅ Tepat</button>
-            <button className="btn bg-amber-300 text-hutan-900" onClick={() => finish({ correct: false, score: 0.5 }, text)}>🟡 Separa</button>
-            <button className="btn bg-rose-500 text-white" onClick={() => finish({ correct: false, score: 0 }, text)}>❌ Belum</button>
+            <button className="btn bg-zamrud-500 text-white" onClick={() => finish({ correct: true, score: 1 }, text)}>✅ Tepat</button>
+            <button className="btn bg-emas-300 text-hutan-900" onClick={() => finish({ correct: false, score: 0.5 }, text)}>🟡 Separa</button>
+            <button className="btn bg-merah-500 text-white" onClick={() => finish({ correct: false, score: 0 }, text)}>❌ Belum</button>
           </div>}
         </div>
       )}
@@ -132,7 +132,7 @@ export default function QuestionPlayer({ q, mode, onAnswered, onNext, onSimilar,
       {/* ---------- Penerangan jawapan ---------- */}
       {answered && q.type !== "subjective" && (
         <div ref={fbRef} className="mt-5 scroll-mt-36 space-y-3 pop">
-          <div className={cx("relative rounded-2xl p-4 text-white shadow-lg", result!.correct ? "bg-gradient-to-br from-emerald-500 to-teal-600" : "bg-gradient-to-br from-rose-500 to-pink-600")}>
+          <div className={cx("relative rounded-2xl p-4 text-white shadow-lg", result!.correct ? "bg-gradient-to-br from-zamrud-600 to-zamrud-800 ring-1 ring-inset ring-emas-300/40" : "bg-gradient-to-br from-merah-500 to-merah-700")}>
             {result!.correct && <Celebrate />}
             <div className="flex items-center gap-2 text-lg font-extrabold">{result!.correct ? <CheckCircle2 /> : <XCircle />}{result!.correct ? "Tepat! Barakallahu fik" : result!.score > 0 ? `Separa betul (${Math.round(result!.score * 100)}%)` : "Belum tepat"}</div>
             {!result!.correct && correctText && <div className="mt-1 text-sm">Jawapan: <RichText text={correctText} className="inline font-semibold" /></div>}
@@ -141,7 +141,7 @@ export default function QuestionPlayer({ q, mode, onAnswered, onNext, onSimilar,
 
           <div className="rounded-2xl bg-white p-4 text-sm shadow-sm ring-1 ring-slate-200 dark:bg-hutan-900 dark:ring-white/10">
             <div className="mb-1 text-xs font-bold uppercase tracking-wide text-zamrud-700 dark:text-zamrud-300">Penerangan</div>
-            {!result!.correct && chosenOpt?.why && <p className="mb-2 rounded-xl bg-rose-50 p-2.5 text-rose-900 dark:bg-rose-500/10 dark:text-rose-200"><b>Pilihan anda:</b> {chosenOpt.why}</p>}
+            {!result!.correct && chosenOpt?.why && <p className="mb-2 rounded-xl bg-merah-50 p-2.5 text-merah-900 dark:bg-merah-500/10 dark:text-merah-200"><b>Pilihan anda:</b> {chosenOpt.why}</p>}
             <RichText text={ex?.why ?? "—"} />
             {ex?.concept && <RichText text={ex.concept} className="mt-2 text-slate-600 dark:text-slate-300" />}
             {ex?.identify && <p className="mt-2"><b>Cara kenal pasti:</b> {ex.identify}</p>}
@@ -159,7 +159,7 @@ export default function QuestionPlayer({ q, mode, onAnswered, onNext, onSimilar,
                 </div>}
               </>
             )}
-            {q.source === "jana" && <p className="mt-3 text-[11px] text-violet-700 dark:text-violet-300">✨ Dijana automatik daripada nota; belum disemak guru. Tiada hukum baharu ditambah.</p>}
+            {q.source === "jana" && <p className="mt-3 text-[11px] text-ungu-700 dark:text-ungu-300">✨ Dijana automatik daripada nota; belum disemak guru. Tiada hukum baharu ditambah.</p>}
             {ex?.refs?.[0] && <p className="mt-1 text-[11px] text-slate-400">Rujukan: {ex.refs[0]}</p>}
           </div>
 

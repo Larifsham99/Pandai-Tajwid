@@ -45,9 +45,9 @@ function SesiInner() {
       <div className="mx-auto max-w-2xl space-y-4">
         <Card className="motif relative overflow-hidden p-6 text-center">
           <div className="text-5xl">{pct >= 80 ? "🏆" : pct >= 60 ? "🌟" : "🌱"}</div>
-          <div className="mt-2 text-5xl font-extrabold text-zamrud-700 dark:text-emas-300">{pct}%</div>
+          <div className="mt-2 font-display text-6xl font-bold text-zamrud-800 dark:text-emas-300">{pct}%</div>
           <div className="text-sm text-slate-500">{correctN} betul daripada {answered} dijawab · {set.title}</div>
-          {answered > 0 && <div className="mt-2 inline-flex items-center gap-1 rounded-full bg-amber-100 px-3 py-1 text-sm font-bold text-amber-800">+{xpEarned + XP_RULES.exercise} XP</div>}
+          {answered > 0 && <div className="mt-2 inline-flex items-center gap-1 rounded-full bg-emas-100 px-3 py-1 text-sm font-bold text-emas-800">+{xpEarned + XP_RULES.exercise} XP</div>}
           <div className="mt-3 text-sm font-semibold">{pct >= 80 ? "Mumtaz! Teruskan istiqamah." : pct >= 60 ? "Jayyid. Ulang soalan yang salah untuk menguasai." : "Jangan putus asa — baca semula nota dan cuba lagi."}</div>
           <div className="mt-4 grid gap-2 sm:flex sm:justify-center">
             <button className="btn btn-primary" onClick={() => nav(`/latih/sesi?${toParams(cfg)}&r=${Date.now()}`)}>Set baharu</button>
@@ -68,13 +68,13 @@ function SesiInner() {
 
   return (
     <div className="mx-auto max-w-2xl">
-      <div className="sticky top-14 z-30 -mx-4 mb-4 border-b border-zamrud-900/5 bg-[#f4fbf7] px-4 pb-3 pt-2 shadow-sm dark:border-white/5 dark:bg-hutan-950">
+      <div className="sticky top-14 z-30 -mx-4 mb-4 border-b border-zamrud-900/5 bg-krim-50 px-4 pb-3 pt-2 shadow-sm dark:border-white/5 dark:bg-hutan-950">
         <div className="flex items-center gap-3">
           <button className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white shadow-sm ring-1 ring-slate-200 dark:bg-white/5 dark:ring-white/10" onClick={finish} aria-label="Tamatkan sesi"><X size={18} /></button>
           <Progress value={((i + (res[q.id] ? 1 : 0)) / set.qs.length) * 100} className="!h-3" />
           <span className="whitespace-nowrap text-sm font-bold tabular-nums text-slate-500">{i + 1}/{set.qs.length}</span>
         </div>
-        <div className="mt-1.5 flex justify-between text-[11px] font-semibold text-slate-500"><span className="truncate">{set.title}</span><span className="shrink-0 text-emerald-600">✓ {correctN}</span></div>
+        <div className="mt-1.5 flex justify-between text-[11px] font-semibold text-slate-500"><span className="truncate">{set.title}</span><span className="shrink-0 text-zamrud-600">✓ {correctN}</span></div>
       </div>
       <QuestionPlayer key={q.id} q={q} mode={cfg.mode}
         onAnswered={(r) => setRes((s) => ({ ...s, [q.id]: r }))}

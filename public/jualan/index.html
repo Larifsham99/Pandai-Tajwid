@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Pandai Tajwid — Latih Tubi Tajwid di Telefon, Boleh Guna Tanpa Internet</title>
 <meta name="description" content="1,100+ soalan latih tubi tajwid, nota 12 bab, penerangan setiap jawapan dan murajaah automatik. Sesuai untuk pemula, pelajar pondok & tahfiz, calon tauliah, guru dan ibu bapa. Boleh guna tanpa internet." />
-<meta name="theme-color" content="#047857" />
+<meta name="theme-color" content="#0f3126" />
 <!-- Kongsian media sosial (Facebook / WhatsApp / Telegram / X) -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Pandai Tajwid — Cuti panjang? Jangan biar tajwid berkarat." />
@@ -20,37 +20,40 @@
 <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
 <script src="config.js"></script>
 <style>
   :root{
-    --em-50:#ecfdf5;--em-100:#d1fae5;--em-200:#a7f3d0;--em-400:#34d399;--em-500:#10b981;--em-600:#059669;--em-700:#047857;--em-800:#065f46;--em-900:#064e3b;
-    --forest:#08241b;--forest-2:#0b3024;--gold:#d4a940;--gold-2:#fcd34d;--gold-50:#fbf7ea;--cream:#fffaf0;
-    --ink:#0f241c;--muted:#5b6b64;--line:#e5ece8;--rose:#e11d48;--sky:#0284c7;--violet:#7c3aed;
-    --radius:22px;--shadow:0 1px 2px rgba(6,78,59,.06),0 10px 30px -10px rgba(6,78,59,.18);
+    /* TEMA PREMIUM: hijau zamrud gelap · emas champagne · gading */
+    --em-50:#f1f6f3;--em-100:#deebe4;--em-200:#bcd6c8;--em-400:#5f977c;--em-500:#3a7a5e;--em-600:#24634a;--em-700:#1a503c;--em-800:#143f30;--em-900:#0f3126;
+    --forest:#081c15;--forest-2:#0f3126;--gold:#c9a24b;--gold-2:#e9d3a0;--gold-50:#fbf8f0;--cream:#fdfbf6;
+    --ink:#14261e;--muted:#5f6b64;--line:#ece3cf;--rose:#843c3c;--sky:#3e5d75;--violet:#5a4a7a;
+    --radius:22px;--shadow:0 1px 2px rgba(15,49,38,.05),0 14px 34px -16px rgba(15,49,38,.22);
+    --serif:"Playfair Display",Georgia,serif;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-  body{margin:0;font-family:"Plus Jakarta Sans",system-ui,sans-serif;color:var(--ink);background:#f6fbf8;line-height:1.6;overflow-x:hidden}
+  body{margin:0;font-family:"Plus Jakarta Sans",system-ui,sans-serif;color:var(--ink);background:#fdfbf6;line-height:1.65;overflow-x:hidden}
   img{max-width:100%;display:block}
   a{color:inherit}
   .arab{font-family:"Amiri",serif;direction:rtl}
   .wrap{max-width:1120px;margin:0 auto;padding:0 18px}
   section{padding:72px 0}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--em-700);background:var(--em-50);border:1px solid var(--em-200);padding:6px 12px;border-radius:999px}
-  h1,h2,h3{line-height:1.15;margin:0;letter-spacing:-.02em}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.04em;color:#8f6d2c;background:#fbf8f0;border:1px solid #ead9b1;padding:6px 14px;border-radius:999px;text-transform:uppercase;font-size:11.5px;letter-spacing:.12em}
+  h1,h2,h3{line-height:1.15;margin:0;letter-spacing:-.01em}
+  h1,h2{font-family:var(--serif);font-weight:700}
   h2{font-size:clamp(28px,4.2vw,42px);font-weight:800}
   h3{font-size:19px;font-weight:800}
   .lead{font-size:clamp(16px,2vw,19px);color:var(--muted)}
   .center{text-align:center}
-  .grad{background:linear-gradient(90deg,var(--em-600),#0ea5a4);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .grad{background:linear-gradient(90deg,#1a503c,#8f6d2c);-webkit-background-clip:text;background-clip:text;color:transparent}
   .gold{color:#b7861f}
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;cursor:pointer;text-decoration:none;font:inherit;font-weight:800;border-radius:16px;padding:16px 26px;font-size:17px;transition:transform .15s,box-shadow .2s,filter .2s}
   .btn:active{transform:scale(.98)}
-  .btn-cta{background:linear-gradient(135deg,#fde68a,#fbbf24 45%,#d4a940);color:#3b2a05;box-shadow:0 10px 28px -8px rgba(212,169,64,.75),inset 0 1px 0 rgba(255,255,255,.6)}
+  .btn-cta{background:linear-gradient(135deg,#f5edda,#e9d3a0 35%,#c9a24b);color:#2a1f0e;box-shadow:0 12px 28px -10px rgba(176,137,57,.7),inset 0 1px 0 rgba(255,255,255,.7),inset 0 0 0 1px rgba(143,109,44,.25)}
   .btn-cta:hover{filter:brightness(1.05);box-shadow:0 14px 34px -8px rgba(212,169,64,.9)}
   .btn-cta .pulse{animation:pulse 2.2s infinite}
-  .btn-primary{background:linear-gradient(135deg,var(--em-500),var(--em-700));color:#fff;box-shadow:0 10px 24px -10px rgba(4,120,87,.7)}
+  .btn-primary{background:linear-gradient(135deg,var(--em-600),var(--em-900));color:#fdfbf6;box-shadow:0 10px 24px -10px rgba(15,49,38,.7),inset 0 0 0 1px rgba(201,162,75,.3)}
   .btn-ghost{background:#fff;color:var(--em-800);border:1.5px solid var(--em-200)}
   .btn-ghost:hover{background:var(--em-50)}
   .btn-white{background:#fff;color:var(--em-800)}
@@ -67,7 +70,7 @@
   .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
   .logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:18px}
   .logo i{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--em-400),var(--em-700));color:#fff;font-style:normal;font-family:"Amiri",serif;font-size:22px;box-shadow:0 6px 14px -6px rgba(4,120,87,.7)}
-  .logo b{color:#c9971f}
+  .logo{font-family:var(--serif)}.logo b{color:#b08939}
   .nav-links{display:flex;gap:22px;font-size:14px;font-weight:600;color:var(--muted)}
   .nav-links a{text-decoration:none}
   .nav-links a:hover{color:var(--em-700)}
@@ -75,17 +78,17 @@
 
   /* ---------- Hero ---------- */
   .hero{position:relative;padding:44px 0 72px;overflow:hidden;background:
-    radial-gradient(800px 420px at 95% -10%,rgba(52,211,153,.22),transparent 60%),
-    radial-gradient(600px 400px at -10% 100%,rgba(252,211,77,.22),transparent 60%)}
+    radial-gradient(800px 420px at 95% -10%,rgba(201,162,75,.14),transparent 60%),
+    radial-gradient(600px 400px at -10% 100%,rgba(36,99,74,.10),transparent 60%)}
   .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
   .hero h1{font-size:clamp(34px,5.6vw,60px);font-weight:800;margin:16px 0 14px}
   .hero .lead{max-width:560px}
   .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 18px}
   .chips{display:flex;flex-wrap:wrap;gap:8px}
   .hero-visual{position:relative;height:600px}
-  .hero-price{display:inline-block;margin:-4px 0 16px;line-height:1.5;font-size:14px;font-weight:700;color:#7c2d12;background:#fff7ed;border:1px dashed #fdba74;border-radius:14px;padding:8px 12px}
-  .hero-price b{font-size:18px;color:#c2410c}
-  .next-price{display:inline-block;margin-top:6px;font-size:13px;font-weight:700;color:#9a3412;background:#ffedd5;border-radius:999px;padding:4px 12px}
+  .hero-price{display:inline-block;margin:-4px 0 16px;line-height:1.5;font-size:14px;font-weight:700;color:#56401c;background:#fbf8f0;border:1px solid #ead9b1;border-radius:14px;padding:8px 12px}
+  .hero-price b{font-family:var(--serif);font-size:20px;color:#1a503c}
+  .next-price{display:inline-block;margin-top:6px;font-size:13px;font-weight:700;color:#6f5323;background:#f5edda;border-radius:999px;padding:4px 12px}
   .ayat{margin-top:22px;font-size:15px;color:var(--muted)}
   .ayat .arab{font-size:26px;color:var(--em-800);display:block;line-height:1.7}
   @media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero-visual{height:520px}}
@@ -125,7 +128,7 @@
   .g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
   @media (max-width:900px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
   @media (max-width:560px){.g3,.g4,.g2{grid-template-columns:1fr}}
-  .pain-item{display:flex;gap:14px;padding:18px;border-radius:18px;background:#fff7f7;border:1px solid #fde2e2}
+  .pain-item{display:flex;gap:14px;padding:18px;border-radius:18px;background:#fbf2f2;border:1px solid #f0dada}
   .pain-item .e{font-size:26px;line-height:1}
   .pain-item p{margin:0;font-size:15px}
   .bridge{margin-top:28px;padding:22px;border-radius:22px;background:linear-gradient(135deg,var(--em-50),#fff);border:1px solid var(--em-200);font-size:18px;font-weight:700;text-align:center}
@@ -133,7 +136,7 @@
   /* ---------- Steps ---------- */
   .steps{counter-reset:s}
   .step{padding:24px}
-  .step .n{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--em-400),var(--em-700));color:#fff;font-weight:800;font-size:18px;margin-bottom:14px}
+  .step .n{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--em-600),var(--em-900));color:#e9d3a0;font-family:var(--serif);font-weight:700;font-size:20px;margin-bottom:14px}
   .step img{border-radius:18px;margin-top:16px;border:1px solid var(--line);aspect-ratio:9/12;object-fit:cover;object-position:top;width:100%}
   .step p{color:var(--muted);margin:6px 0 0;font-size:15px}
 
@@ -143,7 +146,7 @@
   .feat .ic{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;font-size:22px;margin-bottom:12px}
   .feat p{margin:6px 0 0;color:var(--muted);font-size:14.5px}
   @media (max-width:560px){.feat{display:flex;gap:14px;align-items:flex-start;padding:18px}.feat .ic{flex-shrink:0;margin:0}.feat h3{font-size:17px}}
-  .t-em{background:var(--em-100)}.t-gold{background:#fef3c7}.t-rose{background:#ffe4e6}.t-sky{background:#e0f2fe}.t-vi{background:#ede9fe}
+  .t-em{background:#f1f6f3}.t-gold{background:#fbf8f0}.t-rose{background:#fbf2f2}.t-sky{background:#f1f5f8}.t-vi{background:#f5f3f8}
 
   /* ---------- Audience ---------- */
   .aud{padding:20px;display:flex;gap:14px;align-items:flex-start}
@@ -151,10 +154,10 @@
   .aud p{margin:4px 0 0;color:var(--muted);font-size:14.5px}
 
   /* ---------- Holiday ---------- */
-  .holiday{background:linear-gradient(135deg,#065f46,#08241b);color:#fff;position:relative;overflow:hidden}
-  .holiday::before{content:"";position:absolute;inset:0;opacity:.18;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 4l7 13 15-3-3 15 13 7-13 7 3 15-15-3-7 13-7-13-15 3 3-15-13-7 13-7-3-15 15 3z' fill='none' stroke='%23fcd34d' stroke-width='1'/%3E%3C/svg%3E")}
+  .holiday{background:linear-gradient(140deg,#1a503c,#0f3126 55%,#081c15);color:#fff;position:relative;overflow:hidden}
+  .holiday::before{content:"";position:absolute;inset:0;opacity:.18;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 4l7 13 15-3-3 15 13 7-13 7 3 15-15-3-7 13-7-13-15 3 3-15-13-7 13-7-3-15 15 3z' fill='none' stroke='%23c9a24b' stroke-width='1'/%3E%3C/svg%3E")}
   .holiday .wrap{position:relative}
-  .holiday .lead{color:#c8f1df}
+  .holiday .lead{color:#d9e7df}
   .plan{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:20px}
   .plan .wk{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--gold-2);text-transform:uppercase}
   .plan h3{margin:6px 0 6px;font-size:18px}
@@ -180,8 +183,8 @@
   .opt[disabled]{cursor:default}
   .fb{margin-top:14px;border-radius:16px;padding:14px 16px;font-size:15px;display:none}
   .fb.show{display:block;animation:pop .3s ease}
-  .fb.ok{background:linear-gradient(135deg,#10b981,#0d9488);color:#fff}
-  .fb.no{background:linear-gradient(135deg,#f43f5e,#db2777);color:#fff}
+  .fb.ok{background:linear-gradient(135deg,#24634a,#0f3126);color:#fff}
+  .fb.no{background:linear-gradient(135deg,#9c4d4d,#6b3030);color:#fff}
   .fb .why{margin-top:8px;background:rgba(255,255,255,.16);border-radius:12px;padding:10px 12px;font-size:14px}
   @keyframes pop{0%{transform:scale(.96);opacity:0}100%{transform:none;opacity:1}}
   .quiz-actions{display:flex;gap:10px;margin-top:14px}
@@ -214,11 +217,11 @@
   .cmp td:nth-child(3){font-weight:700;color:var(--em-800);background:#f7fdf9}
 
   /* ---------- Offer ---------- */
-  .offer{background:radial-gradient(700px 360px at 50% 0%,rgba(252,211,77,.25),transparent 70%)}
+  .offer{background:radial-gradient(700px 360px at 50% 0%,rgba(201,162,75,.16),transparent 70%)}
   .offer-box{max-width:640px;margin:0 auto;padding:30px 24px;text-align:center;border:2px solid var(--gold-2);position:relative}
-  .ribbon{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#fbbf24,#d4a940);color:#3b2a05;font-weight:800;font-size:13px;padding:6px 16px;border-radius:999px;white-space:nowrap}
+  .ribbon{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#1a503c,#0f3126);color:#e9d3a0;font-weight:700;font-size:11.5px;letter-spacing:.12em;padding:7px 18px;border:1px solid rgba(201,162,75,.5);border-radius:999px;white-space:nowrap}
   .price{display:flex;align-items:baseline;justify-content:center;gap:12px;margin:12px 0 4px}
-  .price .now{font-size:52px;font-weight:800;color:var(--em-700)}
+  .price .now{font-family:var(--serif);font-size:60px;font-weight:700;color:var(--em-800)}
   .price s{font-size:22px;color:#9aa8a1}
   .incl{list-style:none;padding:0;margin:18px auto 22px;text-align:left;max-width:440px;display:grid;gap:9px}
   .incl li{display:flex;gap:10px;font-size:15px}
@@ -234,9 +237,9 @@
   details p{margin:0 0 16px;color:var(--muted);font-size:15px}
 
   /* ---------- Final ---------- */
-  .final{background:linear-gradient(135deg,#047857,#065f46 50%,#08241b);color:#fff;text-align:center}
-  .final .lead{color:#c8f1df}
-  footer{background:#08241b;color:#a7c4b8;font-size:13px;text-align:center;padding:28px 18px 110px}
+  .final{background:linear-gradient(140deg,#1a503c,#0f3126 50%,#081c15);color:#fff;text-align:center}
+  .final .lead{color:#d9e7df}
+  footer{background:#081c15;color:#b7c7bd;border-top:1px solid rgba(201,162,75,.25);font-size:13px;text-align:center;padding:28px 18px 110px}
   footer b{color:#fff}
 
   /* ---------- Sticky CTA (telefon) ---------- */
@@ -365,7 +368,7 @@
 <!-- ================= MUSIM CUTI ================= -->
 <section class="holiday">
   <div class="wrap">
-    <div class="center reveal"><span class="eyebrow" style="background:rgba(255,255,255,.1);color:#fde68a;border-color:rgba(255,255,255,.2)">🗓️ Cadangan pelan cuti 4 minggu</span>
+    <div class="center reveal"><span class="eyebrow" style="background:rgba(255,255,255,.1);color:#e9d3a0;border-color:rgba(255,255,255,.2)">🗓️ Cadangan pelan cuti 4 minggu</span>
       <h2 style="margin-top:14px">Jadikan cuti ini <span style="color:var(--gold-2)">musim pemantapan</span></h2>
       <p class="lead" style="max-width:660px;margin:12px auto 0">Cukup 15–20 minit sehari. Pulang ke pondok / tahfiz dengan tajwid yang lebih mantap — atau bersedia untuk tauliah.</p></div>
     <div class="grid g4" style="margin-top:32px">
@@ -479,8 +482,8 @@
 <!-- ================= FINAL CTA ================= -->
 <section class="final">
   <div class="wrap reveal">
-    <div class="arab" style="font-size:30px;color:#fde68a">خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ</div>
-    <p style="color:#c8f1df;margin:4px 0 22px;font-size:14px">“Sebaik-baik kamu ialah orang yang mempelajari al-Quran dan mengajarkannya.” (HR al-Bukhari)</p>
+    <div class="arab" style="font-size:30px;color:#e9d3a0">خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ</div>
+    <p style="color:#d9e7df;margin:4px 0 22px;font-size:14px">“Sebaik-baik kamu ialah orang yang mempelajari al-Quran dan mengajarkannya.” (HR al-Bukhari)</p>
     <h2>Mulakan hari ini — sebelum cuti berlalu.</h2>
     <p class="lead" style="max-width:600px;margin:12px auto 26px">Setiap soalan yang dijawab ialah satu langkah ke arah bacaan yang lebih tepat.</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
@@ -493,7 +496,7 @@
 <footer>
   <div><b>Pandai Tajwid</b> · Aplikasi ini dibangunkan oleh <b>Mawar Ikhlas Brand</b></div>
   <div style="margin-top:6px" data-seller-contact></div>
-  <div style="margin-top:6px"><a href="terma.html" style="color:#fde68a">Terma, Polisi Pemulangan & Privasi</a></div>
+  <div style="margin-top:6px"><a href="terma.html" style="color:#e9d3a0">Terma, Polisi Pemulangan & Privasi</a></div>
   <div style="margin-top:10px;font-size:12px;opacity:.85">Alat bantu ulang kaji — sahkan bacaan bersama guru bertalaqqi. Paparan skrin menggunakan data contoh.<br>* Soalan tauliah lepas ditranskripsi untuk tujuan latihan; tiada kaitan rasmi dengan Jabatan Mufti Negeri Kedah atau mana-mana badan penganjur.</div>
 </footer>
 

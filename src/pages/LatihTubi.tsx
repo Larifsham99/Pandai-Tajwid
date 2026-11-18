@@ -17,7 +17,7 @@ function Ring({ value, max }: { value: number; max: number }) {
   const r = 26; const c = 2 * Math.PI * r; const p = Math.min(1, value / Math.max(1, max));
   return (
     <div className="relative grid h-16 w-16 shrink-0 place-items-center">
-      <svg viewBox="0 0 64 64" className="absolute inset-0 -rotate-90"><circle cx="32" cy="32" r={r} fill="none" stroke="currentColor" strokeOpacity=".18" strokeWidth="6" /><circle cx="32" cy="32" r={r} fill="none" stroke="#fcd34d" strokeWidth="6" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - p)} className="transition-all duration-700" /></svg>
+      <svg viewBox="0 0 64 64" className="absolute inset-0 -rotate-90"><circle cx="32" cy="32" r={r} fill="none" stroke="currentColor" strokeOpacity=".18" strokeWidth="6" /><circle cx="32" cy="32" r={r} fill="none" stroke="#e9d3a0" strokeWidth="6" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - p)} className="transition-all duration-700" /></svg>
       <div className="text-center leading-none"><div className="text-lg font-extrabold">{value}</div><div className="text-[9px] opacity-80">/{max}</div></div>
     </div>
   );
@@ -55,15 +55,15 @@ export default function LatihTubi() {
         <div className="flex items-center gap-4">
           <Ring value={today} max={d.settings.dailyGoal} />
           <div className="min-w-0 flex-1">
-            <div className="truncate text-lg font-extrabold">Salam, {me.name} {me.avatar}</div>
-            <div className="mt-0.5 flex items-center gap-2 text-xs text-emerald-100">
+            <div className="truncate font-display text-xl font-bold text-krim-50">Salam, {me.name} {me.avatar}</div>
+            <div className="mt-0.5 flex items-center gap-2 text-xs text-zamrud-100">
               <span className="font-semibold text-emas-200">{s.lvl.level.name}</span>·<span className="inline-flex items-center gap-0.5"><Flame size={12} /> {s.streak} hari</span>·<span>{s.xp} XP</span>
             </div>
-            <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/15"><div className="h-full rounded-full bg-gradient-to-r from-amber-300 to-emas-400 transition-all duration-700" style={{ width: `${s.lvl.progress}%` }} /></div>
+            <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/15"><div className="h-full rounded-full bg-gradient-to-r from-emas-300 to-emas-400 transition-all duration-700" style={{ width: `${s.lvl.progress}%` }} /></div>
           </div>
         </div>
         <button className="btn btn-gold mt-4 w-full !py-3.5 text-base" onClick={() => go({ mode: "rawak", n: 10 })}><Play size={18} fill="currentColor" /> Mula Latih Tubi</button>
-        <button className={cx("btn mt-2 w-full !py-3", due ? "bg-white text-rose-600 hover:bg-rose-50" : "bg-white/10 text-white/80")} onClick={() => go({ mode: "murajaah", n: 15 })} disabled={!due}>
+        <button className={cx("btn mt-2 w-full !py-3", due ? "bg-white text-merah-600 hover:bg-merah-50" : "bg-white/10 text-white/80")} onClick={() => go({ mode: "murajaah", n: 15 })} disabled={!due}>
           <RotateCcw size={17} /> {due ? `Murajaah ${due} soalan salah` : queued ? `Murajaah: ${queued} soalan dijadualkan` : "Murajaah: belum ada soalan salah"}
         </button>
       </section>
@@ -88,7 +88,7 @@ export default function LatihTubi() {
 
       {/* ---------- Bab ---------- */}
       <section>
-        <h2 className="mb-2 px-1 text-base font-extrabold text-hutan-900 dark:text-white">Latih ikut bab</h2>
+        <h2 className="mb-2 px-1 font-display text-lg font-bold text-hutan-900 dark:text-krim-50">Latih ikut bab</h2>
         <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
           {CHAPTERS.map((c, i) => {
             const st = s.stats[i];
@@ -96,7 +96,7 @@ export default function LatihTubi() {
               <button key={c.id} onClick={() => go({ mode: "rawak", bab: c.id, n: 10 })} className="card flex flex-col items-start gap-1 p-3 text-left active:scale-[.97]">
                 <div className="flex w-full items-center justify-between">
                   <span className={cx("grid h-7 w-7 place-items-center rounded-lg text-xs font-extrabold", TONES[CHAPTER_TONES[i]].bubble)}>{c.no}</span>
-                  {st.mastered ? <span className="text-sm">👑</span> : st.attempts ? <span className={cx("text-[11px] font-bold", st.acc >= 80 ? "text-emerald-600" : st.acc >= 60 ? "text-amber-600" : "text-rose-500")}>{st.acc}%</span> : null}
+                  {st.mastered ? <span className="text-sm">👑</span> : st.attempts ? <span className={cx("text-[11px] font-bold", st.acc >= 80 ? "text-zamrud-600" : st.acc >= 60 ? "text-emas-600" : "text-merah-500")}>{st.acc}%</span> : null}
                 </div>
                 <span className="line-clamp-2 text-[13px] font-semibold leading-tight">{c.title.replace(/^Hukum /, "")}</span>
               </button>
