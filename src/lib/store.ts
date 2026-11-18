@@ -32,15 +32,31 @@ function load(): DB {
   return emptyDB();
 }
 
+/**
+ * Simpan ke localStorage ketika pelayar terluang (requestIdleCallback), bukan serta-merta selepas ketikan —
+ * JSON.stringify seluruh DB (beribu rekod) boleh menyekat paparan beberapa puluh ms pada telefon perlahan.
+ * Apabila halaman disembunyikan / ditutup, simpan serta-merta supaya tiada rekod hilang.
+ */
+function writeNow() {
+  try {
+    if (db.activity.length > 500) db.activity = db.activity.slice(-500);
+    localStorage.setItem(KEY, JSON.stringify(db));
+    dirty = false;
+  } catch (e) { console.warn("Gagal simpan data", e); }
+}
+let dirty = false;
 function persist() {
   if (!hasStorage()) return;
+  dirty = true;
   clearTimeout(saveTimer);
   saveTimer = setTimeout(() => {
-    try {
-      if (db.activity.length > 500) db.activity = db.activity.slice(-500);
-      localStorage.setItem(KEY, JSON.stringify(db));
-    } catch (e) { console.warn("Gagal simpan data", e); }
-  }, 150);
+    const ric = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => void }).requestIdleCallback;
+    if (ric) ric(writeNow, { timeout: 2000 }); else writeNow();
+  }, 300);
+}
+if (hasStorage() && typeof document !== "undefined") {
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden" && dirty) writeNow(); });
+  window.addEventListener("pagehide", () => { if (dirty) writeNow(); });
 }
 
 export function getDB() { return db; }

@@ -79,7 +79,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   }, []);
   return (
     <div className={cx("min-h-dvh", focus ? "pb-4" : "pb-24 lg:pb-8")}>
-      <header className="sticky top-0 z-40 border-b border-emas-200/60 bg-krim-50/85 backdrop-blur-md dark:border-white/5 dark:bg-hutan-950/80 no-print" style={{ paddingTop: "env(safe-area-inset-top)" }}>
+      <header className="sticky top-0 z-40 border-b border-emas-200/60 bg-krim-50/[.97]  dark:border-white/5 dark:bg-hutan-950/[.97] no-print" style={{ paddingTop: "env(safe-area-inset-top)" }}>
         <div className="mx-auto flex h-14 max-w-5xl items-center gap-3 px-4">
           <Link to="/" aria-label={APP_NAME}><Logo /></Link>
           <nav className="ml-6 hidden gap-1 lg:flex">
@@ -100,7 +100,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <div className="mt-0.5">Kandungan latihan sebagai bantuan ulang kaji — sahkan bacaan bersama guru bertalaqqi.</div>
       </footer>}
 
-      {!focus && <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-emas-200/60 bg-krim-50/95 backdrop-blur-md dark:border-white/5 dark:bg-hutan-950/95 lg:hidden no-print" style={{ paddingBottom: "env(safe-area-inset-bottom)" }}>
+      {!focus && <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-emas-200/60 bg-krim-50/[.98]  dark:border-white/5 dark:bg-hutan-950/[.98] lg:hidden no-print" style={{ paddingBottom: "env(safe-area-inset-bottom)" }}>
         <div className="mx-auto grid max-w-md grid-cols-4">
           {NAV.map((n) => (
             <NavLink key={n.to} to={n.to} end={n.end} className={({ isActive }) => cx("flex flex-col items-center gap-0.5 py-2.5 text-[11px] font-semibold transition", isActive ? "text-zamrud-700 dark:text-emas-300" : "text-slate-500 dark:text-slate-400")}>

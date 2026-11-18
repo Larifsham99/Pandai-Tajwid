@@ -79,23 +79,23 @@ function computeSummary(d: DB, userId: string) {
 }
 
 // ================= LENCANA =================
-export interface BadgeDef { id: string; name: string; icon: string; desc: string; check: (d: DB, uid: string, qs: Question[]) => boolean }
-const masteredOf = (d: DB, u: string, ch: string) => chapterStats(d, u).find((s) => s.chapterId === ch)?.mastered ?? false;
+export interface BadgeDef { id: string; name: string; icon: string; desc: string; check: (d: DB, uid: string, qs: Question[], stats: ChapterStat[]) => boolean }
+const masteredOf = (stats: ChapterStat[], ch: string) => stats.find((s) => s.chapterId === ch)?.mastered ?? false;
 const correctCount = (d: DB, u: string) => d.attempts.filter((a) => a.userId === u && a.correct).length;
 export const BADGES: BadgeDef[] = [
   { id: "mula", name: "Langkah Pertama", icon: "🌱", desc: "Jawab 10 soalan pertama.", check: (d, u) => d.attempts.filter((a) => a.userId === u).length >= 10 },
-  { id: "asas", name: "Asas Tajwid", icon: "📗", desc: "Baca semua seksyen nota Bab 1 (Pengenalan).", check: (d, u) => chapterStats(d, u)[0].readPct === 100 },
-  { id: "nun", name: "Penguasa Nun Sakinah", icon: "ن", desc: "Kuasai Bab 4: Nun Sakinah & Tanwin.", check: (d, u) => masteredOf(d, u, "b4") },
-  { id: "mad", name: "Master Mad", icon: "〰️", desc: "Kuasai Bab 9: Hukum Mad.", check: (d, u) => masteredOf(d, u, "b9") },
-  { id: "makharij", name: "Penguasa Makharij", icon: "👄", desc: "Kuasai Bab 2: Makharij al-Huruf.", check: (d, u) => masteredOf(d, u, "b2") },
+  { id: "asas", name: "Asas Tajwid", icon: "📗", desc: "Baca semua seksyen nota Bab 1 (Pengenalan).", check: (_d, _u, _qs, st) => st[0].readPct === 100 },
+  { id: "nun", name: "Penguasa Nun Sakinah", icon: "ن", desc: "Kuasai Bab 4: Nun Sakinah & Tanwin.", check: (_d, _u, _qs, st) => masteredOf(st, "b4") },
+  { id: "mad", name: "Master Mad", icon: "〰️", desc: "Kuasai Bab 9: Hukum Mad.", check: (_d, _u, _qs, st) => masteredOf(st, "b9") },
+  { id: "makharij", name: "Penguasa Makharij", icon: "👄", desc: "Kuasai Bab 2: Makharij al-Huruf.", check: (_d, _u, _qs, st) => masteredOf(st, "b2") },
   { id: "dhobit", name: "Ahli Dhobit", icon: "🔑", desc: "Jawab betul 20 soalan dhobit.", check: (d, u, qs) => { const ids = new Set(qs.filter((q) => q.kind === "dhobit").map((q) => q.id)); return d.attempts.filter((a) => a.userId === u && a.correct && ids.has(a.questionId)).length >= 20; } },
   { id: "seratus", name: "100 Soalan Betul", icon: "💯", desc: "Kumpul 100 jawapan betul.", check: (d, u) => correctCount(d, u) >= 100 },
   { id: "limaratus", name: "Pahlawan Latih Tubi", icon: "⚔️", desc: "Kumpul 500 jawapan betul.", check: (d, u) => correctCount(d, u) >= 500 },
   { id: "istiqamah7", name: "7 Hari Istiqamah", icon: "🔥", desc: "Belajar 7 hari berturut-turut.", check: (d, u) => streak(d, u) >= 7 },
   { id: "murajaah", name: "Murajaah Pertama", icon: "🔁", desc: "Selesaikan satu sesi murajaah.", check: (d, u) => d.runs.some((r) => r.userId === u && r.title.startsWith("Murajaah")) },
   { id: "murajaah30", name: "30 Hari Murajaah", icon: "🌙", desc: "Buat murajaah pada 30 hari yang berbeza.", check: (d, u) => new Set(d.attempts.filter((a) => a.userId === u && a.mode === "murajaah").map((a) => dayKey(a.ts))).size >= 30 },
-  { id: "pembaca", name: "Pembaca Tekun", icon: "📚", desc: "Baca kesemua seksyen nota 12 bab.", check: (d, u) => chapterStats(d, u).every((s) => s.readPct === 100) },
-  { id: "semua", name: "Penguasaan Semua Bab", icon: "👑", desc: "Kuasai kesemua 12 bab.", check: (d, u) => chapterStats(d, u).every((s) => s.mastered) },
+  { id: "pembaca", name: "Pembaca Tekun", icon: "📚", desc: "Baca kesemua seksyen nota 12 bab.", check: (_d, _u, _qs, st) => st.every((s) => s.readPct === 100) },
+  { id: "semua", name: "Penguasaan Semua Bab", icon: "👑", desc: "Kuasai kesemua 12 bab.", check: (_d, _u, _qs, st) => st.every((s) => s.mastered) },
   { id: "tauliah10", name: "Pejuang Tauliah", icon: "🗂️", desc: "Jawab 10 soalan rujukan dari soalan tauliah (semakan kendiri).", check: (d, u, qs) => { const ids = new Set(qs.filter((q) => q.source === "tauliah").map((q) => q.id)); return new Set(d.attempts.filter((a) => a.userId === u && ids.has(a.questionId)).map((a) => a.questionId)).size >= 10; } },
 ];
 

@@ -20,12 +20,15 @@ const EXCLUDED_SECTIONS = new Set(["b12-isu"]);
 const L = ["a", "b", "c", "d"];
 const ARAB = /[؀-ۿ]/;
 
-const norm = (t: string) => t.normalize("NFKD").replace(/[ً-ٰٟۖ-ۭـ]/g, "").replace(/\s+/g, " ").trim().toLowerCase();
-const isKhilaf = (...t: (string | undefined)[]) => t.some((x) => !!x && KHILAF.test(x));
+/** PRESTASI: fungsi tulen yang dipanggil berulang kali ke atas teks yang sama (O(n²) calon pilihan) — dimemo. */
+const memo = <R,>(fn: (t: string) => R) => { const m = new Map<string, R>(); return (t: string) => { let v = m.get(t); if (v === undefined) { v = fn(t); m.set(t, v); } return v; }; };
+const norm = memo((t: string) => t.normalize("NFKD").replace(/[ً-ٰٟۖ-ۭـ]/g, "").replace(/\s+/g, " ").trim().toLowerCase());
+const khilafOne = memo((x: string) => KHILAF.test(x));
+const isKhilaf = (...t: (string | undefined)[]) => t.some((x) => !!x && khilafOne(x));
 const blank = (t?: string) => !t || !t.trim() || /^[–—-]$/.test(t.trim());
 /** Dua nilai "bertindih" jika sama atau salah satu ialah awalan yang lain selepas buang kurungan & ruang
  *  (cth. "4/5" dan "4/5 (6 waqaf)") — tidak boleh dijadikan kenyataan Salah kerana boleh dianggap betul. */
-const core = (t: string) => norm(t).replace(/\(.*?\)/g, "").replace(/[\s.]/g, "");
+const core = memo((t: string) => norm(t).replace(/\(.*?\)/g, "").replace(/[\s.]/g, ""));
 const opts = (t: string) => core(t).split(/[\/,،]/).filter(Boolean);
 const overlaps = (a: string, b: string) => {
   const x = core(a), y = core(b);
