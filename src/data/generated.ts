@@ -15,7 +15,7 @@ import type { Chapter, Explanation, NoteSection, PracticeKind, QOption, Question
  *  4. Semua soalan berstatus "belum_disemak" sehingga disahkan guru penyemak.
  */
 
-const KHILAF = /khilaf|ikhtilaf|pendapat|sebahagian ulama|ada yang|rujuk guru|dua wajah|diutamakan|diperselisih|qaul|atau raum|\bharus\s+[^\s/]+\s*\/|isu semasa/i;
+const KHILAF = /ٱلِٱسْمُ|لِسْمُ|khilaf|ikhtilaf|pendapat|sebahagian ulama|ada yang|rujuk guru|dua wajah|diutamakan|diperselisih|qaul|atau raum|\bharus\s+[^\s/]+\s*\/|isu semasa/i;
 const EXCLUDED_SECTIONS = new Set(["b12-isu"]);
 const L = ["a", "b", "c", "d"];
 const ARAB = /[؀-ۿ]/;
@@ -23,6 +23,17 @@ const ARAB = /[؀-ۿ]/;
 const norm = (t: string) => t.normalize("NFKD").replace(/[ً-ٰٟۖ-ۭـ]/g, "").replace(/\s+/g, " ").trim().toLowerCase();
 const isKhilaf = (...t: (string | undefined)[]) => t.some((x) => !!x && KHILAF.test(x));
 const blank = (t?: string) => !t || !t.trim() || /^[–—-]$/.test(t.trim());
+/** Dua nilai "bertindih" jika sama atau salah satu ialah awalan yang lain selepas buang kurungan & ruang
+ *  (cth. "4/5" dan "4/5 (6 waqaf)") — tidak boleh dijadikan kenyataan Salah kerana boleh dianggap betul. */
+const core = (t: string) => norm(t).replace(/\(.*?\)/g, "").replace(/[\s.]/g, "");
+const opts = (t: string) => core(t).split(/[\/,،]/).filter(Boolean);
+const overlaps = (a: string, b: string) => {
+  const x = core(a), y = core(b);
+  if (!x || !y || x === y || x.startsWith(y) || y.startsWith(x)) return true;
+  const ox = new Set(opts(a)); return opts(b).some((o) => ox.has(o)); // cth. "6" vs "2 / 4 / 6", "4 / 6" vs "4 / 5"
+};
+/** Kenyataan Benar/Salah yang maknanya bertindih walaupun teksnya berbeza (disemak manual). */
+const AMBIGUOUS_TF = new Set(["J-b10-simbol-0-1-tf", "J-b10-simbol-6-1-tf", "J-b10-jenis-3-3-tf", "J-b10-jenis-2-3-tf"]);
 
 function hash(s: string) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
 function seeded<T>(arr: T[], seed: string): T[] {
@@ -94,7 +105,7 @@ function fromTables(ch: Chapter, out: Question[]) {
           : t.rows.filter((_, x) => x !== i).map((r) => ({ text: r[k], why: `Ini ${t.head[k]} bagi «${r[0]}».` }));
         const sameRowFirst = compare ? (c: Cand) => (row.includes(c.text) ? 1 : 0) : undefined;
         const prompt = compare
-          ? `Perbandingan «${cap}»: Apakah ${lc(row[0])} bagi **${t.head[k]}**?`
+          ? `Perbandingan «${cap}»: ${row[0]} bagi **${t.head[k]}** ialah…`
           : `Menurut jadual «${cap}», apakah **${lc(t.head[k])}** bagi «${row[0]}»?`;
         const q1 = mcq(base + "-f", ch, s, kindFor(t.head[k]), 2, prompt, val, pick(val, cands, base, 3, sameRowFirst), ex);
         if (q1) out.push(q1);
@@ -114,7 +125,7 @@ function fromTables(ch: Chapter, out: Question[]) {
         const swapPool = compare
           ? t.head.slice(1).map((_, j) => row[j + 1]).filter((_, j) => j + 1 !== k)
           : t.rows.filter((_, x) => x !== i).map((r) => r[k]);
-        const swap = seeded(swapPool.filter((v) => !blank(v) && !isKhilaf(v) && norm(v) !== norm(val) && !t.rows.some((r) => norm(r[0]) === norm(row[0]) && norm(r[k]) === norm(v))), base + "sw")[0];
+        const swap = seeded(swapPool.filter((v) => !blank(v) && !isKhilaf(v) && !overlaps(v, val) && !t.rows.some((r) => norm(r[0]) === norm(row[0]) && norm(r[k]) === norm(v))), base + "sw")[0];
         const useTrue = truthy || !swap;
         const shown = useTrue ? val : swap;
         out.push({
@@ -246,7 +257,7 @@ export function generateQuestions(chapters: Chapter[]): Question[] {
     fromFlashcards(ch, chapters, out);
   }
   // keselamatan akhir: buang soalan yang menyentuh khilaf pada prompt/jawapan
-  return out.filter((q) => {
+  return out.filter((q) => !AMBIGUOUS_TF.has(q.id)).filter((q) => {
     const ans = q.type === "mcq" ? q.options!.find((o) => o.id === q.answer)!.text : "";
     return !isKhilaf(q.prompt, ans, q.arabic, ...(q.pairs?.flatMap((p) => [p.left, p.right]) ?? []));
   });

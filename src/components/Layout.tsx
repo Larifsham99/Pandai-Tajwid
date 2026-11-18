@@ -70,7 +70,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   const me = useMe()!; const d = useDb(); const loc = useLocation();
   const s = summary(d, me.id);
   const [sheet, setSheet] = useState(false);
-  const focus = loc.pathname.startsWith("/latih/sesi"); // mod fokus semasa menjawab
+  const focus = loc.pathname.startsWith("/latih/sesi") || loc.pathname.startsWith("/ujian"); // mod fokus semasa menjawab
   useEffect(() => { window.scrollTo(0, 0); }, [loc.pathname]);
   // Ketikan lembut bagi butang & pautan (kecuali pilihan jawapan yang ada bunyi keputusan sendiri)
   useEffect(() => {

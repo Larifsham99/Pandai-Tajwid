@@ -9,6 +9,7 @@ import Nota from "./pages/Nota";
 import NotaBab from "./pages/NotaBab";
 import Scoreboard from "./pages/Scoreboard";
 import Profil from "./pages/Profil";
+import Ujian from "./pages/Ujian";
 import { Toaster, toast } from "./components/ui";
 import { ActivationGate } from "./components/Activation";
 
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="/nota/:id" element={<NotaBab />} />
           <Route path="/scoreboard" element={<Scoreboard />} />
           <Route path="/profil" element={<Profil />} />
+          <Route path="/ujian" element={<Ujian />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Layout>

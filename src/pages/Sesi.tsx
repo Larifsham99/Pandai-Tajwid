@@ -4,6 +4,7 @@ import { X } from "lucide-react";
 import { getDB, useMe } from "../lib/store";
 import { completeExercise } from "../lib/actions";
 import { sfx } from "../lib/sound";
+import { shareText } from "../lib/install";
 import { buildSet, fromParams, toParams } from "../lib/practice";
 import { XP_RULES } from "../lib/gamification";
 import { chapterById } from "../data";
@@ -50,6 +51,7 @@ function SesiInner() {
           <div className="mt-3 text-sm font-semibold">{pct >= 80 ? "Mumtaz! Teruskan istiqamah." : pct >= 60 ? "Jayyid. Ulang soalan yang salah untuk menguasai." : "Jangan putus asa — baca semula nota dan cuba lagi."}</div>
           <div className="mt-4 grid gap-2 sm:flex sm:justify-center">
             <button className="btn btn-primary" onClick={() => nav(`/latih/sesi?${toParams(cfg)}&r=${Date.now()}`)}>Set baharu</button>
+            {answered > 0 && <button className="btn btn-gold" onClick={() => shareText(`Alhamdulillah, saya jawab betul ${correctN}/${answered} soalan tajwid (${pct}%) hari ini dengan Pandai Tajwid 🎉 Jom latih tubi tajwid bersama!`)}>📤 Kongsi keputusan</button>}
             {wrong.length > 0 && <button className="btn btn-ghost" onClick={() => nav(`/latih/sesi?${toParams({ mode: "murajaah", n: 15 })}`)}>Murajaah sekarang</button>}
             <Link to="/" className="btn btn-outline">Kembali</Link>
           </div>

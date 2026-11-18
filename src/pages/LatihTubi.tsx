@@ -1,12 +1,13 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Play, RotateCcw, Target, CalendarDays, Infinity as InfinityIcon, ChevronDown, SlidersHorizontal, ScrollText, Flame } from "lucide-react";
+import { Play, RotateCcw, Target, CalendarDays, Timer, Infinity as InfinityIcon, ChevronDown, SlidersHorizontal, ScrollText, Flame } from "lucide-react";
 import { useDb, useMe } from "../lib/store";
 import { answeredToday, summary } from "../lib/gamification";
 import { dueReviews, reviewQueue } from "../lib/actions";
 import { filterPool, toParams, TYPE_LABEL, SOURCE_LABEL, type PracticeConfig } from "../lib/practice";
 import { CHAPTERS, PAPERS } from "../data";
 import { cx, TONES, CHAPTER_TONES } from "../components/ui";
+import InstallCard from "../components/InstallCard";
 
 function Chip({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
   return <button onClick={onClick} className={cx("whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-semibold ring-1 transition", active ? "bg-zamrud-600 text-white ring-zamrud-600" : "bg-white text-slate-600 ring-slate-200 dark:bg-white/5 dark:text-slate-300 dark:ring-white/10")}>{children}</button>;
@@ -67,11 +68,14 @@ export default function LatihTubi() {
         </button>
       </section>
 
+      <InstallCard />
+
       {/* ---------- Mod pantas ---------- */}
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
         {[
           { label: "Harian", sub: "10 soalan", icon: <CalendarDays size={20} />, tone: TONES.sky.bubble, on: () => go({ mode: "harian" }) },
           { label: "Kelemahan", sub: s.weak.length ? `${s.weak.length} bab` : "bab terlemah", icon: <Target size={20} />, tone: TONES.rose.bubble, on: () => go({ mode: s.answered >= 10 ? "lemah" : "rawak", n: 15 }) },
+          { label: "Ujian Bertempoh", sub: "simulasi peperiksaan", icon: <Timer size={20} />, tone: TONES.emas.bubble, on: () => nav("/ujian") },
           { label: "Maraton", sub: "tanpa had", icon: <InfinityIcon size={20} />, tone: TONES.violet.bubble, on: () => go({ mode: "rawak", n: 0 }) },
         ].map((m) => (
           <button key={m.label} onClick={m.on} className="card flex flex-col items-center gap-1.5 px-2 py-3 text-center active:scale-[.97]">

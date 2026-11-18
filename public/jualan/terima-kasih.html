@@ -7,6 +7,7 @@
 <meta name="robots" content="noindex" />
 <meta name="theme-color" content="#047857" />
 <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+<script src="config.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
@@ -50,7 +51,7 @@
 </head>
 <body>
 <div class="wrap">
-  <div class="logo"><i>ت</i><span>Pandai <b>Tajwid</b></span></div>
+  <div class="logo"><img src="../icon.svg" alt="" width="40" height="40" style="border-radius:12px;box-shadow:0 6px 14px -6px rgba(4,120,87,.7)"><span>Pandai <b>Tajwid</b></span></div>
 
   <!-- ===== BERJAYA (lalai) ===== -->
   <div class="card" id="ok">
@@ -80,7 +81,7 @@
   <!-- ===== BELUM SELESAI ===== -->
   <div class="card hide" id="pending">
     <div class="top"><div class="big">⏳</div><h1>Pembayaran sedang diproses</h1><p>Bank anda masih mengesahkan transaksi ini.</p></div>
-    <div class="body"><p>Sebaik sahaja pembayaran disahkan, pautan aplikasi akan dihantar ke e-mel anda secara automatik. Semak e-mel (termasuk folder Spam) dalam masa beberapa minit. Jika tiada e-mel selepas 1 jam, balas e-mel resit ToyyibPay atau hubungi kami.</p></div>
+    <div class="body"><p>Sebaik sahaja pembayaran disahkan, pautan aplikasi akan dihantar ke e-mel anda secara automatik. Semak e-mel (termasuk folder Spam) dalam masa beberapa minit. Jika tiada e-mel selepas 1 jam, hubungi kami: <span data-seller-contact></span></p></div>
   </div>
 
   <!-- ===== GAGAL ===== -->
@@ -89,9 +90,10 @@
     <div class="body" style="text-align:center"><p>Ini mungkin kerana sambungan terputus atau transaksi dibatalkan. Sila cuba sekali lagi.</p><a class="btn" href="./#dapatkan">Cuba bayar semula</a></div>
   </div>
 
-  <div class="foot">Pandai Tajwid · Aplikasi ini dibangunkan oleh <b>Abdul Latif</b></div>
+  <div class="foot">Ada masalah? <span data-seller-contact></span><br>Pandai Tajwid · Aplikasi ini dibangunkan oleh <b>Mawar Ikhlas Brand</b> · <a href="terma.html" style="color:inherit">Terma & Privasi</a></div>
 </div>
 <script>
+  window.renderSellerContact && window.renderSellerContact();
   // ToyyibPay: status_id 1 = berjaya, 2 = belum selesai, 3 = gagal
   var st = new URLSearchParams(location.search).get("status_id");
   if (st === "2" || st === "3") {
