@@ -6,6 +6,7 @@ import { CHAPTERS, chapterById } from "../data";
 import { PageHeader, Progress, Tabs, Empty, TONES, CHAPTER_TONES } from "../components/ui";
 import { norm } from "../lib/util";
 import { summary } from "../lib/gamification";
+import AkanDatang from "../components/AkanDatang";
 
 export default function Nota() {
   const me = useMe()!; const d = useDb();
@@ -34,6 +35,7 @@ export default function Nota() {
                   <div className="text-xs font-semibold text-slate-500">{stats[i].readPct}%</div>
                 </Link>
               ))}
+              <div className="md:col-span-2"><AkanDatang /></div>
             </div>
           ) : marks.length ? (
             <div className="space-y-2">{marks.map((b) => <Link key={b.id} to={`/nota/${b.chapterId}${b.sectionId ? "#" + b.sectionId : ""}`} className="card flex items-center gap-3 p-4"><Bookmark className="text-zamrud-600" size={18} /><div><div className="font-semibold">{b.label}</div><div className="text-xs text-slate-500">{chapterById(b.chapterId)?.title}</div></div></Link>)}</div>
