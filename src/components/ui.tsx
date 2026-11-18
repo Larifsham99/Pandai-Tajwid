@@ -30,11 +30,11 @@ export function Progress({ value, className, tone = "zamrud" }: { value: number;
 }
 
 export const TONES = {
-  zamrud: { bubble: "bg-zamrud-50 text-zamrud-700 ring-1 ring-inset ring-zamrud-200", bar: "from-zamrud-500 to-zamrud-700" },
-  sky: { bubble: "bg-biru-50 text-biru-700 ring-1 ring-inset ring-biru-200", bar: "from-biru-400 to-biru-600" },
-  emas: { bubble: "bg-emas-50 text-emas-700 ring-1 ring-inset ring-emas-200", bar: "from-emas-300 to-emas-500" },
-  rose: { bubble: "bg-merah-50 text-merah-700 ring-1 ring-inset ring-merah-200", bar: "from-merah-400 to-merah-600" },
-  violet: { bubble: "bg-ungu-50 text-ungu-700 ring-1 ring-inset ring-ungu-200", bar: "from-ungu-400 to-ungu-600" },
+  zamrud: { bubble: "bg-zamrud-100 text-zamrud-700", bar: "from-zamrud-500 to-zamrud-700" },
+  sky: { bubble: "bg-biru-100 text-biru-700", bar: "from-biru-400 to-biru-600" },
+  emas: { bubble: "bg-emas-100 text-emas-700", bar: "from-emas-300 to-emas-500" },
+  rose: { bubble: "bg-merah-100 text-merah-700", bar: "from-merah-400 to-merah-600" },
+  violet: { bubble: "bg-ungu-100 text-ungu-700", bar: "from-ungu-400 to-ungu-600" },
 } as const;
 export type Tone = keyof typeof TONES;
 export const CHAPTER_TONES: Tone[] = ["zamrud", "sky", "emas", "violet", "rose", "zamrud", "sky", "emas", "violet", "rose", "zamrud", "sky"];

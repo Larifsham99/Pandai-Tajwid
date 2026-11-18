@@ -2,7 +2,7 @@ import { cx } from "./ui";
 
 export const APP_NAME = "Pandai Tajwid";
 export const CREDIT = "Mawar Ikhlas Brand";
-export const VERSION = "1.9";
+export const VERSION = "2.0";
 /** Pautan beli kod pengaktifan (halaman jualan → bahagian tawaran). */
 export const BUY_URL = "./jualan/#dapatkan";
 /** Demo untuk bakal pembeli (kuiz & tayangan skrin di halaman jualan). */

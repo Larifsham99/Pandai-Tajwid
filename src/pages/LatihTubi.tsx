@@ -17,7 +17,7 @@ function Ring({ value, max }: { value: number; max: number }) {
   const r = 26; const c = 2 * Math.PI * r; const p = Math.min(1, value / Math.max(1, max));
   return (
     <div className="relative grid h-16 w-16 shrink-0 place-items-center">
-      <svg viewBox="0 0 64 64" className="absolute inset-0 -rotate-90"><circle cx="32" cy="32" r={r} fill="none" stroke="currentColor" strokeOpacity=".18" strokeWidth="6" /><circle cx="32" cy="32" r={r} fill="none" stroke="#e9d3a0" strokeWidth="6" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - p)} className="transition-all duration-700" /></svg>
+      <svg viewBox="0 0 64 64" className="absolute inset-0 -rotate-90"><circle cx="32" cy="32" r={r} fill="none" stroke="currentColor" strokeOpacity=".18" strokeWidth="6" /><circle cx="32" cy="32" r={r} fill="none" stroke="#fdd05a" strokeWidth="6" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - p)} className="transition-all duration-700" /></svg>
       <div className="text-center leading-none"><div className="text-lg font-extrabold">{value}</div><div className="text-[9px] opacity-80">/{max}</div></div>
     </div>
   );
