@@ -61,6 +61,6 @@ a.card:hover, button.card:hover { @apply -translate-y-0.5 shadow-lg ring-emas-30
 }
 .print-only { display: none; }
 
-/* Tajuk premium (serif) */
-.font-display { font-family: "Playfair Display", Georgia, serif; letter-spacing: -.01em; }
+/* Tajuk: fon asal Plus Jakarta Sans (tebal) */
+.font-display { font-family: "Plus Jakarta Sans", system-ui, sans-serif; font-weight: 800; letter-spacing: -.02em; }
 .chip { letter-spacing: .01em; }

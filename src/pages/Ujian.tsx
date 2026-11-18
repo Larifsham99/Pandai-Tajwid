@@ -141,7 +141,7 @@ function Result({ qs, ans, usedSec, onRestart }: { qs: Question[]; ans: Record<s
     <div className="mx-auto max-w-2xl space-y-4">
       <Card className="motif p-6 text-center">
         <div className="text-5xl">{pct >= 80 ? "🏆" : pct >= 60 ? "🌟" : "🌱"}</div>
-        <div className="mt-2 font-display text-6xl font-bold text-zamrud-800 dark:text-emas-300">{pct}%</div>
+        <div className="mt-2 text-5xl font-extrabold text-zamrud-800 dark:text-emas-300">{pct}%</div>
         <div className="text-sm text-slate-500">{right.length} betul daripada {qs.length} · masa {fmt(usedSec)}</div>
         <div className="mt-2 text-sm font-semibold">{pct >= 80 ? "Mumtaz! Anda bersedia menghadapi peperiksaan." : pct >= 60 ? "Jayyid. Fokus pada bab yang lemah di bawah." : "Teruskan latihan — ulang kaji nota bab yang lemah."}</div>
         <div className="mt-4 grid gap-2 sm:flex sm:justify-center">

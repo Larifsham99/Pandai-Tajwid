@@ -21,7 +21,7 @@ export default {
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-        display: ['"Playfair Display"', 'Georgia', 'serif'],
+        display: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
         arab: ['"Amiri Quran"', '"Amiri"', '"Scheherazade New"', 'serif'],
         jawi: ['"Amiri"', 'serif'],
       },

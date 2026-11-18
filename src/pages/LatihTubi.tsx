@@ -55,7 +55,7 @@ export default function LatihTubi() {
         <div className="flex items-center gap-4">
           <Ring value={today} max={d.settings.dailyGoal} />
           <div className="min-w-0 flex-1">
-            <div className="truncate font-display text-xl font-bold text-krim-50">Salam, {me.name} {me.avatar}</div>
+            <div className="truncate text-lg font-extrabold text-krim-50">Salam, {me.name} {me.avatar}</div>
             <div className="mt-0.5 flex items-center gap-2 text-xs text-zamrud-100">
               <span className="font-semibold text-emas-200">{s.lvl.level.name}</span>·<span className="inline-flex items-center gap-0.5"><Flame size={12} /> {s.streak} hari</span>·<span>{s.xp} XP</span>
             </div>
@@ -88,7 +88,7 @@ export default function LatihTubi() {
 
       {/* ---------- Bab ---------- */}
       <section>
-        <h2 className="mb-2 px-1 font-display text-lg font-bold text-hutan-900 dark:text-krim-50">Latih ikut bab</h2>
+        <h2 className="mb-2 px-1 text-base font-extrabold text-hutan-900 dark:text-krim-50">Latih ikut bab</h2>
         <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
           {CHAPTERS.map((c, i) => {
             const st = s.stats[i];

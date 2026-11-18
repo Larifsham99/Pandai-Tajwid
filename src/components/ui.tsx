@@ -15,7 +15,7 @@ export function PageHeader({ title, subtitle, icon, actions }: { title: string; 
       <div className="flex items-center gap-3">
         {icon && <div className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-zamrud-600 to-zamrud-900 text-xl text-emas-200 shadow-lg shadow-zamrud-900/25 ring-1 ring-emas-300/50">{icon}</div>}
         <div>
-          <h1 className="font-display text-2xl font-bold text-hutan-900 dark:text-krim-50 sm:text-3xl">{title}</h1>
+          <h1 className="text-xl font-extrabold tracking-tight text-hutan-900 dark:text-krim-50 sm:text-2xl">{title}</h1>
           {subtitle && <p className="text-sm text-slate-500 dark:text-slate-400">{subtitle}</p>}
         </div>
       </div>

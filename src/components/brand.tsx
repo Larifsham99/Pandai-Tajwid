@@ -13,7 +13,7 @@ export function Logo({ className }: { className?: string }) {
     <div className={cx("flex items-center gap-2", className)}>
       <img src="./icon.svg" alt="" width={36} height={36} className="h-9 w-9 rounded-xl shadow-md shadow-zamrud-600/30" />
       <div className="leading-tight">
-        <div className="font-display text-[17px] font-bold text-hutan-900 dark:text-krim-50">Pandai <span className="text-emas-500">Tajwid</span></div>
+        <div className="text-[15px] font-extrabold tracking-tight text-hutan-900 dark:text-krim-50">Pandai <span className="text-emas-500">Tajwid</span></div>
         <div className="hidden text-[10px] font-semibold uppercase tracking-[.14em] text-slate-400 sm:block">Latih • Faham • Kuasai</div>
       </div>
     </div>

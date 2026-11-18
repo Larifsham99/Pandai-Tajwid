@@ -45,7 +45,7 @@ function SesiInner() {
       <div className="mx-auto max-w-2xl space-y-4">
         <Card className="motif relative overflow-hidden p-6 text-center">
           <div className="text-5xl">{pct >= 80 ? "🏆" : pct >= 60 ? "🌟" : "🌱"}</div>
-          <div className="mt-2 font-display text-6xl font-bold text-zamrud-800 dark:text-emas-300">{pct}%</div>
+          <div className="mt-2 text-5xl font-extrabold text-zamrud-800 dark:text-emas-300">{pct}%</div>
           <div className="text-sm text-slate-500">{correctN} betul daripada {answered} dijawab · {set.title}</div>
           {answered > 0 && <div className="mt-2 inline-flex items-center gap-1 rounded-full bg-emas-100 px-3 py-1 text-sm font-bold text-emas-800">+{xpEarned + XP_RULES.exercise} XP</div>}
           <div className="mt-3 text-sm font-semibold">{pct >= 80 ? "Mumtaz! Teruskan istiqamah." : pct >= 60 ? "Jayyid. Ulang soalan yang salah untuk menguasai." : "Jangan putus asa — baca semula nota dan cuba lagi."}</div>
