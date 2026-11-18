@@ -61,7 +61,7 @@ export default function QuestionPlayer({ q, mode, onAnswered, onNext, onSimilar,
       <div className="rise">
         <div className="mb-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-500">
           <span className="font-semibold text-zamrud-700 dark:text-zamrud-300">Bab {ch?.no} · {ch?.title}</span>
-          {q.source === "tauliah" && <span className="chip bg-emas-100 text-emas-700">Tauliah {q.year} · S{q.qNo}({q.part})</span>}
+          {q.source === "tauliah" && <span className="chip bg-emas-100 text-emas-700">Rujukan dari soalan tauliah · {q.year}</span>}
           {q.source === "jana" && <span className="chip bg-ungu-100 text-ungu-700 dark:bg-ungu-500/20 dark:text-ungu-200">✨ Dijana daripada nota</span>}
           {q.status === "belum_disemak" && <span className="chip bg-emas-100 text-emas-800 dark:bg-emas-500/20 dark:text-emas-200">Belum disemak</span>}
         </div>

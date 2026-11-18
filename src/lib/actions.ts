@@ -62,7 +62,7 @@ export function recordAnswer(userId: string, q: Question, res: { correct: boolea
     const before = masteredSet(d, userId);
     d.attempts.push({ id: uid("a"), userId, questionId: q.id, chapterId: q.chapterId, correct: res.correct, score: res.score, given, mode, ts: Date.now(), ms });
     const isTauliah = q.source === "tauliah";
-    addXp(d, userId, isTauliah ? XP_RULES.tauliahSelf + Math.round(res.score * 6) : XP_RULES.answer + (res.correct ? XP_RULES.correct : 0), isTauliah ? "Soalan tauliah (semakan kendiri)" : res.correct ? "Jawapan betul" : "Menjawab soalan");
+    addXp(d, userId, isTauliah ? XP_RULES.tauliahSelf + Math.round(res.score * 6) : XP_RULES.answer + (res.correct ? XP_RULES.correct : 0), isTauliah ? "Rujukan soalan tauliah (semakan kendiri)" : res.correct ? "Jawapan betul" : "Menjawab soalan");
     srsUpdate(d, userId, q.id, res.correct);
     checkMastery(d, userId, before);
     awardBadges(d, userId);

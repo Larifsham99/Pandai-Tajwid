@@ -96,7 +96,7 @@ export const BADGES: BadgeDef[] = [
   { id: "murajaah30", name: "30 Hari Murajaah", icon: "🌙", desc: "Buat murajaah pada 30 hari yang berbeza.", check: (d, u) => new Set(d.attempts.filter((a) => a.userId === u && a.mode === "murajaah").map((a) => dayKey(a.ts))).size >= 30 },
   { id: "pembaca", name: "Pembaca Tekun", icon: "📚", desc: "Baca kesemua seksyen nota 12 bab.", check: (d, u) => chapterStats(d, u).every((s) => s.readPct === 100) },
   { id: "semua", name: "Penguasaan Semua Bab", icon: "👑", desc: "Kuasai kesemua 12 bab.", check: (d, u) => chapterStats(d, u).every((s) => s.mastered) },
-  { id: "tauliah10", name: "Pejuang Tauliah", icon: "🗂️", desc: "Jawab 10 soalan tauliah lepas (semakan kendiri).", check: (d, u, qs) => { const ids = new Set(qs.filter((q) => q.source === "tauliah").map((q) => q.id)); return new Set(d.attempts.filter((a) => a.userId === u && ids.has(a.questionId)).map((a) => a.questionId)).size >= 10; } },
+  { id: "tauliah10", name: "Pejuang Tauliah", icon: "🗂️", desc: "Jawab 10 soalan rujukan dari soalan tauliah (semakan kendiri).", check: (d, u, qs) => { const ids = new Set(qs.filter((q) => q.source === "tauliah").map((q) => q.id)); return new Set(d.attempts.filter((a) => a.userId === u && ids.has(a.questionId)).map((a) => a.questionId)).size >= 10; } },
 ];
 
 // ================= SCOREBOARD (tempatan) =================

@@ -6,7 +6,7 @@ Aplikasi latih tubi tajwid yang ringkas, ceria dan mesra telefon.
 ## Menu
 | Menu | Kandungan |
 |---|---|
-| **Latih Tubi** (utama) | ~870 soalan objektif (ABCD, Benar/Salah, Padanan, Isi tempat kosong), pilih bab/jenis/sumber/bilangan, Cabaran Harian, Fokus Kelemahan, Maraton, **Murajaah automatik**, dan soalan tauliah lepas Kedah 2014–2025 (semakan kendiri). |
+| **Latih Tubi** (utama) | ~870 soalan objektif (ABCD, Benar/Salah, Padanan, Isi tempat kosong), pilih bab/jenis/sumber/bilangan, Cabaran Harian, Fokus Kelemahan, Maraton, **Murajaah automatik**, dan rujukan dari soalan tauliah 2014–2025 (semakan kendiri). |
 | **Nota** | 12 bab sedia ada: nota mendalam, ringkas, kad imbas, jadual, peta minda, rujukan, carian & penanda. |
 | **Scoreboard** | Keseluruhan, mingguan, ketepatan, istiqamah. |
 | **Ujian Bertempoh** | Simulasi peperiksaan 20/40 soalan dengan pemasa; keputusan, pecahan ikut bab & semakan jawapan di akhir. |

@@ -121,8 +121,8 @@ export default function LatihTubi() {
         {d.settings.includeGenerated && <p className="mt-3 text-xs text-slate-500">✨ Termasuk soalan dijana daripada nota (label “belum disemak”). Boleh dimatikan di Profil → Tetapan.</p>}
       </Collapsible>
 
-      <Collapsible title="Soalan tauliah lepas (Kedah)" icon={<ScrollText size={18} />}>
-        <p className="mb-3 text-xs text-slate-500">Soalan subjektif sebenar dengan jawapan cadangan (belum disemak). Tulis jawapan, kemudian nilai sendiri.</p>
+      <Collapsible title="Rujukan dari soalan tauliah" icon={<ScrollText size={18} />}>
+        <p className="mb-3 text-xs text-slate-500">Soalan subjektif yang dirujuk daripada kertas soalan tauliah tajwid, dengan jawapan cadangan (belum disemak). Tulis jawapan, kemudian nilai sendiri.</p>
         <div className="grid grid-cols-5 gap-2">{PAPERS.map((p) => <button key={p.year} onClick={() => go({ mode: "tahun", tahun: p.year })} className="btn btn-outline !px-0 !py-2 text-sm">{p.year}</button>)}</div>
       </Collapsible>
     </div>
