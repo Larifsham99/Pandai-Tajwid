@@ -14,7 +14,7 @@ export interface PlayResult { correct: boolean; score: number }
 /** Bar tindakan melekat di bawah skrin (mesra ibu jari). */
 function ActionBar({ children }: { children: React.ReactNode }) {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-zamrud-900/5 bg-white/95 px-4 pt-3 backdrop-blur-md dark:border-white/10 dark:bg-hutan-950/95 no-print" style={{ paddingBottom: "max(12px, env(safe-area-inset-bottom))" }}>
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-zamrud-900/5 bg-white/[.98] px-4 pt-3 dark:border-white/10 dark:bg-hutan-950/[.98] no-print" style={{ paddingBottom: "max(12px, env(safe-area-inset-bottom))" }}>
       <div className="mx-auto flex max-w-2xl gap-2">{children}</div>
     </div>
   );

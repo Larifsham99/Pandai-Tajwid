@@ -92,6 +92,7 @@ Ini produk ilmu agama — ketepatan lebih penting daripada kuantiti.
 - **Fon**: Plus Jakarta Sans (UI) + Amiri / Amiri Quran (Arab). Pengguna menolak fon serif (Playfair) — jangan perkenalkan semula.
 - Mesra telefon dahulu (lebar 390px), bar tindakan melekat di bawah ketika menjawab, tiada skrol mendatar.
 - Semua teks UI dalam **Bahasa Melayu**; istilah: *latih tubi, murajaah, dhobit, nota, bab*.
+- **Prestasi (diukur dengan CPU diperlahankan 4×):** JANGAN guna `background-attachment: fixed` pada body (skrol 217 ms/bingkai → 17 ms selepas dibuang; latar kini lapisan `body::before` `position:fixed`). Elak `backdrop-blur` pada kad/bar. Kelas kelegapan Tailwind mesti dalam skala (…90, 95, 100) atau guna `bg-x/[.97]`, jika tidak latar tidak dijana. Simpan localStorage ketika terluang (bukan serta-merta). Fungsi tulen yang dipanggil berulang (cth. `norm` dalam penjana soalan) perlu dimemo.
 - Ikon: mushaf terbuka + bintang lapan emas (`public/icon.svg`; PNG dijana daripadanya).
 
 ## 7. Aliran kerja pembangunan

@@ -33,9 +33,11 @@ function awardBadges(d: DB, userId: string) {
   const qs = allQuestions();
   const have = new Set(d.badges.filter((b) => b.userId === userId).map((b) => b.badgeId));
   const fresh: string[] = [];
+  let stats: ReturnType<typeof chapterStats> | null = null; // dikira sekali sahaja (bukan sekali bagi setiap lencana)
   for (const b of BADGES) {
     if (have.has(b.id)) continue;
-    if (b.check(d, userId, qs)) { d.badges.push({ userId, badgeId: b.id, ts: Date.now() }); fresh.push(b.id); log(d, userId, "lencana", `Memperoleh lencana "${b.name}" ${b.icon}`); }
+    stats ??= chapterStats(d, userId);
+    if (b.check(d, userId, qs, stats)) { d.badges.push({ userId, badgeId: b.id, ts: Date.now() }); fresh.push(b.id); log(d, userId, "lencana", `Memperoleh lencana "${b.name}" ${b.icon}`); }
   }
   if (fresh.length) setTimeout(() => newBadgeListener?.(fresh), 0);
 }

@@ -119,7 +119,7 @@ function Exam({ cfg, onRestart }: { cfg: Cfg; onRestart: () => void }) {
         ))}
       </div>
       <button className={cx("btn mt-4 !py-2 text-sm", flag[q.id] ? "bg-emas-100 text-emas-800" : "btn-ghost")} onClick={() => setFlag({ ...flag, [q.id]: !flag[q.id] })}><Flag size={15} /> {flag[q.id] ? "Ditanda untuk semak semula" : "Tanda untuk semak semula"}</button>
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-zamrud-900/5 bg-white/95 px-4 pt-3 backdrop-blur-md dark:border-white/10 dark:bg-hutan-950/95" style={{ paddingBottom: "max(12px, env(safe-area-inset-bottom))" }}>
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-zamrud-900/5 bg-white/[.98] px-4 pt-3 dark:border-white/10 dark:bg-hutan-950/[.98]" style={{ paddingBottom: "max(12px, env(safe-area-inset-bottom))" }}>
         <div className="mx-auto flex max-w-2xl gap-2">
           <button className="btn btn-ghost !py-3.5" disabled={i === 0} onClick={() => setI(i - 1)}><ChevronLeft size={18} /> Sebelum</button>
           {i < qs.length - 1
