@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Play, RotateCcw, Target, CalendarDays, Timer, Infinity as InfinityIcon, ChevronDown, SlidersHorizontal, ScrollText, Flame } from "lucide-react";
 import { useDb, useMe } from "../lib/store";
 import { answeredToday, summary } from "../lib/gamification";
@@ -125,6 +125,13 @@ export default function LatihTubi() {
         <p className="mb-3 text-xs text-slate-500">Soalan subjektif yang dirujuk daripada kertas soalan tauliah tajwid, dengan jawapan cadangan (belum disemak). Tulis jawapan, kemudian nilai sendiri.</p>
         <div className="grid grid-cols-5 gap-2">{PAPERS.map((p) => <button key={p.year} onClick={() => go({ mode: "tahun", tahun: p.year })} className="btn btn-outline !px-0 !py-2 text-sm">{p.year}</button>)}</div>
       </Collapsible>
+
+      {/* ---------- Trailer: Akan Datang ---------- */}
+      <Link to={{ pathname: "/nota", hash: "#akan-datang" }} className="hero flex items-center gap-3 rounded-3xl p-4 text-white">
+        <span className="text-2xl">📜</span>
+        <span className="min-w-0 flex-1"><span className="block text-[10px] font-bold uppercase tracking-[.16em] text-emas-200">✨ Akan datang</span><span className="block font-extrabold">Modul Qiraat Sab'ah & 'Asyarah</span><span className="block text-xs text-krim-100/80">🎁 Percuma untuk pembeli · lihat pratonton</span></span>
+        <span className="text-emas-200">→</span>
+      </Link>
     </div>
   );
 }
