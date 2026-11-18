@@ -11,10 +11,11 @@ export default function AkanDatang() {
   useEffect(() => { if (loc.hash === "#akan-datang") setTimeout(() => ref.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 120); }, [loc.hash]);
   return (
     <section id="akan-datang" ref={ref} className="mt-6 scroll-mt-20">
-      <div className="mb-2 flex items-center gap-2 px-1">
+      <div className="mb-2 flex flex-wrap items-center gap-x-2 gap-y-1.5 px-1">
         <Sparkles size={18} className="text-emas-500" />
-        <h2 className="text-base font-extrabold text-hutan-900 dark:text-krim-50">Akan Datang</h2>
-        <span className="chip bg-emas-50 text-emas-700 ring-1 ring-inset ring-emas-200">Modul Qiraat</span>
+        <h2 className="whitespace-nowrap text-base font-extrabold text-hutan-900 dark:text-krim-50">Akan Datang</h2>
+        <span className="chip whitespace-nowrap bg-emas-50 text-emas-700 ring-1 ring-inset ring-emas-200">Modul Qiraat</span>
+        <span className="chip whitespace-nowrap bg-zamrud-50 text-zamrud-700 ring-1 ring-inset ring-zamrud-200">🎁 Percuma untuk pembeli</span>
       </div>
       <div className="grid gap-3 md:grid-cols-3">
         {AKAN_DATANG.map((t) => (
@@ -28,7 +29,7 @@ export default function AkanDatang() {
           </button>
         ))}
       </div>
-      <p className="mt-2 px-1 text-[11px] text-slate-500">Insya-Allah dalam perancangan. Kandungan penuh akan ditulis & disemak guru sebelum diterbitkan.</p>
+      <p className="mt-2 px-1 text-[11px] text-slate-500">Insya-Allah dalam perancangan. <b className="text-zamrud-700 dark:text-zamrud-300">Percuma untuk pembeli sedia ada</b> — dikemas kini terus dalam aplikasi ini. Kandungan penuh akan ditulis & disemak guru sebelum diterbitkan.</p>
 
       <Modal open={!!open} onClose={() => setOpen(null)} title={open ? `${open.icon} ${open.title}` : ""}>
         {open && (
@@ -51,7 +52,7 @@ export default function AkanDatang() {
               </div>
             )}
             <div className="rounded-2xl bg-emas-50 p-3 text-xs text-hutan-900 ring-1 ring-inset ring-emas-200 dark:bg-emas-500/10 dark:text-emas-100">
-              ✨ <b>Akan datang, insya-Allah.</b> Modul ini dalam perancangan; tarikh belum ditetapkan. Pratonton ini belum disemak guru penyemak.
+              ✨ <b>Akan datang, insya-Allah.</b> Modul ini dalam perancangan; tarikh belum ditetapkan.<br />🎁 <b>Percuma untuk pembeli sedia ada</b> — ia akan muncul terus dalam aplikasi ini tanpa bayaran tambahan.<br /><span className="opacity-75">Pratonton ini belum disemak guru penyemak.</span>
             </div>
             <button className="btn btn-primary w-full" onClick={() => setOpen(null)}>Baik, saya tunggu!</button>
           </div>

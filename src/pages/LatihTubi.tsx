@@ -129,7 +129,7 @@ export default function LatihTubi() {
       {/* ---------- Trailer: Akan Datang ---------- */}
       <Link to={{ pathname: "/nota", hash: "#akan-datang" }} className="hero flex items-center gap-3 rounded-3xl p-4 text-white">
         <span className="text-2xl">📜</span>
-        <span className="min-w-0 flex-1"><span className="block text-[10px] font-bold uppercase tracking-[.16em] text-emas-200">✨ Akan datang</span><span className="block font-extrabold">Modul Qiraat Sab'ah & 'Asyarah</span><span className="block text-xs text-krim-100/80">Lihat pratonton 10 imam qurra' & perawi</span></span>
+        <span className="min-w-0 flex-1"><span className="block text-[10px] font-bold uppercase tracking-[.16em] text-emas-200">✨ Akan datang</span><span className="block font-extrabold">Modul Qiraat Sab'ah & 'Asyarah</span><span className="block text-xs text-krim-100/80">🎁 Percuma untuk pembeli · lihat pratonton</span></span>
         <span className="text-emas-200">→</span>
       </Link>
     </div>
