@@ -477,6 +477,7 @@
     <details class="reveal"><summary>Bagaimana jika ada masalah atau saya mahu wang dikembalikan?</summary><p>Hubungi kami (lihat bahagian bawah halaman). Jika aplikasi tidak dapat berfungsi pada peranti anda dan kami tidak dapat menyelesaikannya, wang anda akan dikembalikan sepenuhnya. Butiran penuh di <a href="terma.html">Terma & Privasi</a>.</p></details>
     <details class="reveal"><summary>Di mana data saya disimpan?</summary><p>Dalam peranti anda sendiri. Tiada akaun, tiada emel diperlukan. Anda boleh eksport sandaran di halaman Profil jika mahu bertukar telefon.</p></details>
     <details class="reveal"><summary>Boleh guru guna untuk kelas?</summary><p>Boleh. Gunakan sebagai latihan pemantapan selepas kelas, cabaran harian, atau pertandingan kecil di scoreboard dalam kelas / halaqah.</p></details>
+    <p class="center reveal" style="margin-top:22px"><a class="btn btn-ghost" data-wa href="#" target="_blank" rel="noopener" hidden>💬 Masih ada soalan? Tanya kami di WhatsApp</a></p>
   </div>
 </section>
 
@@ -510,6 +511,11 @@
 (function () {
   var S = window.SALES;
   window.renderSellerContact();
+  document.querySelectorAll("[data-wa]").forEach(function (a) {
+    if (!S.whatsapp) return;
+    a.href = "https://wa.me/" + S.whatsapp + "?text=" + encodeURIComponent("Assalamualaikum, saya ingin bertanya tentang Pandai Tajwid.");
+    a.hidden = false;
+  });
   // ---------- Pautan CTA & demo ----------
   // Butang "Dapatkan" → kotak tawaran (harga) dahulu; butang dalam kotak tawaran → pautan bayaran.
   document.querySelectorAll("[data-cta]").forEach(function (a) { a.href = "#dapatkan"; });
